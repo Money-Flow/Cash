@@ -2,22 +2,29 @@
   "name": "cash",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "csscomb": "csscomb src/",
+    "eject": "react-scripts eject",
+    "lint:fix": "prettier --write",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{css,scss}": [
+      "csscomb --tty-mode --"
+    ],
+    "*.{js,jsx}": [
+      "yarn lint:fix"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ]
   },
   "browserslist": {
     "production": [
@@ -30,5 +37,22 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-scripts": "3.4.0"
+  },
+  "devDependencies": {
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "sort-package-json": "^1.40.0"
   }
 }
