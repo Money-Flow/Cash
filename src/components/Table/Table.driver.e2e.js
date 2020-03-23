@@ -1,7 +1,17 @@
 import { testIds } from "./testIds";
+import { testIds as totalTestIds } from "./../Total/testIds";
 
 const combineSelectors = (...selectors) =>
   selectors.map(selector => `[data-testid="${selector}"]`).join(" ");
+
+const getElemById = async (page, ...selectors) =>
+  await page.evaluate(selector => {
+    const element = document.querySelector(selector);
+    if (!element) {
+      return null;
+    }
+    return element.innerText;
+  }, combineSelectors(...selectors));
 
 const exist = async (page, ...selectors) =>
   await page.evaluate(selector => {
@@ -24,5 +34,8 @@ export const driver = page => ({
       combineSelectors(testIds.name),
       combineSelectors(testIds.amount)
     );
-  }
+  },
+  getTotal: async () =>
+    page.$eval(combineSelectors(totalTestIds.total), x => Number(x.innerHTML))
+  // getTotal: async () => getElemById(page, totalTestIds.total)
 });

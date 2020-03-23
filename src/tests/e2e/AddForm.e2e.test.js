@@ -57,10 +57,14 @@ describe("New operation", () => {
 
     const secondItem = await tableDriver.getItemByIndex(1);
 
+    const total = await tableDriver.getTotal();
+
     expect(firstItem.name).toBe("Milk");
     expect(firstItem.amount).toBe(10);
 
     expect(secondItem.name).toBe("Health");
     expect(secondItem.amount).toBe(200);
+
+    expect(total).toBe(210);
   });
 });

@@ -23,11 +23,9 @@
     width: 50px;
 }
 
-.amount:after
+.amount:before
 {
     position: relative;
-
-    margin-left: 5px;
 
     content: '$';
 }
