@@ -3,9 +3,6 @@ import { testIds } from "./testIds";
 const combineSelectors = (...selectors) =>
   selectors.map(selector => `[data-testid="${selector}"]`).join(" ");
 
-const getValueById = async (page, fn, ...selectors) =>
-  await page.$eval(combineSelectors(...selectors), fn);
-
 const addFocus = async (page, ...selectors) =>
   await page.focus(combineSelectors(...selectors));
 
@@ -19,12 +16,11 @@ export const driver = page => ({
 
     await addFocus(page, testIds.inputAmount);
     await fillInput(page, amount);
-
-    return `${name} — ${amount}`;
   },
-  clickBtn: async () => getValueById(page, x => x.click(), testIds.button),
-  getStateBtn: async () =>
-    await getValueById(page, x => x.disabled, testIds.button),
+  clickBtn: async () =>
+    await page.$eval(combineSelectors(testIds.button), x => x.click()),
+  isDisabled: async () =>
+    await page.$eval(combineSelectors(testIds.button), x => x.disabled),
   enterClick: async () => {
     await addFocus(page, testIds.inputAmount);
     await page.keyboard.press("Enter");

@@ -4,16 +4,16 @@ import { testIds } from "./testIds";
 
 import table from "./Table.module.css";
 
-export const Table = ({ journal }) => {
+export const Table = ({ operationList }) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
-      {journal.map(currentValue => (
-        <tr>
+      {operationList.map((item, index) => (
+        <tr key={index}>
           <td className={table.name} data-testid={testIds.tableName}>
-            {currentValue.name}
+            {item.name}
           </td>
           <td className={table.amount} data-testid={testIds.tableAmount}>
-            {currentValue.amount}
+            {item.amount}
           </td>
         </tr>
       ))}
