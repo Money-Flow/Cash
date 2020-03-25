@@ -15,7 +15,7 @@ export const Main = () => {
 
   return (
     <div data-testid={testIds.main} className={main.main}>
-      <AddForm handleSubmit={addItems} />
+      <AddForm onSubmit={addItems} />
       {items.length > 0 && <Table operationList={items} />}
     </div>
   );

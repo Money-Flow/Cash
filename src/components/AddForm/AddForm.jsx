@@ -4,22 +4,21 @@ import { testIds } from "./testIds";
 
 import operation from "./AddForm.module.css";
 
-export const AddForm = ({ handleSubmit }) => {
+export const AddForm = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
 
   const isSubmitDisabled = () => !name.trim().length;
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    onSubmit({ name: name, amount: amount });
+    setName("");
+    setAmount(0);
+  };
+
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        handleSubmit({ name: name, amount: amount });
-        setName("");
-        setAmount(0);
-      }}
-      className={operation.section}
-    >
+    <form onSubmit={handleSubmit} className={operation.section}>
       <input
         type="text"
         className={operation.input}
