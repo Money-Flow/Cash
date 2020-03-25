@@ -12,7 +12,7 @@ export const AddForm = ({ onSubmit }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit({ name: name, amount: amount });
+    onSubmit({ name, amount });
     setName("");
     setAmount(0);
   };
