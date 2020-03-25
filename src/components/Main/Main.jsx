@@ -9,9 +9,13 @@ import main from "./Main.module.css";
 export const Main = () => {
   const [items, changeItems] = useState([]);
 
+  const addItems = newItem => {
+    changeItems(oldArray => [...oldArray, newItem]);
+  };
+
   return (
     <div data-testid={testIds.main} className={main.main}>
-      <AddForm onSubmit={changeItems} />
+      <AddForm handleSubmit={addItems} />
       {items.length > 0 && <Table operationList={items} />}
     </div>
   );

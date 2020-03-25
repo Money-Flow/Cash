@@ -4,22 +4,20 @@ import { testIds } from "./testIds";
 
 import operation from "./AddForm.module.css";
 
-export const AddForm = ({ onSubmit }) => {
+export const AddForm = ({ handleSubmit }) => {
   const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
 
-  const handleButtonChange = event => {
-    event.preventDefault();
-    onSubmit(oldArray => [...oldArray, { name: name, amount: amount }]);
-    setName("");
-    setAmount("");
-  };
-
-  const isSubmitDisabled = () => !name.trim().length || !amount.trim().length;
+  const isSubmitDisabled = () => !name.trim().length;
 
   return (
     <form
-      onSubmit={event => handleButtonChange(event)}
+      onSubmit={event => {
+        event.preventDefault();
+        handleSubmit({ name: name, amount: amount });
+        setName("");
+        setAmount(0);
+      }}
       className={operation.section}
     >
       <input
@@ -39,7 +37,7 @@ export const AddForm = ({ onSubmit }) => {
         data-testid={testIds.inputAmount}
         value={amount}
         placeholder="Amount"
-        onChange={event => setAmount(event.target.value)}
+        onChange={event => setAmount(Number(event.target.value))}
         required
       />
 
@@ -49,9 +47,6 @@ export const AddForm = ({ onSubmit }) => {
         data-testid={testIds.button}
         disabled={isSubmitDisabled()}
         value="Add"
-        onSubmit={event => {
-          handleButtonChange(event);
-        }}
       />
     </form>
   );
