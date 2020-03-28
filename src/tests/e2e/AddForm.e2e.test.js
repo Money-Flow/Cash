@@ -23,20 +23,19 @@ describe("New operation", () => {
   it("should add Milk with cost 10 to the list", async () => {
     let name = "Milk",
       amount = 10;
-    await addFormDriver.addValue(name, amount);
-    await addFormDriver.clickBtn();
+    await addFormDriver.addItem(name, amount);
+    await addFormDriver.enterClick();
 
-    const getName = await getValue.getName();
-    const getAmount = await getValue.getAmount();
+    const firstItem = await getValue.getItemByIndex(0);
 
-    expect(getName).toBe(name);
-    expect(getAmount).toBe(amount);
+    expect(firstItem.name).toBe(name);
+    expect(firstItem.amount).toBe(amount);
   });
 
   it("should get an disabled button when the operation name is missing", async () => {
     let name = "",
       amount = 10;
-    await addFormDriver.addValue(name, amount);
+    await addFormDriver.addItem(name, amount);
     let isDisabledBtn = await addFormDriver.isDisabled();
     expect(isDisabledBtn).toBe(true);
   });
@@ -45,13 +44,12 @@ describe("New operation", () => {
     let name = "Milk",
       amount = 10;
 
-    await addFormDriver.addValue(name, amount);
+    await addFormDriver.addItem(name, amount);
     await addFormDriver.enterClick();
 
-    const getName = await getValue.getName();
-    const getAmount = await getValue.getAmount();
+    const firstItem = await getValue.getItemByIndex(0);
 
-    expect(getName).toBe(name);
-    expect(getAmount).toBe(amount);
+    expect(firstItem.name).toBe(name);
+    expect(firstItem.amount).toBe(amount);
   });
 });

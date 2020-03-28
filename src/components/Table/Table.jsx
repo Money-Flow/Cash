@@ -8,11 +8,11 @@ export const Table = ({ operationList }) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       {operationList.map((item, index) => (
-        <tr key={index}>
-          <td className={table.name} data-testid={testIds.tableName}>
+        <tr data-testid={testIds.tr} key={index}>
+          <td className={table.name} data-testid={testIds.td}>
             {item.name}
           </td>
-          <td className={table.amount} data-testid={testIds.tableAmount}>
+          <td className={table.amount} data-testid={testIds.td}>
             {item.amount}
           </td>
         </tr>
