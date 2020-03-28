@@ -17,8 +17,6 @@ export const driver = page => ({
     await addFocus(page, testIds.inputAmount);
     await fillInput(page, amount);
   },
-  isDisabled: async () =>
-    await page.$eval(combineSelectors(testIds.button), x => x.disabled),
   enterClick: async () => {
     await addFocus(page, testIds.inputAmount);
     await page.keyboard.press("Enter");

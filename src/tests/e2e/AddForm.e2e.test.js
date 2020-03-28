@@ -1,10 +1,10 @@
 import puppeteer from "puppeteer";
 
-import { driver as addFromDriver } from "../../components/AddForm/AddForm.driver.e2e";
-import { driver as tableDriver } from "../../components/Table/Table.driver.e2e";
+import { driver as createFromDriver } from "../../components/AddForm/AddForm.driver.e2e";
+import { driver as createTableDriver } from "../../components/Table/Table.driver.e2e";
 
 describe("New operation", () => {
-  let browser, page, addFormDriver, getValue;
+  let browser, page, addFormDriver, tableDriver;
 
   beforeEach(async () => {
     browser = await puppeteer.launch({
@@ -12,44 +12,55 @@ describe("New operation", () => {
     });
     page = await browser.newPage();
     await page.goto("http://localhost:3000/");
-    addFormDriver = addFromDriver(page);
-    getValue = tableDriver(page);
+    addFormDriver = createFromDriver(page);
+    tableDriver = createTableDriver(page);
   });
 
   afterEach(async () => {
     await browser.close();
   });
 
-  it("should add Milk with cost 10 to the list", async () => {
-    let name = "Milk",
-      amount = 10;
-    await addFormDriver.addItem(name, amount);
+  it("should add Health with cost 200 to the list", async () => {
+    await addFormDriver.addItem("Health", 200);
     await addFormDriver.enterClick();
 
-    const firstItem = await getValue.getItemByIndex(0);
+    const firstItem = await tableDriver.getItemByIndex(0);
 
-    expect(firstItem.name).toBe(name);
-    expect(firstItem.amount).toBe(amount);
+    expect(firstItem.name).toBe("Health");
+    expect(firstItem.amount).toBe(200);
   });
 
-  it("should get an disabled button when the operation name is missing", async () => {
-    let name = "",
-      amount = 10;
-    await addFormDriver.addItem(name, amount);
-    let isDisabledBtn = await addFormDriver.isDisabled();
-    expect(isDisabledBtn).toBe(true);
+  it("should not add Item without name", async () => {
+    await addFormDriver.addItem("", 100);
+    const table = await tableDriver.getTable();
+    expect(table).toBe(null);
   });
 
-  it('should send data if validation is completed and "Enter" is pressed ', async () => {
-    let name = "Milk",
-      amount = 10;
-
-    await addFormDriver.addItem(name, amount);
+  it("should add Item on Enter key press", async () => {
+    await addFormDriver.addItem("Milk", 10);
     await addFormDriver.enterClick();
 
-    const firstItem = await getValue.getItemByIndex(0);
+    const firstItem = await tableDriver.getItemByIndex(0);
 
-    expect(firstItem.name).toBe(name);
-    expect(firstItem.amount).toBe(amount);
+    expect(firstItem.name).toBe("Milk");
+    expect(firstItem.amount).toBe(10);
+  });
+
+  it("should add 2 items to the list", async () => {
+    await addFormDriver.addItem("Milk", 10);
+    await addFormDriver.enterClick();
+
+    const firstItem = await tableDriver.getItemByIndex(0);
+
+    await addFormDriver.addItem("Health", 200);
+    await addFormDriver.enterClick();
+
+    const secondItem = await tableDriver.getItemByIndex(1);
+
+    expect(firstItem.name).toBe("Milk");
+    expect(firstItem.amount).toBe(10);
+
+    expect(secondItem.name).toBe("Health");
+    expect(secondItem.amount).toBe(200);
   });
 });

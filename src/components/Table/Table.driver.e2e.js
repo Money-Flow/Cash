@@ -4,6 +4,13 @@ const combineSelectors = (...selectors) =>
   selectors.map(selector => `[data-testid="${selector}"]`).join(" ");
 
 export const driver = page => ({
+  getTable: async () =>
+    await page.evaluate(selector => {
+      let element = document.querySelector(selector);
+      if (!element) return null;
+      return element.innerHTML;
+    }, combineSelectors(testIds.table)),
+
   getItemByIndex: async index => {
     let itemList = await page.evaluate(
       (tr, td) => {
