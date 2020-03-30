@@ -1,0 +1,33 @@
+.table
+{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.name,
+.amount
+{
+    height: 20px;
+
+    border: 1px solid #000;
+}
+
+.name
+{
+    width: 150px;
+}
+
+.amount
+{
+    width: 50px;
+}
+
+.amount:after
+{
+    position: relative;
+
+    margin-left: 5px;
+
+    content: '$';
+}
