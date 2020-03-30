@@ -26,6 +26,5 @@ jobs:
         yarn install
         yarn start
         yarn test
-    npm test
       env:
         CI: true
