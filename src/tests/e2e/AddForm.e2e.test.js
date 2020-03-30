@@ -8,6 +8,8 @@ describe("New operation", () => {
 
   beforeEach(async () => {
     browser = await puppeteer.launch({
+      executablePath: process.env.PUPPETEER_EXEC_PATH, // set by docker container
+      headless: false,
       args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
     page = await browser.newPage();
