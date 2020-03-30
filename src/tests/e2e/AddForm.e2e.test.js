@@ -32,8 +32,8 @@ describe("New operation", () => {
 
   it("should not add Item without name", async () => {
     await addFormDriver.addItem("", 100);
-    const table = await tableDriver.exist();
-    expect(table).toBe(false);
+    const tableExists = await tableDriver.exist();
+    expect(tableExists).toBe(false);
   });
 
   it("should add Item on Enter key press", async () => {
