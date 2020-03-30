@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm run intstall
+    - run: npm intstall
     - run: npm run start
     - run: npm run test
       env:
