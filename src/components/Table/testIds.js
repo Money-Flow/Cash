@@ -1,5 +1,6 @@
 export const testIds = {
-  table: "table",
-  tr: "table-tr",
-  td: "td"
+  table: "expanses-list",
+  row: "expanses-list__row",
+  name: "item-name",
+  amount: "item-amount"
 };

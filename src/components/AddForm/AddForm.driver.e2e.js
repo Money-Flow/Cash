@@ -17,7 +17,7 @@ export const driver = page => ({
     await addFocus(page, testIds.inputAmount);
     await fillInput(page, amount);
   },
-  enterClick: async () => {
+  enterPress: async () => {
     await addFocus(page, testIds.inputAmount);
     await page.keyboard.press("Enter");
   }

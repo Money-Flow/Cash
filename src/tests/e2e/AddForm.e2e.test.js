@@ -22,7 +22,7 @@ describe("New operation", () => {
 
   it("should add Health with cost 200 to the list", async () => {
     await addFormDriver.addItem("Health", 200);
-    await addFormDriver.enterClick();
+    await addFormDriver.enterPress();
 
     const firstItem = await tableDriver.getItemByIndex(0);
 
@@ -32,28 +32,28 @@ describe("New operation", () => {
 
   it("should not add Item without name", async () => {
     await addFormDriver.addItem("", 100);
-    const table = await tableDriver.getTable();
-    expect(table).toBe(null);
+    const table = await tableDriver.exist();
+    expect(table).toBe(false);
   });
 
   it("should add Item on Enter key press", async () => {
     await addFormDriver.addItem("Milk", 10);
-    await addFormDriver.enterClick();
+    await addFormDriver.enterPress();
 
-    const firstItem = await tableDriver.getItemByIndex(0);
+    const item = await tableDriver.getItemByIndex(0);
 
-    expect(firstItem.name).toBe("Milk");
-    expect(firstItem.amount).toBe(10);
+    expect(item.name).toBe("Milk");
+    expect(item.amount).toBe(10);
   });
 
   it("should add 2 items to the list", async () => {
     await addFormDriver.addItem("Milk", 10);
-    await addFormDriver.enterClick();
+    await addFormDriver.enterPress();
 
     const firstItem = await tableDriver.getItemByIndex(0);
 
     await addFormDriver.addItem("Health", 200);
-    await addFormDriver.enterClick();
+    await addFormDriver.enterPress();
 
     const secondItem = await tableDriver.getItemByIndex(1);
 

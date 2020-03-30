@@ -3,34 +3,26 @@ import { testIds } from "./testIds";
 const combineSelectors = (...selectors) =>
   selectors.map(selector => `[data-testid="${selector}"]`).join(" ");
 
-export const driver = page => ({
-  getTable: async () =>
-    await page.evaluate(selector => {
-      let element = document.querySelector(selector);
-      if (!element) return null;
-      return element.innerHTML;
-    }, combineSelectors(testIds.table)),
+const exist = async (page, ...selectors) =>
+  await page.evaluate(selector => {
+    let element = document.querySelector(selector);
+    return !!element;
+  }, combineSelectors(...selectors));
 
+export const driver = page => ({
+  exist: () => exist(page, testIds.table),
   getItemByIndex: async index => {
-    let itemList = await page.evaluate(
-      (tr, td) => {
-        const rows = document.querySelectorAll(tr);
-        return Array.from(rows, row => {
-          const columns = row.querySelectorAll(td);
-          return Array.from(columns, column => column.innerHTML);
-        });
+    return page.evaluate(
+      (index, lineSelector, nameSelector, amountSelector) => {
+        const row = document.querySelectorAll(lineSelector)[index];
+        const amount = Number(row.querySelector(amountSelector).textContent);
+        const name = row.querySelector(nameSelector).textContent;
+        return { name, amount };
       },
-      combineSelectors(testIds.tr),
-      combineSelectors(testIds.td)
+      index,
+      combineSelectors(testIds.row),
+      combineSelectors(testIds.name),
+      combineSelectors(testIds.amount)
     );
-    itemList = itemList.reduce((acc, currentValue, index) => {
-      const [name, amount] = currentValue;
-      acc[index] = {
-        name: name,
-        amount: Number(amount)
-      };
-      return acc;
-    }, []);
-    return itemList[index];
   }
 });
