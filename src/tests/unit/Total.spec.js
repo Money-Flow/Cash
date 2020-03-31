@@ -17,7 +17,7 @@ describe("Total", () => {
 
   it("should get the amount when we get 2 items", () => {
     const total = totalDriver.given
-      .operationList([10, 40])
+      .amountList([10, 40])
       .when.created()
       .then.getTotal();
     expect(total).toBe(50);

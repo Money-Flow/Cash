@@ -14,10 +14,7 @@ const getElemById = async (page, ...selectors) =>
   }, combineSelectors(...selectors));
 
 const exist = async (page, ...selectors) =>
-  await page.evaluate(selector => {
-    let element = document.querySelector(selector);
-    return !!element;
-  }, combineSelectors(...selectors));
+  !!(await getElemById(page, ...selectors));
 
 export const driver = page => ({
   exist: () => exist(page, testIds.table),
@@ -37,5 +34,4 @@ export const driver = page => ({
   },
   getTotal: async () =>
     page.$eval(combineSelectors(totalTestIds.total), x => Number(x.innerHTML))
-  // getTotal: async () => getElemById(page, totalTestIds.total)
 });

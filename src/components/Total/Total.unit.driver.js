@@ -12,10 +12,10 @@ export const createTotalDriver = () => {
         _props = props;
         return driver;
       },
-      operationList: operationList => {
+      amountList: amountList => {
         _props = {
           ..._props,
-          operationList
+          amountList
         };
         return driver;
       }
