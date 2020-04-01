@@ -26,8 +26,12 @@ describe("New operation", () => {
 
     const firstItem = await tableDriver.getItemByIndex(0);
 
+    const total = await tableDriver.getTotal();
+
     expect(firstItem.name).toBe("Health");
     expect(firstItem.amount).toBe(200);
+
+    expect(total).toBe(200);
   });
 
   it("should not add Item without name", async () => {
@@ -57,10 +61,14 @@ describe("New operation", () => {
 
     const secondItem = await tableDriver.getItemByIndex(1);
 
+    const total = await tableDriver.getTotal();
+
     expect(firstItem.name).toBe("Milk");
     expect(firstItem.amount).toBe(10);
 
     expect(secondItem.name).toBe("Health");
     expect(secondItem.amount).toBe(200);
+
+    expect(total).toBe(210);
   });
 });
