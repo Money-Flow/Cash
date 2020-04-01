@@ -5,13 +5,13 @@ import { testIds } from "./testIds";
 
 import table from "./Table.module.css";
 
- type ItemType = {
+ type IExpance = {
     name: string,
     amount: number
 }
 
  type IProps = {
-    operationList: ItemType[]
+    operationList: IExpance[]
 }
 
 export const Table = ({ operationList }: IProps) => {
