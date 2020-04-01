@@ -10,11 +10,11 @@ import table from "./Table.module.css";
     amount: number
 }
 
- type TableProps = {
-    operationList: Array<ItemType>
+ type IProps = {
+    operationList: ItemType[]
 }
 
-export const Table = ({ operationList }: TableProps) => {
+export const Table = ({ operationList }: IProps) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
