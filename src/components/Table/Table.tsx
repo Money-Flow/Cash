@@ -5,7 +5,16 @@ import { testIds } from "./testIds";
 
 import table from "./Table.module.css";
 
-export const Table = ({ operationList }) => {
+ type ItemType = {
+    name: string,
+    amount: number
+}
+
+ type TableProps = {
+    operationList: Array<ItemType>
+}
+
+export const Table = ({ operationList }: TableProps) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
@@ -24,7 +33,7 @@ export const Table = ({ operationList }) => {
         <tr>
           <td />
           <td>
-            <Total amountList={operationList.map(x => x.amount)} />
+            <Total amountList={operationList.map((x) => x.amount)} />
           </td>
         </tr>
       </tfoot>
