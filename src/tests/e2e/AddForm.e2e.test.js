@@ -1,18 +1,18 @@
 import puppeteer from "puppeteer";
 
-import { driver as createFromDriver } from "../../components/AddForm/AddForm.driver.e2e";
-import { driver as createTableDriver } from "../../components/Table/Table.driver.e2e";
+import { driver as createFormDriver } from "../../components/AddForm/AddForm.driver.e2e.js";
+import { driver as createTableDriver } from "../../components/Table/Table.driver.e2e.js";
 
 describe("New operation", () => {
   let browser, page, addFormDriver, tableDriver;
 
   beforeEach(async () => {
     browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     page = await browser.newPage();
     await page.goto("http://localhost:3000/");
-    addFormDriver = createFromDriver(page);
+    addFormDriver = createFormDriver(page);
     tableDriver = createTableDriver(page);
   });
 

@@ -8,10 +8,7 @@ describe("Total", () => {
   });
 
   it("should not show anything when there are no elements", () => {
-    const total = totalDriver.given
-      .props()
-      .when.created()
-      .then.getTotal();
+    const total = totalDriver.given.props().when.created().then.getTotal();
     expect(total).toBe(null);
   });
 

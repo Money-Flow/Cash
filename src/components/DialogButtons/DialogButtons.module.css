@@ -1,0 +1,29 @@
+.wrapper
+{
+    position: absolute;
+    z-index: 2;
+    top: -6px;
+    left: 60px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 70px;
+}
+
+.confirm,
+.cancel
+{
+    position: relative;
+    z-index: 5;
+
+    display: block;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 8px;
+}

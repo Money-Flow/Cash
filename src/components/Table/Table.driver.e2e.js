@@ -2,10 +2,10 @@ import { testIds } from "./testIds";
 import { testIds as totalTestIds } from "./../Total/testIds";
 
 const combineSelectors = (...selectors) =>
-  selectors.map(selector => `[data-testid="${selector}"]`).join(" ");
+  selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
 
 const getElemById = async (page, ...selectors) =>
-  await page.evaluate(selector => {
+  await page.evaluate((selector) => {
     const element = document.querySelector(selector);
     if (!element) {
       return null;
@@ -16,14 +16,15 @@ const getElemById = async (page, ...selectors) =>
 const exist = async (page, ...selectors) =>
   !!(await getElemById(page, ...selectors));
 
-export const driver = page => ({
+export const driver = (page) => ({
   exist: () => exist(page, testIds.table),
-  getItemByIndex: async index => {
+  getItemByIndex: async (index) => {
     return page.evaluate(
       (index, lineSelector, nameSelector, amountSelector) => {
         const row = document.querySelectorAll(lineSelector)[index];
-        const amount = Number(row.querySelector(amountSelector).textContent);
-        const name = row.querySelector(nameSelector).textContent;
+        const amount =
+          Number(row.querySelector(amountSelector).textContent) || null;
+        const name = row.querySelector(nameSelector).textContent || null;
         return { name, amount };
       },
       index,
@@ -33,5 +34,7 @@ export const driver = page => ({
     );
   },
   getTotal: async () =>
-    page.$eval(combineSelectors(totalTestIds.total), x => Number(x.innerHTML))
+    page.$eval(combineSelectors(totalTestIds.total), (x) =>
+      Number(x.innerHTML)
+    ),
 });
