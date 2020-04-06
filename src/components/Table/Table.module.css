@@ -1,7 +1,7 @@
 .table
 {
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
 }
 
@@ -15,12 +15,17 @@
 
 .name
 {
-    width: 150px;
+    width: 60%;
 }
 
 .amount
 {
-    width: 50px;
+    width: 30%;
+}
+
+.removeItem
+{
+    width: 10%;
 }
 
 .amount:before
