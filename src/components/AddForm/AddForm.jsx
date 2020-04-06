@@ -10,9 +10,11 @@ export const AddForm = ({ onSubmit }) => {
 
   const isSubmitDisabled = () => !name.trim().length;
 
-  const handleSubmit = event => {
+  const generateIds = "_" + Math.random().toString(36).substring(2, 9);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ name, amount });
+    onSubmit({ name, amount, id: generateIds });
     setName("");
     setAmount(0);
   };
@@ -25,7 +27,7 @@ export const AddForm = ({ onSubmit }) => {
         name="name"
         data-testid={testIds.inputName}
         value={name}
-        onChange={event => setName(event.target.value)}
+        onChange={(event) => setName(event.target.value)}
         placeholder="Name"
         required
       />
@@ -36,7 +38,7 @@ export const AddForm = ({ onSubmit }) => {
         data-testid={testIds.inputAmount}
         value={amount}
         placeholder="Amount"
-        onChange={event => setAmount(Number(event.target.value))}
+        onChange={(event) => setAmount(Number(event.target.value))}
         required
       />
 

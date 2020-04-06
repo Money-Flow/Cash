@@ -2,19 +2,22 @@ import React from "react";
 
 import { Total } from "../Total/Total";
 import { testIds } from "./testIds";
+import { Buttons } from "../Buttons/Buttons";
 
 import table from "./Table.module.css";
 
- type IExpance = {
-    name: string,
-    amount: number
-}
+type IExpance = {
+  name: string;
+  amount: number;
+  id: string;
+};
 
- type IProps = {
-    operationList: IExpance[]
-}
+type IProps = {
+  operationList: IExpance[];
+  removeItem: Function;
+};
 
-export const Table = ({ operationList }: IProps) => {
+export const Table = ({ operationList, removeItem }: IProps) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
@@ -25,6 +28,10 @@ export const Table = ({ operationList }: IProps) => {
             </td>
             <td className={table.amount} data-testid={testIds.amount}>
               {item.amount}
+            </td>
+            <div> </div>
+            <td className={table.removeItem}>
+              <Buttons onClick={() => removeItem(item.id)} />
             </td>
           </tr>
         ))}
