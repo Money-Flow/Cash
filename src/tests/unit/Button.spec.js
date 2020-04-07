@@ -1,9 +1,9 @@
-import { createButtonsDriver } from "../../components/Buttons/Buttons.unit.driver";
+import { createButtonDriver } from "../../components/Button/Button.unit.driver";
 
 describe("Buttons", () => {
   let buttonsDriver;
   beforeEach(() => {
-    buttonsDriver = createButtonsDriver();
+    buttonsDriver = createButtonDriver();
   });
 
   it("should get delete btn", () => {
@@ -22,33 +22,33 @@ describe("Buttons", () => {
     expect(confirmationWrapper).toBeFalsy();
   });
 
-  it("should get confirm button, when block with buttons shown", () => {
+  xit("should get confirm button, when block with buttons shown", () => {
     const confirm = buttonsDriver.given
-      .showButtons({ show: true })
+      .withConfirm(true)
       .when.created()
       .then.confirmBtnExist();
     expect(confirm).toBeTruthy();
   });
 
-  it("should get cancel button, when block with buttons shown", () => {
+  xit("should get cancel button, when block with buttons shown", () => {
     const cancel = buttonsDriver.given
-      .showButtons({ show: true })
+      .withConfirm(true)
       .when.created()
       .then.cancelBtnExist();
     expect(cancel).toBeTruthy();
   });
 
-  it("should get the icon on confirm button, when block with buttons shown", () => {
+  xit("should get the icon on confirm button, when block with buttons shown", () => {
     const confirmIcon = buttonsDriver.given
-      .showButtons({ show: true })
+      .withConfirm(true)
       .when.created()
       .then.iconConfirmButtonExist();
     expect(confirmIcon).toBeTruthy();
   });
 
-  it("should get the icon on calcel button, when block with buttons shown", () => {
+  xit("should get the icon on calcel button, when block with buttons shown", () => {
     const cancelIcon = buttonsDriver.given
-      .showButtons({ show: true })
+      .withConfirm(true)
       .when.created()
       .then.iconCancelButtonExist();
     expect(cancelIcon).toBeTruthy();

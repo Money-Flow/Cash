@@ -26,8 +26,7 @@
     width: 70px;
 }
 
-.btnConfirm,
-.btnCancel
+.confirmButtons
 {
     position: relative;
     z-index: 5;

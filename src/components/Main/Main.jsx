@@ -9,7 +9,7 @@ import main from "./Main.module.css";
 export const Main = () => {
   const [items, changeItems] = useState([]);
 
-  const addItems = (newItem) => {
+  const addItem = (newItem) => {
     changeItems((oldArray) => [...oldArray, newItem]);
   };
 
@@ -19,7 +19,7 @@ export const Main = () => {
 
   return (
     <div data-testid={testIds.main} className={main.main}>
-      <AddForm onSubmit={addItems} />
+      <AddForm onSubmit={addItem} />
       {items.length > 0 && (
         <Table operationList={items} removeItem={removeItem} />
       )}

@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { Buttons } from "./Buttons.jsx";
-import { testIds } from "./../Buttons/testIds";
+import { Button } from "./Button.jsx";
+import { testIds } from "./testIds.js";
 
 const exist = (page, selector) => {
   try {
@@ -13,7 +13,7 @@ const exist = (page, selector) => {
   }
 };
 
-export const createButtonsDriver = () => {
+export const createButtonDriver = () => {
   let _props, _wrapper;
   const driver = {
     given: {
@@ -31,7 +31,7 @@ export const createButtonsDriver = () => {
     },
     when: {
       created: () => {
-        _wrapper = render(<Buttons {..._props} />);
+        _wrapper = render(<Button {..._props} />);
         return driver;
       },
     },

@@ -1,41 +1,43 @@
 import React, { useState } from "react";
 
-import { testIds } from "./testIds.js";
+import { testIds } from "../Button/testIds.js";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import styles from "./Buttons.module.css";
+import styles from "./Button.module.css";
 
-export const Buttons = ({ onClick, show = false }) => {
-  const [isShow, setIsShow] = useState(show);
+export const Button = ({ onClick, withConfirm = false, text }) => {
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleClick = (event) => {
     event.preventDefault();
     if (event.currentTarget.value === "confirm") {
       onClick();
     } else {
-      setIsShow(() => false);
+      setShowConfirm(false);
     }
   };
 
   return (
     <div className={styles.wrapper} data-testid={testIds.wrapper}>
-      <button data-testid={testIds.btnDelete} onClick={() => setIsShow(true)}>
-        Delete
+      <button
+        data-testid={testIds.btnDelete}
+        onClick={() => (withConfirm ? setShowConfirm(true) : onClick())}
+      >
+        {text}
       </button>
-      {isShow && (
+      {!!showConfirm && (
         <div
           className={styles.confirmationWrapper}
           data-testid={testIds.confirmationWrapper}
         >
           <button
-            className={styles.btnConfirm}
+            className={styles.confirmButtons}
             data-testid={testIds.btnConfirm}
-            onClick={(event) => handleClick(event)}
+            onClick={handleClick}
             value="confirm"
           >
-            &nbsp;
             <FontAwesomeIcon
               color="green"
               data-testid={testIds.iconConfirm}
@@ -43,12 +45,11 @@ export const Buttons = ({ onClick, show = false }) => {
             />
           </button>
           <button
-            className={styles.btnCancel}
+            className={styles.confirmButtons}
             data-testid={testIds.btnCancel}
             value="cancel"
-            onClick={(event) => handleClick(event)}
+            onClick={handleClick}
           >
-            &nbsp;
             <FontAwesomeIcon
               color="red"
               data-testid={testIds.iconCancel}
