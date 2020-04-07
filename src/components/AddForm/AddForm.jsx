@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { v4 as createId } from "uuid";
 import { testIds } from "./testIds";
 
 import operation from "./AddForm.module.css";
@@ -10,11 +11,9 @@ export const AddForm = ({ onSubmit }) => {
 
   const isSubmitDisabled = () => !name.trim().length;
 
-  const generateIds = "_" + Math.random().toString(36).substring(2, 9);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ name, amount, id: generateIds });
+    onSubmit({ name, amount, id: createId() });
     setName("");
     setAmount(0);
   };

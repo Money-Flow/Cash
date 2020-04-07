@@ -2,7 +2,7 @@ import React from "react";
 
 import { Total } from "../Total/Total";
 import { testIds } from "./testIds";
-import { Buttons } from "../Buttons/Buttons";
+import { Button } from "../Button/Button";
 
 import table from "./Table.module.css";
 
@@ -10,14 +10,20 @@ type IExpance = {
   name: string;
   amount: number;
   id: string;
+  withConfirm?: boolean;
 };
 
 type IProps = {
   operationList: IExpance[];
-  removeItem: Function;
+  removeItem: (id: string) => void;
+  withConfirm?: boolean;
 };
 
-export const Table = ({ operationList, removeItem }: IProps) => {
+export const Table = ({
+  operationList,
+  removeItem,
+  withConfirm = true,
+}: IProps) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
@@ -29,9 +35,12 @@ export const Table = ({ operationList, removeItem }: IProps) => {
             <td className={table.amount} data-testid={testIds.amount}>
               {item.amount}
             </td>
-            <div> </div>
             <td className={table.removeItem}>
-              <Buttons onClick={() => removeItem(item.id)} />
+              <Button
+                onClick={() => removeItem(item.id)}
+                withConfirm={withConfirm}
+                text="Delete"
+              />
             </td>
           </tr>
         ))}
