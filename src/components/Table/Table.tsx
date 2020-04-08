@@ -19,11 +19,7 @@ type IProps = {
   withConfirm?: boolean;
 };
 
-export const Table = ({
-  operationList,
-  removeItem,
-  withConfirm = true,
-}: IProps) => {
+export const Table = ({ operationList, removeItem }: IProps) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
@@ -38,7 +34,7 @@ export const Table = ({
             <td className={table.removeItem}>
               <Button
                 onClick={() => removeItem(item.id)}
-                withConfirm={withConfirm}
+                withConfirm={true}
                 text="Delete"
               />
             </td>
