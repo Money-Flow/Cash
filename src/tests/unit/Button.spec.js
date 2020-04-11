@@ -1,56 +1,60 @@
+import { cleanup } from "@testing-library/react";
+
 import { createButtonDriver } from "../../components/Button/Button.unit.driver";
 
-describe("Buttons", () => {
+describe("Button", () => {
+  let buttonsDriver;
+
+  beforeEach(() => {
+    buttonsDriver = createButtonDriver();
+  });
+
+  afterEach(cleanup);
+
+  it("by default conformation block should be hidden", () => {
+    const confirmationWrapper = buttonsDriver.given
+      .props()
+      .when.created()
+      .then.exist();
+    expect(confirmationWrapper).toBeFalsy();
+  });
+
+  it("by default, the function should be called when press delete button", () => {
+    const mockOnClick = jest.fn();
+    buttonsDriver.given
+      .text("Delete")
+      .given.click(mockOnClick)
+      .when.deleteBtnClick();
+    expect(mockOnClick).toHaveBeenCalled();
+  });
+});
+
+describe("Confirmation", () => {
   let buttonsDriver;
   beforeEach(() => {
     buttonsDriver = createButtonDriver();
   });
 
-  it("should get delete btn", () => {
-    const button = buttonsDriver.given
-      .props()
-      .when.created()
-      .then.deleteBtnExist();
-    expect(button).toBeTruthy();
-  });
+  afterEach(cleanup);
 
-  it("should be hidden block with the confirmation and cancel buttons", () => {
-    const confirmationWrapper = buttonsDriver.given
-      .props()
-      .when.created()
-      .then.confirmationWrapperExist();
-    expect(confirmationWrapper).toBeFalsy();
-  });
-
-  xit("should get confirm button, when block with buttons shown", () => {
-    const confirm = buttonsDriver.given
+  it("the function should not be called after press delete button", () => {
+    const mockOnClick = jest.fn();
+    buttonsDriver.given
       .withConfirm(true)
-      .when.created()
-      .then.confirmBtnExist();
-    expect(confirm).toBeTruthy();
+      .given.text("Delete")
+      .given.click(mockOnClick)
+      .when.deleteBtnClick();
+    expect(mockOnClick).not.toHaveBeenCalled();
   });
 
-  xit("should get cancel button, when block with buttons shown", () => {
-    const cancel = buttonsDriver.given
+  it("the function should not be called when the press cancel button", () => {
+    const mockOnClick = jest.fn();
+    buttonsDriver.given
       .withConfirm(true)
-      .when.created()
-      .then.cancelBtnExist();
-    expect(cancel).toBeTruthy();
-  });
-
-  xit("should get the icon on confirm button, when block with buttons shown", () => {
-    const confirmIcon = buttonsDriver.given
-      .withConfirm(true)
-      .when.created()
-      .then.iconConfirmButtonExist();
-    expect(confirmIcon).toBeTruthy();
-  });
-
-  xit("should get the icon on calcel button, when block with buttons shown", () => {
-    const cancelIcon = buttonsDriver.given
-      .withConfirm(true)
-      .when.created()
-      .then.iconCancelButtonExist();
-    expect(cancelIcon).toBeTruthy();
+      .given.text("Delete")
+      .given.click(mockOnClick)
+      .when.deleteBtnClick()
+      .when.cancelBtnClick();
+    expect(mockOnClick).not.toHaveBeenCalled();
   });
 });

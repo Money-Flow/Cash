@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import { Button } from "./Button.jsx";
 import { testIds } from "./testIds.js";
@@ -15,16 +15,37 @@ const exist = (page, selector) => {
 
 export const createButtonDriver = () => {
   let _props, _wrapper;
+
+  const btnClick = (selector) => {
+    const { getByTestId } = render(<Button {..._props} />);
+    const element = getByTestId(selector);
+    fireEvent.click(element);
+  };
+
   const driver = {
     given: {
       props: (props) => {
         _props = props;
         return driver;
       },
-      showButtons: (show) => {
+      withConfirm: (withConfirm) => {
         _props = {
           ..._props,
-          show,
+          withConfirm,
+        };
+        return driver;
+      },
+      text: (text) => {
+        _props = {
+          ..._props,
+          text,
+        };
+        return driver;
+      },
+      click: (onClick) => {
+        _props = {
+          ..._props,
+          onClick,
         };
         return driver;
       },
@@ -34,10 +55,21 @@ export const createButtonDriver = () => {
         _wrapper = render(<Button {..._props} />);
         return driver;
       },
+      deleteBtnClick: () => {
+        btnClick(testIds.btnDelete);
+        return driver;
+      },
+      confirmBtnClick: () => {
+        btnClick(testIds.btnConfirm);
+        return driver;
+      },
+      cancelBtnClick: () => {
+        btnClick(testIds.btnCancel);
+        return driver;
+      },
     },
     then: {
-      confirmationWrapperExist: () =>
-        exist(_wrapper, testIds.confirmationWrapper),
+      exist: () => exist(_wrapper, testIds.confirmationWrapper),
       wrapperExist: () => exist(_wrapper, testIds.wrapper),
       deleteBtnExist: () => exist(_wrapper, testIds.btnDelete),
       confirmBtnExist: () => exist(_wrapper, testIds.btnConfirm),
