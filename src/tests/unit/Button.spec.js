@@ -11,50 +11,79 @@ describe("Button", () => {
 
   afterEach(cleanup);
 
-  it("by default conformation block should be hidden", () => {
-    const confirmationWrapper = buttonsDriver.given
-      .props()
-      .when.created()
-      .then.exist();
-    expect(confirmationWrapper).toBeFalsy();
+  describe("by default", () => {
+    it("should be hidden confirmation block", () => {
+      const confirmationWrapper = buttonsDriver.given
+        .props()
+        .when.created()
+        .then.exist();
+      expect(confirmationWrapper).toBeFalsy();
+    });
+
+    it("should be called function when on click button", () => {
+      const mockOnClick = jest.fn();
+      const driver = buttonsDriver.given
+        .text("Delete")
+        .given.click(mockOnClick)
+        .when.created()
+        .when.btnClick()
+        .then.exist();
+      expect(mockOnClick).toHaveBeenCalled();
+      expect(driver).toBeFalsy();
+    });
   });
 
-  it("by default, the function should be called when press delete button", () => {
-    const mockOnClick = jest.fn();
-    buttonsDriver.given
-      .text("Delete")
-      .given.click(mockOnClick)
-      .when.deleteBtnClick();
-    expect(mockOnClick).toHaveBeenCalled();
-  });
-});
+  describe("with confirmation", () => {
+    it("should not be called function when on click button", () => {
+      const mockOnClick = jest.fn();
 
-describe("Confirmation", () => {
-  let buttonsDriver;
-  beforeEach(() => {
-    buttonsDriver = createButtonDriver();
-  });
+      let driver = buttonsDriver.given
+        .withConfirm(true)
+        .given.text("Delete")
+        .given.click(mockOnClick)
+        .when.created()
+        .then.exist();
+      expect(driver).toBeFalsy();
 
-  afterEach(cleanup);
+      driver = buttonsDriver.when.btnClick().then.exist();
 
-  it("the function should not be called after press delete button", () => {
-    const mockOnClick = jest.fn();
-    buttonsDriver.given
-      .withConfirm(true)
-      .given.text("Delete")
-      .given.click(mockOnClick)
-      .when.deleteBtnClick();
-    expect(mockOnClick).not.toHaveBeenCalled();
-  });
+      expect(mockOnClick).not.toHaveBeenCalled();
+      expect(driver).toBeTruthy();
+    });
 
-  it("the function should not be called when the press cancel button", () => {
-    const mockOnClick = jest.fn();
-    buttonsDriver.given
-      .withConfirm(true)
-      .given.text("Delete")
-      .given.click(mockOnClick)
-      .when.deleteBtnClick()
-      .when.cancelBtnClick();
-    expect(mockOnClick).not.toHaveBeenCalled();
+    it("should not be called function when on click cancel button", () => {
+      const mockOnClick = jest.fn();
+
+      let driver = buttonsDriver.given
+        .withConfirm(true)
+        .given.text("Delete")
+        .given.click(mockOnClick)
+        .when.created()
+        .when.btnClick();
+      expect(driver).toBeTruthy();
+
+      driver = buttonsDriver.when.cancelBtnClick().then.exist();
+
+      expect(mockOnClick).not.toHaveBeenCalled();
+      expect(driver).toBeFalsy();
+    });
+
+    it("should be called function when on click confirmation button", () => {
+      const mockOnClick = jest.fn();
+
+      let driver = buttonsDriver.given
+        .withConfirm(true)
+        .given.text("Delete")
+        .given.click(mockOnClick)
+        .when.created()
+        .when.btnClick()
+        .then.exist();
+      expect(driver).toBeTruthy();
+
+      driver = buttonsDriver.when.confirmBtnClick().then.exist();
+
+      expect(mockOnClick).toHaveBeenCalled();
+      expect(driver).toBeFalsy();
+    });
   });
 });

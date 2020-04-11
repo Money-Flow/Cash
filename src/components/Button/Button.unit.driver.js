@@ -17,7 +17,7 @@ export const createButtonDriver = () => {
   let _props, _wrapper;
 
   const btnClick = (selector) => {
-    const { getByTestId } = render(<Button {..._props} />);
+    const { getByTestId } = _wrapper;
     const element = getByTestId(selector);
     fireEvent.click(element);
   };
@@ -55,8 +55,8 @@ export const createButtonDriver = () => {
         _wrapper = render(<Button {..._props} />);
         return driver;
       },
-      deleteBtnClick: () => {
-        btnClick(testIds.btnDelete);
+      btnClick: () => {
+        btnClick(testIds.btn);
         return driver;
       },
       confirmBtnClick: () => {
@@ -70,12 +70,6 @@ export const createButtonDriver = () => {
     },
     then: {
       exist: () => exist(_wrapper, testIds.confirmationWrapper),
-      wrapperExist: () => exist(_wrapper, testIds.wrapper),
-      deleteBtnExist: () => exist(_wrapper, testIds.btnDelete),
-      confirmBtnExist: () => exist(_wrapper, testIds.btnConfirm),
-      cancelBtnExist: () => exist(_wrapper, testIds.btnCancel),
-      iconConfirmButtonExist: () => exist(_wrapper, testIds.iconConfirm),
-      iconCancelButtonExist: () => exist(_wrapper, testIds.iconCancel),
     },
   };
   return driver;

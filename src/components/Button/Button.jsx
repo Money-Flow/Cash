@@ -10,19 +10,10 @@ import styles from "./Button.module.css";
 export const Button = ({ onClick, withConfirm = false, text }) => {
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    if (event.currentTarget.value === "confirm") {
-      onClick();
-    } else {
-      setShowConfirm(false);
-    }
-  };
-
   return (
     <div className={styles.wrapper} data-testid={testIds.wrapper}>
       <button
-        data-testid={testIds.btnDelete}
+        data-testid={testIds.btn}
         onClick={() => (withConfirm ? setShowConfirm(true) : onClick())}
       >
         {text}
@@ -35,7 +26,10 @@ export const Button = ({ onClick, withConfirm = false, text }) => {
           <button
             className={styles.confirmButtons}
             data-testid={testIds.btnConfirm}
-            onClick={handleClick}
+            onClick={() => {
+              onClick();
+              setShowConfirm(false);
+            }}
             value="confirm"
           >
             <FontAwesomeIcon
@@ -48,7 +42,7 @@ export const Button = ({ onClick, withConfirm = false, text }) => {
             className={styles.confirmButtons}
             data-testid={testIds.btnCancel}
             value="cancel"
-            onClick={handleClick}
+            onClick={() => setShowConfirm(false)}
           >
             <FontAwesomeIcon
               color="red"
