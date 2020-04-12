@@ -12,78 +12,98 @@ describe("Button", () => {
   afterEach(cleanup);
 
   describe("by default", () => {
-    it("should be hidden confirmation block", () => {
-      const confirmationWrapper = buttonsDriver.given
+    it("confirmation block should be hidden", () => {
+      const confirmationWrapperExist = buttonsDriver.given
         .props()
         .when.created()
-        .then.exist();
-      expect(confirmationWrapper).toBeFalsy();
+        .then.confirmationWrapperExist();
+      expect(confirmationWrapperExist).toBeFalsy();
     });
 
-    it("should be called function when on click button", () => {
+    it("on button click should call onClick function", () => {
       const mockOnClick = jest.fn();
       const driver = buttonsDriver.given
         .text("Delete")
         .given.click(mockOnClick)
-        .when.created()
-        .when.btnClick()
-        .then.exist();
+        .when.created();
+
+      const confirmationWrapperExist = driver.when
+        .btnClick()
+        .then.confirmationWrapperExist();
+
       expect(mockOnClick).toHaveBeenCalled();
-      expect(driver).toBeFalsy();
+      expect(confirmationWrapperExist).toBeFalsy();
     });
   });
 
   describe("with confirmation", () => {
-    it("should not be called function when on click button", () => {
+    it("on click button should not be called function", () => {
       const mockOnClick = jest.fn();
 
-      let driver = buttonsDriver.given
+      const driver = buttonsDriver.given
         .withConfirm(true)
         .given.text("Delete")
         .given.click(mockOnClick)
-        .when.created()
-        .then.exist();
-      expect(driver).toBeFalsy();
+        .when.created();
 
-      driver = buttonsDriver.when.btnClick().then.exist();
+      let confirmationWrapperExist = driver.then.confirmationWrapperExist();
+
+      expect(confirmationWrapperExist).toBeFalsy();
+
+      confirmationWrapperExist = buttonsDriver.when
+        .btnClick()
+        .then.confirmationWrapperExist();
 
       expect(mockOnClick).not.toHaveBeenCalled();
-      expect(driver).toBeTruthy();
+      expect(confirmationWrapperExist).toBeTruthy();
     });
 
-    it("should not be called function when on click cancel button", () => {
-      const mockOnClick = jest.fn();
+    describe("on cancel button click", () => {
+      it("should not call onClick function and should hide conformation block", () => {
+        const mockOnClick = jest.fn();
 
-      let driver = buttonsDriver.given
-        .withConfirm(true)
-        .given.text("Delete")
-        .given.click(mockOnClick)
-        .when.created()
-        .when.btnClick();
-      expect(driver).toBeTruthy();
+        const driver = buttonsDriver.given
+          .withConfirm(true)
+          .given.text("Delete")
+          .given.click(mockOnClick)
+          .when.created()
+          .when.btnClick();
 
-      driver = buttonsDriver.when.cancelBtnClick().then.exist();
+        let confirmationWrapperExist = driver.then.confirmationWrapperExist();
 
-      expect(mockOnClick).not.toHaveBeenCalled();
-      expect(driver).toBeFalsy();
+        expect(confirmationWrapperExist).toBeTruthy();
+
+        confirmationWrapperExist = buttonsDriver.when
+          .cancelBtnClick()
+          .then.confirmationWrapperExist();
+
+        expect(mockOnClick).not.toHaveBeenCalled();
+        expect(confirmationWrapperExist).toBeFalsy();
+      });
     });
 
-    it("should be called function when on click confirmation button", () => {
-      const mockOnClick = jest.fn();
+    describe("on confirm button click", () => {
+      it("should call confirmation block and call onClick function", () => {
+        const mockOnClick = jest.fn();
 
-      let driver = buttonsDriver.given
-        .withConfirm(true)
-        .given.text("Delete")
-        .given.click(mockOnClick)
-        .when.created()
-        .when.btnClick()
-        .then.exist();
-      expect(driver).toBeTruthy();
+        const driver = buttonsDriver.given
+          .withConfirm(true)
+          .given.text("Delete")
+          .given.click(mockOnClick)
+          .when.created()
+          .when.btnClick();
 
-      driver = buttonsDriver.when.confirmBtnClick().then.exist();
+        let confirmationWrapperExist = driver.then.confirmationWrapperExist();
 
-      expect(mockOnClick).toHaveBeenCalled();
-      expect(driver).toBeFalsy();
+        expect(confirmationWrapperExist).toBeTruthy();
+
+        confirmationWrapperExist = buttonsDriver.when
+          .confirmBtnClick()
+          .then.confirmationWrapperExist();
+
+        expect(mockOnClick).toHaveBeenCalled();
+        expect(confirmationWrapperExist).toBeFalsy();
+      });
     });
   });
 });

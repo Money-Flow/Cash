@@ -69,7 +69,8 @@ export const createButtonDriver = () => {
       },
     },
     then: {
-      exist: () => exist(_wrapper, testIds.confirmationWrapper),
+      confirmationWrapperExist: () =>
+        exist(_wrapper, testIds.confirmationWrapper),
     },
   };
   return driver;
