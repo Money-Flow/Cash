@@ -2,19 +2,24 @@ import React from "react";
 
 import { Total } from "../Total/Total";
 import { testIds } from "./testIds";
+import { Button } from "../Button/Button";
 
 import table from "./Table.module.css";
 
- type IExpance = {
-    name: string,
-    amount: number
-}
+type IExpance = {
+  name: string;
+  amount: number;
+  id: string;
+  withConfirm?: boolean;
+};
 
- type IProps = {
-    operationList: IExpance[]
-}
+type IProps = {
+  operationList: IExpance[];
+  removeItem: (id: string) => void;
+  withConfirm?: boolean;
+};
 
-export const Table = ({ operationList }: IProps) => {
+export const Table = ({ operationList, removeItem }: IProps) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
@@ -25,6 +30,13 @@ export const Table = ({ operationList }: IProps) => {
             </td>
             <td className={table.amount} data-testid={testIds.amount}>
               {item.amount}
+            </td>
+            <td className={table.removeItem}>
+              <Button
+                onClick={() => removeItem(item.id)}
+                withConfirm={true}
+                text="Delete"
+              />
             </td>
           </tr>
         ))}
