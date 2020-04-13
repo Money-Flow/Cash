@@ -1,0 +1,40 @@
+.wrapper
+{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    margin-left: 10px;
+}
+
+.confirmationWrapper
+{
+    position: absolute;
+    z-index: 2;
+    top: -6px;
+    left: 60px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 70px;
+}
+
+.confirmButtons
+{
+    position: relative;
+    z-index: 5;
+
+    display: block;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 8px;
+}
