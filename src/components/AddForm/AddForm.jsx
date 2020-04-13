@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { v4 as createId } from "uuid";
 import { testIds } from "./testIds";
 
 import operation from "./AddForm.module.css";
@@ -10,9 +11,9 @@ export const AddForm = ({ onSubmit }) => {
 
   const isSubmitDisabled = () => !name.trim().length;
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ name, amount });
+    onSubmit({ name, amount, id: createId() });
     setName("");
     setAmount(0);
   };
@@ -25,7 +26,7 @@ export const AddForm = ({ onSubmit }) => {
         name="name"
         data-testid={testIds.inputName}
         value={name}
-        onChange={event => setName(event.target.value)}
+        onChange={(event) => setName(event.target.value)}
         placeholder="Name"
         required
       />
@@ -36,7 +37,7 @@ export const AddForm = ({ onSubmit }) => {
         data-testid={testIds.inputAmount}
         value={amount}
         placeholder="Amount"
-        onChange={event => setAmount(Number(event.target.value))}
+        onChange={(event) => setAmount(Number(event.target.value))}
         required
       />
 
