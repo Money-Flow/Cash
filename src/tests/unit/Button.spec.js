@@ -37,7 +37,7 @@ describe("Button", () => {
   });
 
   describe("with confirmation", () => {
-    it("on click button should not be called function", () => {
+    it("on click button should show conformation block", () => {
       const mockOnClick = jest.fn();
 
       const driver = buttonsDriver.given
@@ -83,7 +83,7 @@ describe("Button", () => {
     });
 
     describe("on confirm button click", () => {
-      it("should call confirmation block and call onClick function", () => {
+      it("should hide confirmation block and call onClick function", () => {
         const mockOnClick = jest.fn();
 
         const driver = buttonsDriver.given
