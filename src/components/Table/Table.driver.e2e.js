@@ -1,5 +1,6 @@
-import { testIds } from "./testIds";
-import { testIds as totalTestIds } from "./../Total/testIds";
+import { testIds } from "./testIds.js";
+import { testIds as totalTestIds } from "../Total/testIds.js";
+import { testIds as buttonTestIds } from "../Button/testIds";
 
 const combineSelectors = (...selectors) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
@@ -22,6 +23,7 @@ export const driver = (page) => ({
     return page.evaluate(
       (index, lineSelector, nameSelector, amountSelector) => {
         const row = document.querySelectorAll(lineSelector)[index];
+        if (!row) return null;
         const amount = Number(row.querySelector(amountSelector).textContent);
         const name = row.querySelector(nameSelector).textContent;
         return { name, amount };
@@ -36,4 +38,16 @@ export const driver = (page) => ({
     page.$eval(combineSelectors(totalTestIds.total), (x) =>
       Number(x.innerHTML)
     ),
+  pressBtnByIndex: async (index) => {
+    return page.evaluate(
+      (index, selectors) => {
+        return document.querySelectorAll(selectors)[index].click();
+      },
+      index,
+      combineSelectors(buttonTestIds.btn)
+    );
+  },
+  // itemLenght: async () => {
+  //
+  // }
 });
