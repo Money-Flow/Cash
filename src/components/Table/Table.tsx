@@ -24,7 +24,7 @@ export const Table = ({ operationList, removeItem }: IProps) => {
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
         {operationList.map((item, index) => (
-          <tr data-testid={testIds.row} key={index}>
+          <tr data-testid={`${testIds.row}-${index}`} key={index}>
             <td className={table.name} data-testid={testIds.name}>
               {item.name}
             </td>
