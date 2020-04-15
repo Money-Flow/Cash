@@ -1,6 +1,6 @@
 import { cleanup } from "@testing-library/react";
 
-import { createButtonDriver } from "../../components/Button/Button.unit.driver";
+import { createButtonDriver } from "./Button.unit.driver";
 
 describe("Button", () => {
   let buttonsDriver;
