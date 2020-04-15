@@ -1,8 +1,10 @@
 import puppeteer from "puppeteer";
 
-import { driver as createFormDriver } from "../../components/AddForm/AddForm.driver.e2e";
-import { driver as createTableDriver } from "../../components/Table/Table.driver.e2e";
-import { driver as createButtonDriver } from "../../components/Button/Button.driver.e2e";
+import { testIds } from "./../components/Table/testIds";
+
+import { driver as createFormDriver } from "./../components/AddForm/AddForm.driver.e2e";
+import { driver as createTableDriver } from "./../components/Table/Table.driver.e2e";
+import { createButtonDriver } from "./../components/Button/Button.driver.e2e";
 
 describe("New operation", () => {
   let browser, page, addFormDriver, tableDriver, buttonDriver;
@@ -15,7 +17,6 @@ describe("New operation", () => {
     await page.goto("http://localhost:3000/");
     addFormDriver = createFormDriver(page);
     tableDriver = createTableDriver(page);
-    buttonDriver = createButtonDriver(page);
   });
 
   afterEach(async () => {
@@ -77,29 +78,58 @@ describe("New operation", () => {
   });
 
   describe("Remove item", () => {
-    it("should remove first element, the total should be recalculated", async () => {
+    let total;
+
+    beforeEach(async () => {
       await addFormDriver.addItem("Milk", 10);
       await addFormDriver.enterPress();
 
       await addFormDriver.addItem("Banana", 20);
       await addFormDriver.enterPress();
 
-      let total = await tableDriver.getTotal();
-      expect(total).toBe(30);
-
-      await tableDriver.pressBtnByIndex(0);
-      await buttonDriver.confirmBtnClick();
+      await addFormDriver.addItem("Porn", 39);
+      await addFormDriver.enterPress();
 
       total = await tableDriver.getTotal();
-      expect(total).toBe(20);
+    });
 
-      const firstItem = await tableDriver.getItemByIndex(0);
-      const secondItem = await tableDriver.getItemByIndex(1);
+    it("should have the right total before delete", async () => {
+      expect(total).toBe(69);
+    });
 
-      expect(firstItem.name).toBe("Banana");
-      expect(firstItem.amount).toBe(20);
-      expect(secondItem).toBeNull();
-      expect(total).toBe(20);
+    it("should not remove the item without confirming", async () => {
+      buttonDriver = createButtonDriver(page, `${testIds.row}-0`);
+      await buttonDriver.click();
+      expect(total).toBe(69);
+    });
+
+    describe("When removing second from 3 list items", () => {
+      let firstItem, secondItem, thirdItem;
+
+      beforeEach(async () => {
+        await tableDriver.pressDeleteBtnByIndex(1);
+
+        firstItem = await tableDriver.getItemByIndex(0);
+        secondItem = await tableDriver.getItemByIndex(1);
+        thirdItem = await tableDriver.getItemByIndex(2);
+
+        total = await tableDriver.getTotal();
+      });
+
+      it("should have 1st and 3rd", () => {
+        expect(firstItem.name).toBe("Milk");
+        expect(firstItem.amount).toBe(10);
+        expect(secondItem.name).toBe("Porn");
+        expect(secondItem.amount).toBe(39);
+      });
+
+      it("should have only 2 items", () => {
+        expect(thirdItem).toBeNull();
+      });
+
+      it("should calculate right total", () => {
+        expect(total).toBe(49);
+      });
     });
   });
 });
