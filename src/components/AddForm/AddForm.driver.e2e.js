@@ -9,6 +9,8 @@ const addFocus = async (page, ...selectors) =>
 const fillInput = async (page, value) =>
   await page.keyboard.type(String(value));
 
+const enterPress = async (page) => await page.keyboard.press("Enter");
+
 export const driver = (page) => ({
   addItem: async (name, amount) => {
     await addFocus(page, testIds.inputName);
@@ -17,7 +19,5 @@ export const driver = (page) => ({
     await addFocus(page, testIds.inputAmount);
     await fillInput(page, amount);
   },
-  enterPress: async () => {
-    await page.keyboard.press("Enter");
-  },
+  enterPress: async () => enterPress(page),
 });
