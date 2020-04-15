@@ -47,7 +47,4 @@ export const driver = (page) => ({
       combineSelectors(buttonTestIds.btn)
     );
   },
-  // itemLenght: async () => {
-  //
-  // }
 });
