@@ -8,7 +8,9 @@
     "eject": "react-scripts eject",
     "lint:fix": "prettier --write",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "test:e2e": "react-scripts test src/tests/e2e",
+    "test:unit": "react-scripts test src/tests/unit"
   },
   "husky": {
     "hooks": {
