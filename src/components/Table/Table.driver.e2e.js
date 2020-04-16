@@ -1,5 +1,7 @@
-import { testIds } from "./testIds";
-import { testIds as totalTestIds } from "./../Total/testIds";
+import { createButtonDriver } from "../Button/Button.driver.e2e";
+
+import { testIds } from "./testIds.js";
+import { testIds as totalTestIds } from "../Total/testIds.js";
 
 const combineSelectors = (...selectors) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
@@ -21,13 +23,14 @@ export const driver = (page) => ({
   getItemByIndex: async (index) => {
     return page.evaluate(
       (index, lineSelector, nameSelector, amountSelector) => {
-        const row = document.querySelectorAll(lineSelector)[index];
+        const row = document.querySelector(lineSelector);
+        if (!row) return null;
         const amount = Number(row.querySelector(amountSelector).textContent);
         const name = row.querySelector(nameSelector).textContent;
         return { name, amount };
       },
       index,
-      combineSelectors(testIds.row),
+      combineSelectors(`${testIds.row}-${index}`),
       combineSelectors(testIds.name),
       combineSelectors(testIds.amount)
     );
@@ -36,4 +39,8 @@ export const driver = (page) => ({
     page.$eval(combineSelectors(totalTestIds.total), (x) =>
       Number(x.innerHTML)
     ),
+  pressDeleteBtnByIndex: async (index) => {
+    const deleteDriver = createButtonDriver(page, `${testIds.row}-${index}`);
+    return deleteDriver.clickWithConfirm();
+  },
 });
