@@ -1,6 +1,6 @@
 export const testIds = {
-  wrapper: "buttons-wrapper",
   btn: "btn",
+  wrapper: "buttons-wrapper",
   confirmationWrapper: "confirmation-wrapper",
   btnConfirm: "btn-confirm",
   btnCancel: "btn-cancel",
