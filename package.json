@@ -9,8 +9,8 @@
     "lint:fix": "prettier --write",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "test:e2e": "react-scripts test src/tests/e2e",
-    "test:unit": "react-scripts test src/tests/unit"
+    "test:e2e": "react-scripts test src/**/*.e2e.test.js",
+    "test:unit": "react-scripts test src/**/**/*.spec.js"
   },
   "husky": {
     "hooks": {
