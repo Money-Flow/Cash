@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, SyntheticEvent } from "react";
+
+import { IExpense } from "../Main/Main";
+import { Button } from "../Button/Button";
 
 import { v4 as createId } from "uuid";
 import { testIds } from "./testIds";
 
 import operation from "./AddForm.module.css";
 
-export const AddForm = ({ onSubmit }) => {
+type IProps = {
+  onSubmit: (arg: IExpense) => void;
+};
+
+export const AddForm = ({ onSubmit }: IProps) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
 
   const isSubmitDisabled = () => !name.trim().length;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     onSubmit({ name, amount, id: createId() });
     setName("");
@@ -30,6 +37,7 @@ export const AddForm = ({ onSubmit }) => {
         placeholder="Name"
         required
       />
+
       <input
         type="number"
         className={operation.input}
@@ -41,12 +49,12 @@ export const AddForm = ({ onSubmit }) => {
         required
       />
 
-      <input
+      <Button
+        onClick={() => handleSubmit}
+        customClass={operation.button}
         type="submit"
-        className={operation.button}
-        data-testid={testIds.button}
+        text="Add"
         disabled={isSubmitDisabled()}
-        value="Add"
       />
     </form>
   );

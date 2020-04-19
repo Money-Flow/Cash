@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 
-import { testIds } from "./testIds.js";
-import { AddForm } from "../AddForm/AddForm.jsx";
-import { Table } from "../Table/Table.tsx";
+import { testIds } from "./testIds";
+import { AddForm } from "../AddForm/AddForm";
+import { Table } from "../Table/Table";
 
 import main from "./Main.module.css";
 
-export const Main = () => {
-  const [items, changeItems] = useState([]);
+export type IExpense = {
+  name: string;
+  amount: number;
+  id: string;
+  withConfirm?: boolean;
+};
 
-  const addItem = (newItem) => {
+export const Main = () => {
+  const [items, changeItems] = useState<Array<IExpense>>([]);
+
+  const addItem = (newItem: IExpense) => {
     changeItems((oldArray) => [...oldArray, newItem]);
   };
 
-  const removeItem = (id) => {
+  const removeItem = (id: string): void => {
     changeItems(() => items.filter((x) => x.id !== id));
   };
 

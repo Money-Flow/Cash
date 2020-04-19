@@ -6,17 +6,11 @@ import { Button } from "../Button/Button";
 
 import table from "./Table.module.css";
 
-type IExpance = {
-  name: string;
-  amount: number;
-  id: string;
-  withConfirm?: boolean;
-};
+import { IExpense } from "../Main/Main";
 
 type IProps = {
-  operationList: IExpance[];
+  operationList: IExpense[];
   removeItem: (id: string) => void;
-  withConfirm?: boolean;
 };
 
 export const Table = ({ operationList, removeItem }: IProps) => {
