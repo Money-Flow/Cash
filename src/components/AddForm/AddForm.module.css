@@ -1,4 +1,4 @@
-.section
+.form
 {
     display: flex;
     align-items: center;
@@ -20,7 +20,7 @@
     border-radius: 10px;
 }
 
-.button
+.form button
 {
     font-size: 16px;
 
@@ -31,7 +31,8 @@
     border-radius: 10px;
     background-color: green;
 }
-.button:disabled
+
+.form button:disabled
 {
     background-color: grey;
 }

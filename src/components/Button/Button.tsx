@@ -7,12 +7,17 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Button.module.css";
 
+export enum ButtonType {
+  submit = "submit",
+  reset = "reset",
+  button = "button",
+}
+
 export type IProps = {
   onClick: () => void;
   text: string;
   withConfirm?: boolean;
-  customClass?: string;
-  type?: "submit" | "reset" | "button";
+  type?: ButtonType;
   disabled?: boolean;
 };
 
@@ -20,8 +25,7 @@ export const Button = ({
   onClick,
   withConfirm = false,
   text,
-  customClass = "",
-  type = "button",
+  type = ButtonType.button,
   disabled = false,
 }: IProps) => {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -29,7 +33,7 @@ export const Button = ({
   return (
     <div className={styles.wrapper} data-testid={testIds.wrapper}>
       <button
-        className={customClass}
+        className={styles.button}
         data-testid={testIds.btn}
         onClick={() => (withConfirm ? setShowConfirm(true) : onClick())}
         type={type}

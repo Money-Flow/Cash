@@ -1,14 +1,14 @@
 import React, { useState, SyntheticEvent } from "react";
 
 import { IExpense } from "../Main/Main";
-import { Button } from "../Button/Button";
+import { Button, ButtonType } from "../Button/Button";
 
 import { v4 as createId } from "uuid";
 import { testIds } from "./testIds";
 
 import operation from "./AddForm.module.css";
 
-type IProps = {
+export type IProps = {
   onSubmit: (arg: IExpense) => void;
 };
 
@@ -26,7 +26,7 @@ export const AddForm = ({ onSubmit }: IProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={operation.section}>
+    <form onSubmit={handleSubmit} className={operation.form}>
       <input
         type="text"
         className={operation.input}
@@ -51,8 +51,7 @@ export const AddForm = ({ onSubmit }: IProps) => {
 
       <Button
         onClick={() => handleSubmit}
-        customClass={operation.button}
-        type="submit"
+        type={ButtonType.submit}
         text="Add"
         disabled={isSubmitDisabled()}
       />

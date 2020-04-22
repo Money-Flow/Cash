@@ -14,7 +14,7 @@ export type IExpense = {
 };
 
 export const Main = () => {
-  const [items, changeItems] = useState<Array<IExpense>>([]);
+  const [items, changeItems] = useState<IExpense[]>([]);
 
   const addItem = (newItem: IExpense) => {
     changeItems((oldArray) => [...oldArray, newItem]);
