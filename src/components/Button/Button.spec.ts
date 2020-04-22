@@ -1,9 +1,9 @@
 import { cleanup } from "@testing-library/react";
 
-import { createButtonDriver } from "../../components/Button/Button.unit.driver";
+import { createButtonDriver } from "./Button.spec.driver";
 
 describe("Button", () => {
-  let buttonsDriver;
+  let buttonsDriver: any;
 
   beforeEach(() => {
     buttonsDriver = createButtonDriver();
@@ -33,6 +33,19 @@ describe("Button", () => {
 
       expect(mockOnClick).toHaveBeenCalled();
       expect(confirmationWrapperExist).toBeFalsy();
+    });
+
+    it("button type should be 'button'", () => {
+      const driver = buttonsDriver.given.props().when.created().then.btnType();
+      expect(driver).toBe("button");
+    });
+
+    it("button should't disabled", () => {
+      const driver = buttonsDriver.given
+        .props()
+        .when.created()
+        .then.isBtnDisabled();
+      expect(driver).toBeFalsy();
     });
   });
 

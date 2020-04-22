@@ -71,6 +71,18 @@ export const createButtonDriver = () => {
     then: {
       confirmationWrapperExist: () =>
         exist(_wrapper, testIds.confirmationWrapper),
+      btnType: () => {
+        const btn: any = _wrapper.getByTestId(testIds.btn);
+        return btn.type;
+      },
+      isBtnDisabled: () => {
+        try {
+          const button: any = _wrapper.getByTestId(testIds.btn);
+          return button.disabled;
+        } catch {
+          return null;
+        }
+      },
     },
   };
   return driver;

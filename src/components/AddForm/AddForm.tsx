@@ -10,11 +10,17 @@ import operation from "./AddForm.module.css";
 
 export type IProps = {
   onSubmit: (arg: IExpense) => void;
+  nameOfExpenses?: string;
+  amountOfExpenses?: number;
 };
 
-export const AddForm = ({ onSubmit }: IProps) => {
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState(0);
+export const AddForm = ({
+  onSubmit,
+  nameOfExpenses = "",
+  amountOfExpenses = 0,
+}: IProps) => {
+  const [name, setName] = useState(nameOfExpenses);
+  const [amount, setAmount] = useState(amountOfExpenses);
 
   const isSubmitDisabled = () => !name.trim().length;
 

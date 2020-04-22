@@ -10,7 +10,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "test:e2e": "react-scripts test src/**/*.e2e.test.js",
-    "test:unit": "react-scripts test src/**/**/*.spec.js"
+    "test:unit": "react-scripts test src/**/**/*.spec.{js,ts}"
   },
   "husky": {
     "hooks": {
