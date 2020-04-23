@@ -33,7 +33,7 @@ export const Button = ({
   return (
     <div className={styles.wrapper} data-testid={testIds.wrapper}>
       <button
-        className={styles.button}
+        className={styles["btn-" + type]}
         data-testid={testIds.btn}
         onClick={() => (withConfirm ? setShowConfirm(true) : onClick())}
         type={type}

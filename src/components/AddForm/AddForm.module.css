@@ -19,20 +19,3 @@
     border: 2px solid green;
     border-radius: 10px;
 }
-
-.form button
-{
-    font-size: 16px;
-
-    padding: 10px 15px;
-
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    background-color: green;
-}
-
-.form button:disabled
-{
-    background-color: grey;
-}
