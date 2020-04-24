@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, RenderResult } from "@testing-library/react";
 
-import { Button, IProps } from "./Button";
+import { Button, ButtonType, IProps } from "./Button";
 import { testIds } from "./testIds";
 
 const exist = (page: any, selector: string) => {
@@ -46,6 +46,13 @@ export const createButtonDriver = () => {
         _props = {
           ..._props,
           onClick,
+        };
+        return driver;
+      },
+      type: (type: ButtonType) => {
+        _props = {
+          ..._props,
+          type,
         };
         return driver;
       },

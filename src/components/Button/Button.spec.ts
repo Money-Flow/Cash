@@ -36,18 +36,30 @@ describe("Button", () => {
     });
 
     it("button type should be 'button'", () => {
-      const driver = buttonsDriver.given.props().when.created().then.btnType();
-      expect(driver).toBe("button");
+      const buttonType = buttonsDriver.given.props().when.created().then.btnType();
+      expect(buttonType).toBe("button");
     });
 
     it("button should't disabled", () => {
-      const driver = buttonsDriver.given
+      const isDisabled = buttonsDriver.given
         .props()
         .when.created()
         .then.isBtnDisabled();
-      expect(driver).toBeFalsy();
+      expect(isDisabled).toBeFalsy();
     });
   });
+
+  describe("get type", () => {
+    it("button type should be 'submit'", () => {
+      const buttonType = buttonsDriver.given.type('submit').when.created().then.btnType();
+      expect(buttonType).toBe("submit");
+    });
+
+    it("button type should be 'reset'", () => {
+      const buttonType = buttonsDriver.given.type('reset').when.created().then.btnType();
+      expect(buttonType).toBe("reset");
+    });
+  })
 
   describe("with confirmation", () => {
     it("on click button should show conformation block", () => {

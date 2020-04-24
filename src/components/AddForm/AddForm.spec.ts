@@ -13,56 +13,53 @@ describe("Add form", () => {
 
   describe("by default", () => {
     it("button should be disabled", () => {
-      const driver = addFormDriver.given
+      const isDisabled = addFormDriver.given
         .props()
         .when.created()
         .then.isBtnDisabled();
-      expect(driver).toBeTruthy();
+      expect(isDisabled).toBeTruthy();
     });
   });
 
   describe("on button click", () => {
     let mockOnClick: () => void;
+    let driver: any;
 
     beforeEach(() => {
-       mockOnClick = jest.fn();
-    })
+      mockOnClick = jest.fn();
+      driver = addFormDriver.given.onSubmit(mockOnClick);
+    });
     describe("item without a name", () => {
       it("should not call onClick function and button should disabled", () => {
-        const driver = addFormDriver.given
-          .onSubmit(mockOnClick)
-          .when.created()
+        const isDisabled = driver.when
+          .created()
           .when.btnClick()
           .then.isBtnDisabled();
         expect(mockOnClick).not.toHaveBeenCalled();
-        expect(driver).toBeTruthy();
+        expect(isDisabled).toBeTruthy();
       });
     });
 
     describe("fields are valid", () => {
-      it("button should be is enable", () => {
-        const driver = addFormDriver.given
-          .onSubmit(mockOnClick)
-          .given.name("porn")
-          .given.amount(69)
-          .when.created()
-          .then.isBtnDisabled();
-        expect(driver).toBeFalsy();
+
+      beforeEach(() => {
+        driver = driver.given.name("porn").given.amount(69);
       });
+
+      it("button should be is enable", () => {
+        const isDisabled = driver.when.created().then.isBtnDisabled();
+        expect(isDisabled).toBeFalsy();
+      });
+
       it("should call onClick function and button should be is disabled after a click", () => {
-        let driver = addFormDriver.given
-          .onSubmit(mockOnClick)
-          .given.name("porn")
-          .given.amount(69)
-          .when.created()
-          .then.isBtnDisabled();
+        let isDisabled = driver.when.created().then.isBtnDisabled();
 
-        expect(driver).toBeFalsy();
+        expect(isDisabled).toBeFalsy();
 
-        driver = addFormDriver.when.btnClick().then.isBtnDisabled();
+        isDisabled = addFormDriver.when.btnClick().then.isBtnDisabled();
 
         expect(mockOnClick).toHaveBeenCalled();
-        expect(driver).toBeTruthy();
+        expect(isDisabled).toBeTruthy();
       });
     });
   });
