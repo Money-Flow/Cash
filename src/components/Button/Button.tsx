@@ -14,22 +14,41 @@ export enum ButtonType {
   button = "button",
 }
 
-export type IProps = {
-  onClick: () => void;
+type ICommonButtonProps = {
   text: string;
   withConfirm?: boolean;
-  type?: ButtonType;
   disabled?: boolean;
 };
 
-export const Button = ({
-  onClick,
-  withConfirm = false,
-  text,
-  type = ButtonType.button,
-  disabled = false,
-}: IProps) => {
+type ISubmitButton = ICommonButtonProps & {
+  type: ButtonType.submit;
+};
+
+type IButton = ICommonButtonProps & {
+  onClick: () => void;
+  type: ButtonType.reset | ButtonType.button;
+};
+
+export type IProps = IButton | ISubmitButton;
+
+function isSubmit(props: IProps): props is ISubmitButton {
+  return props.type === ButtonType.submit;
+}
+
+export const Button = (props: IProps) => {
   const [showConfirm, setShowConfirm] = useState(false);
+  let onClick: Function;
+
+  const {
+    withConfirm = false,
+    text,
+    type = ButtonType.button,
+    disabled = false,
+  } = props;
+
+  if (!isSubmit(props)) {
+    onClick = props.onClick;
+  }
 
   const btnClass = classNames({
     button: type === "button",
