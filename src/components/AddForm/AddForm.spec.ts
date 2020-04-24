@@ -29,6 +29,7 @@ describe("Add form", () => {
       mockOnClick = jest.fn();
       driver = addFormDriver.given.onSubmit(mockOnClick);
     });
+
     describe("item without a name", () => {
       it("should not call onClick function and button should disabled", () => {
         const isDisabled = driver.when
@@ -41,7 +42,6 @@ describe("Add form", () => {
     });
 
     describe("fields are valid", () => {
-
       beforeEach(() => {
         driver = driver.given.name("porn").given.amount(69);
       });

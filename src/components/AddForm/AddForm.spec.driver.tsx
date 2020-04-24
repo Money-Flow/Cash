@@ -10,6 +10,7 @@ export const createAddFormDriver = () => {
   const btnClick = (selector: string) => {
     const { getByTestId } = _wrapper;
     const element = getByTestId(selector);
+    Object.assign(element, { preventDefault: jest.fn() });
     fireEvent.click(element);
   };
 

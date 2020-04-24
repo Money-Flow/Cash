@@ -2,7 +2,7 @@ import React from "react";
 
 import { Total } from "../Total/Total";
 import { testIds } from "./testIds";
-import { Button } from "../Button/Button";
+import { Button, ButtonType } from "../Button/Button";
 
 import table from "./Table.module.css";
 
@@ -30,6 +30,7 @@ export const Table = ({ operationList, removeItem }: IProps) => {
                 onClick={() => removeItem(item.id)}
                 withConfirm={true}
                 text="Delete"
+                type={ButtonType.button}
               />
             </td>
           </tr>

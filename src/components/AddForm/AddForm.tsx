@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 
 import { IExpense } from "../Main/Main";
 import { Button, ButtonType } from "../Button/Button";
@@ -24,7 +24,8 @@ export const AddForm = ({
 
   const isSubmitDisabled = () => !name.trim().length;
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
     onSubmit({ name, amount, id: createId() });
     setName("");
     setAmount(0);
@@ -55,7 +56,6 @@ export const AddForm = ({
       />
 
       <Button
-        onClick={handleSubmit}
         type={ButtonType.submit}
         text="Add"
         disabled={isSubmitDisabled()}
