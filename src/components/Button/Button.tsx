@@ -4,6 +4,7 @@ import { testIds } from "./testIds";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames/bind";
 
 import styles from "./Button.module.css";
 
@@ -30,10 +31,16 @@ export const Button = ({
 }: IProps) => {
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const btnClass = classNames({
+    button: type === "button",
+    submit: type === "submit",
+    reset: type === "reset",
+  });
+
   return (
     <div className={styles.wrapper} data-testid={testIds.wrapper}>
       <button
-        className={styles["btn-" + type]}
+        className={styles[btnClass]}
         data-testid={testIds.btn}
         onClick={() => (withConfirm ? setShowConfirm(true) : onClick())}
         type={type}

@@ -38,8 +38,10 @@
     border-radius: 8px;
 }
 
-.btn-submit
+.submit
 {
+    font-size: 16px;
+
     padding: 10px 15px;
 
     color: #fff;
@@ -48,7 +50,7 @@
     background-color: green;
 }
 
-.btn-submit:disabled
+.submit:disabled
 {
     background-color: grey;
 }
