@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: flex-start;
 
-    width: 100%;
     margin-left: 10px;
 }
 
@@ -37,4 +36,21 @@
     height: 30px;
 
     border-radius: 8px;
+}
+
+.submit
+{
+    font-size: 16px;
+
+    padding: 10px 15px;
+
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    background-color: green;
+}
+
+.submit:disabled
+{
+    background-color: grey;
 }

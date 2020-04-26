@@ -1,9 +1,10 @@
 import { cleanup } from "@testing-library/react";
 
-import { createButtonDriver } from "../../components/Button/Button.unit.driver";
+import { createButtonDriver } from "./Button.spec.driver";
+import { ButtonType } from "./Button";
 
 describe("Button", () => {
-  let buttonsDriver;
+  let buttonsDriver: any;
 
   beforeEach(() => {
     buttonsDriver = createButtonDriver();
@@ -33,6 +34,69 @@ describe("Button", () => {
 
       expect(mockOnClick).toHaveBeenCalled();
       expect(confirmationWrapperExist).toBeFalsy();
+    });
+
+    it("button type should be 'button'", () => {
+      const buttonType = buttonsDriver.given
+        .props()
+        .when.created()
+        .then.btnType();
+      expect(buttonType).toBe("button");
+    });
+
+    it("button should't disabled", () => {
+      const isDisabled = buttonsDriver.given
+        .props()
+        .when.created()
+        .then.isBtnDisabled();
+      expect(isDisabled).toBeFalsy();
+    });
+  });
+
+  describe("when type is  submit", () => {
+    let driver: any;
+
+    beforeEach(() => {
+      driver = buttonsDriver.given
+        .text("Add")
+        .given.type(ButtonType.submit)
+        .when.created();
+    });
+
+    it("button type should be 'submit'", () => {
+      const buttonType = driver.then.btnType();
+      expect(buttonType).toBe(ButtonType.submit);
+    });
+
+    describe("on button click", () => {
+      it("should not call onClick function", () => {
+        const mockOnClick = jest.fn();
+
+        driver.given.click(mockOnClick).when.btnClick();
+        expect(mockOnClick).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe("when type is reset", () => {
+    let driver: any;
+
+    beforeEach(() => {
+      driver = buttonsDriver.given.text("Reset").given.type(ButtonType.reset);
+    });
+
+    it("button type should be 'reset'", () => {
+      const buttonType = driver.when.created().then.btnType();
+      expect(buttonType).toBe(ButtonType.reset);
+    });
+
+    describe("on button click", () => {
+      it("should call onClick function", () => {
+        const mockOnClick = jest.fn();
+
+        driver.given.click(mockOnClick).when.created().when.btnClick();
+        expect(mockOnClick).toHaveBeenCalled();
+      });
     });
   });
 
