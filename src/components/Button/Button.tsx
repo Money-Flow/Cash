@@ -52,9 +52,9 @@ export const Button = (props: IProps) => {
   }
 
   const btnClass = classNames({
-    button: type === "button",
-    submit: type === "submit",
-    reset: type === "reset",
+    button: type === ButtonType.button,
+    submit: type === ButtonType.submit,
+    reset: type === ButtonType.reset,
   });
 
   const handleClick = () => {

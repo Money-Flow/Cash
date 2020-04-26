@@ -53,7 +53,7 @@ describe("Button", () => {
     });
   });
 
-  describe("get type submit", () => {
+  describe("when type is  submit", () => {
     let driver: any;
 
     beforeEach(() => {
@@ -78,7 +78,7 @@ describe("Button", () => {
     });
   });
 
-  describe("get type reset", () => {
+  describe("when type is reset", () => {
     let driver: any;
 
     beforeEach(() => {
