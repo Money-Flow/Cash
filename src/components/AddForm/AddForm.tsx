@@ -10,25 +10,21 @@ import operation from "./AddForm.module.css";
 
 export type IProps = {
   onSubmit: (arg: IExpense) => void;
-  nameOfExpenses?: string;
-  amountOfExpenses?: number;
+  name?: string;
+  amount?: number;
 };
 
-export const AddForm = ({
-  onSubmit,
-  nameOfExpenses = "",
-  amountOfExpenses = 0,
-}: IProps) => {
-  const [name, setName] = useState(nameOfExpenses);
-  const [amount, setAmount] = useState(amountOfExpenses);
+export const AddForm = ({ onSubmit, name = "", amount = 0 }: IProps) => {
+  const [nameState, setNameState] = useState(name);
+  const [amountState, setAmountState] = useState(amount);
 
-  const isSubmitDisabled = () => !name.trim().length;
+  const isSubmitDisabled = () => !nameState.trim().length;
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    onSubmit({ name, amount, id: createId() });
-    setName("");
-    setAmount(0);
+    onSubmit({ nameState, amountState, id: createId() });
+    setNameState("");
+    setAmountState(0);
   };
 
   return (
@@ -38,8 +34,8 @@ export const AddForm = ({
         className={operation.input}
         name="name"
         data-testid={testIds.inputName}
-        value={name}
-        onChange={(event) => setName(event.target.value)}
+        value={nameState}
+        onChange={(event) => setNameState(event.target.value)}
         placeholder="Name"
         required
       />
@@ -49,9 +45,9 @@ export const AddForm = ({
         className={operation.input}
         name="amount"
         data-testid={testIds.inputAmount}
-        value={amount}
+        value={amountState}
         placeholder="Amount"
-        onChange={(event) => setAmount(Number(event.target.value))}
+        onChange={(event) => setAmountState(Number(event.target.value))}
         required
       />
 

@@ -20,10 +20,10 @@ export const Table = ({ operationList, removeItem }: IProps) => {
         {operationList.map((item, index) => (
           <tr data-testid={`${testIds.row}-${index}`} key={index}>
             <td className={table.name} data-testid={testIds.name}>
-              {item.name}
+              {item.nameState}
             </td>
             <td className={table.amount} data-testid={testIds.amount}>
-              {item.amount}
+              {item.amountState}
             </td>
             <td className={table.removeItem}>
               <Button
@@ -40,7 +40,7 @@ export const Table = ({ operationList, removeItem }: IProps) => {
         <tr>
           <td />
           <td>
-            <Total amountList={operationList.map((x) => x.amount)} />
+            <Total amountList={operationList.map((x) => x.amountState)} />
           </td>
         </tr>
       </tfoot>

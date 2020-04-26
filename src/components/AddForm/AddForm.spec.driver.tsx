@@ -27,17 +27,17 @@ export const createAddFormDriver = () => {
         };
         return driver;
       },
-      name: (nameOfExpenses: string) => {
+      name: (name: string) => {
         _props = {
           ..._props,
-          nameOfExpenses,
+          name,
         };
         return driver;
       },
-      amount: (amountOfExpenses: number) => {
+      amount: (amount: number) => {
         _props = {
           ..._props,
-          amountOfExpenses,
+          amount,
         };
         return driver;
       },

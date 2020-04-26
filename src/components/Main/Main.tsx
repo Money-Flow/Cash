@@ -7,8 +7,8 @@ import { Table } from "../Table/Table";
 import main from "./Main.module.css";
 
 export type IExpense = {
-  name: string;
-  amount: number;
+  nameState: string;
+  amountState: number;
   id: string;
   withConfirm?: boolean;
 };
