@@ -7,7 +7,7 @@ const combineSelectors = (...selectors: string[]) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
 
 const getElemById = async (page: any, ...selectors: string[]) =>
-  await page.evaluate((selector: string) => {
+  page.evaluate((selector: string) => {
     const element: HTMLElement | null = document.querySelector(selector);
     if (!element) {
       return null;

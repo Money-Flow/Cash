@@ -7,13 +7,13 @@ const combineSelectors = (...selectors: string[]) =>
 
 export const createButtonDriver = (page: any, selector = "") => {
   const click = async () =>
-    await page.$eval(
+    page.$eval(
       combineSelectors(selector, testIds.btn),
       (x: HTMLElement) => x.click()
     );
 
   const confirmBtnClick = async () =>
-    await page.$eval(
+    page.$eval(
       combineSelectors(selector, testIds.btnConfirm),
       (x: HTMLElement) => x.click()
     );
