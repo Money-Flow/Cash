@@ -9,8 +9,8 @@
     "lint:fix": "prettier --write",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "test:e2e": "react-scripts test src/**/*.e2e.test.js",
-    "test:unit": "react-scripts test src/**/**/*.spec.{js,ts}"
+    "test:e2e": "react-scripts test src/**/*.e2e.test.{ts, tsx}",
+    "test:unit": "react-scripts test src/**/**/*.spec.{ts, tsx}"
   },
   "husky": {
     "hooks": {
@@ -18,10 +18,10 @@
     }
   },
   "lint-staged": {
-    "*.{css,scss}": [
+    "*.{css}": [
       "csscomb --tty-mode --"
     ],
-    "*.{js,jsx,tsx}": [
+    "*.{ts,tsx}": [
       "yarn lint:fix"
     ],
     "package.json": [

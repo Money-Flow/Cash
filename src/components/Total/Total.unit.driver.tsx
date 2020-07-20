@@ -1,30 +1,30 @@
+import { render, RenderResult } from "@testing-library/react";
 import React from "react";
-import { render } from "@testing-library/react";
 
-import { Total } from "./Total";
+import { Total, IProps } from "./Total";
 import { testIds } from "./testIds";
 
 export const createTotalDriver = () => {
-  let _props, _wrapper;
+  let _props: IProps, _wrapper: RenderResult;
   const driver = {
     given: {
-      props: props => {
+      props: (props: IProps) => {
         _props = props;
         return driver;
       },
-      amountList: amountList => {
+      amountList: (amountList: []) => {
         _props = {
           ..._props,
-          amountList
+          amountList,
         };
         return driver;
-      }
+      },
     },
     when: {
       created: () => {
         _wrapper = render(<Total {..._props} />);
         return driver;
-      }
+      },
     },
     then: {
       getTotal: () => {
@@ -34,8 +34,8 @@ export const createTotalDriver = () => {
         } catch {
           return null;
         }
-      }
-    }
+      },
+    },
   };
   return driver;
 };

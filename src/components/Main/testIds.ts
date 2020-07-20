@@ -1,3 +1,3 @@
 export const testIds = {
-  total: "total"
+  main: "main",
 };

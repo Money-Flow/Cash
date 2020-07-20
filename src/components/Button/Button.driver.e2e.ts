@@ -1,17 +1,21 @@
-import { testIds } from "./../Button/testIds";
+import { testIds } from "./testIds";
 
-const combineSelectors = (...selectors) =>
+const combineSelectors = (...selectors: string[]) =>
   selectors
     .map((selector) => (selector ? `[data-testid="${selector}"]` : ""))
     .join(" ");
 
-export const createButtonDriver = (page, selector = "") => {
+export const createButtonDriver = (page: any, selector = "") => {
   const click = async () =>
-    await page.$eval(combineSelectors(selector, testIds.btn), (x) => x.click());
+    await page.$eval(
+      combineSelectors(selector, testIds.btn),
+      (x: HTMLElement) => x.click()
+    );
 
   const confirmBtnClick = async () =>
-    await page.$eval(combineSelectors(selector, testIds.btnConfirm), (x) =>
-      x.click()
+    await page.$eval(
+      combineSelectors(selector, testIds.btnConfirm),
+      (x: HTMLElement) => x.click()
     );
 
   return {
