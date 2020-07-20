@@ -59,6 +59,7 @@
     "@types/classnames": "^2.2.10",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.11.0",
+    "@types/puppeteer": "^3.0.1",
     "@types/react": "^16.9.32",
     "@types/react-dom": "^16.9.6",
     "@types/uuid": "^7.0.2",
