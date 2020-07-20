@@ -4,12 +4,12 @@ const combineSelectors = (...selectors: string[]) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
 
 const addFocus = async (page: any, ...selectors: string[]) =>
-  await page.focus(combineSelectors(...selectors));
+  page.focus(combineSelectors(...selectors));
 
 const fillInput = async (page: any, value: string | number) =>
-  await page.keyboard.type(String(value));
+  page.keyboard.type(String(value));
 
-const enterPress = async (page: any) => await page.keyboard.press("Enter");
+const enterPress = async (page: any) => page.keyboard.press("Enter");
 
 export const driver = (page: any) => ({
   addItem: async (name: string, amount: number) => {
