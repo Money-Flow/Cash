@@ -1,3 +1,5 @@
+import { Page } from "puppeteer";
+
 import { testIds } from "./testIds";
 
 const combineSelectors = (...selectors: string[]) =>
@@ -5,18 +7,18 @@ const combineSelectors = (...selectors: string[]) =>
     .map((selector) => (selector ? `[data-testid="${selector}"]` : ""))
     .join(" ");
 
-export const createButtonDriver = (page: any, selector = "") => {
-  const click = async () =>
-    page.$eval(
-      combineSelectors(selector, testIds.btn),
-      (x: HTMLElement) => x.click()
-    );
+export const createButtonDriver = (page: Page, selector = "") => {
+  const click = async () => {
+    const element = await page.$(combineSelectors(selector, testIds.btn));
+    return element?.click();
+  };
 
-  const confirmBtnClick = async () =>
-    page.$eval(
-      combineSelectors(selector, testIds.btnConfirm),
-      (x: HTMLElement) => x.click()
+  const confirmBtnClick = async () => {
+    const element = await page.$(
+      combineSelectors(selector, testIds.btnConfirm)
     );
+    return element?.click();
+  };
 
   return {
     click,
