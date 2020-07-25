@@ -41,7 +41,7 @@ jobs:
       # run tests!
       - run:
           name: "Run Jest and Collect Coverage Reports"
-          command: CI=true yarn test --runInBand --reporters=default --reporters=jest-junit
+          command: CI=true yarn test:unit --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:

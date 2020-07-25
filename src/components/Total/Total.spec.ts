@@ -1,6 +1,6 @@
 import { createTotalDriver } from "./Total.unit.driver";
 describe("Total", () => {
-  let totalDriver;
+  let totalDriver: any;
 
   beforeEach(() => {
     totalDriver = createTotalDriver();
