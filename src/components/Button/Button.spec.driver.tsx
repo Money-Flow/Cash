@@ -1,12 +1,13 @@
 import React from "react";
+
 import { render, fireEvent, RenderResult } from "@testing-library/react";
 
 import { Button, ButtonType, IProps } from "./Button";
 import { testIds } from "./testIds";
 
-const exist = (page: any, selector: string) => {
+const exist = (page: RenderResult, selector: string) => {
   try {
-    const element = page.getByTestId(selector);
+    const element = page.getByTestId(selector) as HTMLElement;
     return !!element;
   } catch {
     return false;

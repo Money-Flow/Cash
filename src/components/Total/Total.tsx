@@ -1,7 +1,11 @@
 import React from "react";
 import { testIds } from "./testIds";
 
-export const Total = ({ amountList = [] }) => {
+export type IProps = {
+  amountList: number[];
+};
+
+export const Total = ({ amountList = [] }: IProps) => {
   const total = amountList.reduce((acc, currentValue) => {
     return acc + currentValue;
   }, 0);
