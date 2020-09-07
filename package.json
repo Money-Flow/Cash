@@ -62,7 +62,7 @@
     "@types/puppeteer": "^3.0.1",
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
-    "@types/uuid": "^8.0.0",
+    "@types/uuid": "^8.3.0",
     "classnames": "^2.2.6",
     "csscomb": "^4.3.0",
     "husky": "^4.2.5",
