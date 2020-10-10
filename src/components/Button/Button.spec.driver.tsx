@@ -4,10 +4,8 @@ import { render, fireEvent, RenderResult } from "@testing-library/react";
 
 import Button from "./Button";
 import testIds from "./testIds";
-import {
-  IButtonProps,
-  IButtonTypes,
-} from "../../types/componentTypes/ButtonTypes";
+import { IButtonProps } from "../../types/componentTypes/ButtonTypes";
+import { ButtonDriverSpecTypes } from "../../types/driverTypes/ButtonDriverTypes";
 
 const exist = (page: RenderResult, selector: string) => {
   try {
@@ -18,7 +16,7 @@ const exist = (page: RenderResult, selector: string) => {
   }
 };
 
-const createButtonDriver = () => {
+const createButtonDriver = (): ButtonDriverSpecTypes => {
   let props: IButtonProps;
   let wrapper: RenderResult;
 
@@ -28,27 +26,27 @@ const createButtonDriver = () => {
     fireEvent.click(element);
   };
 
-  const driver = {
+  const driver: ButtonDriverSpecTypes = {
     given: {
-      props: (value: IButtonProps) => {
+      props: (value) => {
         props = value;
         return driver;
       },
-      withConfirm: (withConfirm: boolean) => {
+      withConfirm: (withConfirm) => {
         props = {
           ...props,
           withConfirm,
         };
         return driver;
       },
-      text: (text: string) => {
+      text: (text) => {
         props = {
           ...props,
           text,
         };
         return driver;
       },
-      type: (type: IButtonTypes) => {
+      type: (type) => {
         props = {
           ...props,
           type,
@@ -86,12 +84,12 @@ const createButtonDriver = () => {
       confirmationWrapperExist: () =>
         exist(wrapper, testIds.confirmationWrapper),
       btnType: () => {
-        const btn: any = wrapper.getByTestId(testIds.btn);
+        const btn = wrapper.getByTestId(testIds.btn) as HTMLButtonElement;
         return btn.type;
       },
       isBtnDisabled: () => {
         try {
-          const button: any = wrapper.getByTestId(testIds.btn);
+          const button = wrapper.getByTestId(testIds.btn) as HTMLButtonElement;
           return button.disabled;
         } catch {
           return null;

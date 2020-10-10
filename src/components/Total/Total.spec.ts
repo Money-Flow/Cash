@@ -1,14 +1,15 @@
-import createTotalDriver from "./Total.unit.driver";
+import createTotalDriver from "./Total.spec.driver";
+import { TotalDriverSpecTypes } from "../../types/driverTypes/TotalDriverTypes";
 
 describe("Total", () => {
-  let totalDriver: any;
+  let totalDriver: TotalDriverSpecTypes;
 
   beforeEach(() => {
     totalDriver = createTotalDriver();
   });
 
   it("should not show anything when there are no elements", () => {
-    const total = totalDriver.given.props().when.created().then.getTotal();
+    const total = totalDriver.when.created().then.getTotal();
     expect(total).toBe(null);
   });
 

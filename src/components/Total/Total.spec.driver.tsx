@@ -4,18 +4,19 @@ import React from "react";
 import Total from "./Total";
 import testIds from "./testIds";
 import { ITotalProps } from "../../types/componentTypes/TotalTypes";
+import { TotalDriverSpecTypes } from "../../types/driverTypes/TotalDriverTypes";
 
-const createTotalDriver = () => {
+const createTotalDriver = (): TotalDriverSpecTypes => {
   let props: ITotalProps;
   let wrapper: RenderResult;
 
-  const driver = {
+  const driver: TotalDriverSpecTypes = {
     given: {
-      props: (value: ITotalProps) => {
+      props: (value) => {
         props = value;
         return driver;
       },
-      amountList: (amountList: []) => {
+      amountList: (amountList) => {
         props = {
           ...props,
           amountList,
