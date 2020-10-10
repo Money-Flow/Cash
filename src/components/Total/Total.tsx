@@ -1,11 +1,8 @@
 import React from "react";
-import { testIds } from "./testIds";
+import testIds from "./testIds";
+import { ITotalProps } from "../../types/componentTypes/TotalTypes";
 
-export type IProps = {
-  amountList: number[];
-};
-
-export const Total = ({ amountList = [] }: IProps) => {
+const Total = ({ amountList = [] }: ITotalProps): JSX.Element => {
   const total = amountList.reduce((acc, currentValue) => {
     return acc + currentValue;
   }, 0);
@@ -20,3 +17,5 @@ export const Total = ({ amountList = [] }: IProps) => {
     </>
   );
 };
+
+export default Total;

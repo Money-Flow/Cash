@@ -1,7 +1,7 @@
 import { cleanup } from "@testing-library/react";
 
-import { createButtonDriver } from "./Button.spec.driver";
-import { ButtonType } from "./Button";
+import createButtonDriver from "./Button.spec.driver";
+import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
 
 describe("Button", () => {
   let buttonsDriver: any;
@@ -59,13 +59,13 @@ describe("Button", () => {
     beforeEach(() => {
       driver = buttonsDriver.given
         .text("Add")
-        .given.type(ButtonType.submit)
+        .given.type(ButtonEnumType.submit)
         .when.created();
     });
 
     it("button type should be 'submit'", () => {
       const buttonType = driver.then.btnType();
-      expect(buttonType).toBe(ButtonType.submit);
+      expect(buttonType).toBe(ButtonEnumType.submit);
     });
 
     describe("on button click", () => {
@@ -82,12 +82,14 @@ describe("Button", () => {
     let driver: any;
 
     beforeEach(() => {
-      driver = buttonsDriver.given.text("Reset").given.type(ButtonType.reset);
+      driver = buttonsDriver.given
+        .text("Reset")
+        .given.type(ButtonEnumType.reset);
     });
 
     it("button type should be 'reset'", () => {
       const buttonType = driver.when.created().then.btnType();
-      expect(buttonType).toBe(ButtonType.reset);
+      expect(buttonType).toBe(ButtonEnumType.reset);
     });
 
     describe("on button click", () => {

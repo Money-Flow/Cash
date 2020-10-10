@@ -1,4 +1,4 @@
-export const testIds = {
+const testIds = {
   btn: "btn",
   wrapper: "buttons-wrapper",
   confirmationWrapper: "confirmation-wrapper",
@@ -7,3 +7,5 @@ export const testIds = {
   iconConfirm: "icon-confirm",
   iconCancel: "icon-cancel",
 };
+
+export default testIds;

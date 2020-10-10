@@ -1,68 +1,48 @@
-import React, { useState } from "react";
-
-import { testIds } from "./testIds";
+import React, { SyntheticEvent, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
+import testIds from "./testIds";
 
 import styles from "./Button.module.css";
+import {
+  ButtonEnumType,
+  IButtonProps,
+} from "../../types/componentTypes/ButtonTypes";
 
-export enum ButtonType {
-  submit = "submit",
-  reset = "reset",
-  button = "button",
+function isSubmit(props: IButtonProps): boolean {
+  return props.type === ButtonEnumType.submit;
 }
 
-type ICommonButtonProps = {
-  text: string;
-  withConfirm?: boolean;
-  disabled?: boolean;
-};
-
-type ISubmitButton = ICommonButtonProps & {
-  type: ButtonType.submit;
-};
-
-type IButton = ICommonButtonProps & {
-  onClick: () => void;
-  type: ButtonType.reset | ButtonType.button;
-};
-
-export type IProps = IButton | ISubmitButton;
-
-function isSubmit(props: IProps): props is ISubmitButton {
-  return props.type === ButtonType.submit;
-}
-
-export const Button = (props: IProps) => {
-  const [showConfirm, setShowConfirm] = useState(false);
-
-  let onClick: () => void;
-
+const Button = (props: IButtonProps): JSX.Element => {
   const {
     withConfirm = false,
     text,
-    type = ButtonType.button,
+    type = ButtonEnumType.button,
     disabled = false,
   } = props;
+
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  let onClick: (event: SyntheticEvent) => void;
 
   if (!isSubmit(props)) {
     onClick = props.onClick;
   }
 
   const btnClass = classNames({
-    button: type === ButtonType.button,
-    submit: type === ButtonType.submit,
-    reset: type === ButtonType.reset,
+    button: type === ButtonEnumType.button,
+    submit: type === ButtonEnumType.submit,
+    reset: type === ButtonEnumType.reset,
   });
 
-  const handleClick = () => {
-    if (!(type === ButtonType.submit) && onClick) {
+  const handleClick = (event: SyntheticEvent) => {
+    if (!(type === ButtonEnumType.submit) && onClick) {
       if (withConfirm) {
         setShowConfirm(true);
       } else {
-        onClick();
+        onClick(event);
       }
     }
   };
@@ -86,10 +66,11 @@ export const Button = (props: IProps) => {
           <button
             className={styles.confirmButtons}
             data-testid={testIds.btnConfirm}
-            onClick={() => {
-              onClick();
+            onClick={(event: SyntheticEvent) => {
+              onClick(event);
               setShowConfirm(false);
             }}
+            type={ButtonEnumType.submit}
             value="confirm"
           >
             <FontAwesomeIcon
@@ -103,6 +84,7 @@ export const Button = (props: IProps) => {
             data-testid={testIds.btnCancel}
             value="cancel"
             onClick={() => setShowConfirm(false)}
+            type={ButtonEnumType.button}
           >
             <FontAwesomeIcon
               color="red"
@@ -115,3 +97,5 @@ export const Button = (props: IProps) => {
     </div>
   );
 };
+
+export default Button;
