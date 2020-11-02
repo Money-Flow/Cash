@@ -6,7 +6,8 @@
     "build": "react-scripts build",
     "csscomb": "csscomb src/",
     "eject": "react-scripts eject",
-    "lint:fix": "prettier --write",
+    "format": "prettier --write src",
+    "lint": "tsc --noEmit && eslint --fix src ",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "test:e2e": "react-scripts test src/**/*.e2e.test.ts",
@@ -21,9 +22,7 @@
     "*.{css}": [
       "csscomb --tty-mode --"
     ],
-    "*.{ts,tsx}": [
-      "yarn lint:fix"
-    ],
+    "*.{ts,tsx}": [],
     "package.json": [
       "sort-package-json"
     ]
@@ -57,18 +56,29 @@
     "@testing-library/react": "^11.0.2",
     "@testing-library/user-event": "^12.1.3",
     "@types/classnames": "^2.2.10",
-    "@types/node": "^14.6.4",
     "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
     "@types/puppeteer": "^3.0.1",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
     "classnames": "^2.2.6",
     "csscomb": "^4.3.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-airbnb-typescript": "^10.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-jsx-a11y": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "4.0.0",
     "husky": "^4.2.5",
     "jest-junit": "^11.1.0",
     "lint-staged": "^10.2.11",
-    "prettier": "2.0.5",
+    "prettier": "^2.1.1",
     "puppeteer": "^5.2.1",
     "sort-package-json": "^1.44.0",
     "typescript": "^4.0.2",
