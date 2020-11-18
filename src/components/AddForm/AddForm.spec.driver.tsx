@@ -1,14 +1,16 @@
 import React from "react";
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 
-import { AddForm, IProps } from "./AddForm";
-import { testIds as buttonTestIds } from "./../Button/testIds";
+import AddForm from "./AddForm";
+import buttonTestIds from "../Button/testIds";
+import { IAddFormProps } from "../../types/componentTypes/AddFormTypes";
 
-export const createAddFormDriver = () => {
-  let _props: IProps, _wrapper: RenderResult;
+const createAddFormDriver = () => {
+  let props: IAddFormProps;
+  let wrapper: RenderResult;
 
   const btnClick = (selector: string) => {
-    const { getByTestId } = _wrapper;
+    const { getByTestId } = wrapper;
     const element = getByTestId(selector);
     Object.assign(element, { preventDefault: jest.fn() });
     fireEvent.click(element);
@@ -16,27 +18,27 @@ export const createAddFormDriver = () => {
 
   const driver = {
     given: {
-      props: (props: IProps) => {
-        _props = props;
+      props: (value: IAddFormProps) => {
+        props = value;
         return driver;
       },
       onSubmit: (onSubmit: () => void) => {
-        _props = {
-          ..._props,
+        props = {
+          ...props,
           onSubmit,
         };
         return driver;
       },
       name: (name: string) => {
-        _props = {
-          ..._props,
+        props = {
+          ...props,
           name,
         };
         return driver;
       },
       amount: (amount: number) => {
-        _props = {
-          ..._props,
+        props = {
+          ...props,
           amount,
         };
         return driver;
@@ -44,7 +46,8 @@ export const createAddFormDriver = () => {
     },
     when: {
       created: () => {
-        _wrapper = render(<AddForm {..._props} />);
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        wrapper = render(<AddForm {...props} />);
         return driver;
       },
       btnClick: () => {
@@ -55,7 +58,7 @@ export const createAddFormDriver = () => {
     then: {
       isBtnDisabled: () => {
         try {
-          const button: any = _wrapper.getByTestId(buttonTestIds.btn);
+          const button: any = wrapper.getByTestId(buttonTestIds.btn);
           return button.disabled;
         } catch {
           return null;
@@ -65,3 +68,5 @@ export const createAddFormDriver = () => {
   };
   return driver;
 };
+
+export default createAddFormDriver;

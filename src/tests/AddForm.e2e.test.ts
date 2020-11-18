@@ -1,10 +1,10 @@
 import puppeteer from "puppeteer";
 
-import { testIds } from "../components/Table/testIds";
+import testIds from "../components/Table/testIds";
 
-import { driver as createFormDriver } from "./../components/AddForm/AddForm.driver.e2e";
-import { driver as createTableDriver } from "./../components/Table/Table.driver.e2e";
-import { createButtonDriver } from "../components/Button/Button.driver.e2e";
+import createFormDriver from "../components/AddForm/AddForm.driver.e2e";
+import createTableDriver from "../components/Table/Table.driver.e2e";
+import createButtonDriver from "../components/Button/Button.driver.e2e";
 
 type IProps = {
   name: string;
@@ -12,11 +12,11 @@ type IProps = {
 };
 
 describe("New operation", () => {
-  let browser: any,
-    page: any,
-    addFormDriver: any,
-    tableDriver: any,
-    buttonDriver: any;
+  let browser: any;
+  let page: any;
+  let addFormDriver: any;
+  let tableDriver: any;
+  let buttonDriver: any;
 
   beforeEach(async () => {
     browser = await puppeteer.launch({
@@ -113,7 +113,9 @@ describe("New operation", () => {
     });
 
     describe("When removing second from 3 list items", () => {
-      let firstItem: IProps, secondItem: IProps, thirdItem: IProps;
+      let firstItem: IProps;
+      let secondItem: IProps;
+      let thirdItem: IProps;
 
       beforeEach(async () => {
         await tableDriver.pressDeleteBtnByIndex(1);

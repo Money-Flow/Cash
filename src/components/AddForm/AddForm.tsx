@@ -1,20 +1,19 @@
 import React, { SyntheticEvent, useState } from "react";
 
-import { IExpense } from "../Main/Main";
-import { Button, ButtonType } from "../Button/Button";
-
 import { v4 as createId } from "uuid";
-import { testIds } from "./testIds";
+import Button from "../Button/Button";
+
+import testIds from "./testIds";
 
 import operation from "./AddForm.module.css";
+import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
+import { IAddFormProps } from "../../types/componentTypes/AddFormTypes";
 
-export type IProps = {
-  onSubmit: (arg: IExpense) => void;
-  name?: string;
-  amount?: number;
-};
-
-export const AddForm = ({ onSubmit, name = "", amount = 0 }: IProps) => {
+const AddForm = ({
+  onSubmit,
+  name = "",
+  amount = 0,
+}: IAddFormProps): JSX.Element => {
   const [nameState, setNameState] = useState(name);
   const [amountState, setAmountState] = useState(amount);
 
@@ -52,10 +51,13 @@ export const AddForm = ({ onSubmit, name = "", amount = 0 }: IProps) => {
       />
 
       <Button
-        type={ButtonType.submit}
+        type={ButtonEnumType.submit}
         text="Add"
+        onClick={handleSubmit}
         disabled={isSubmitDisabled()}
       />
     </form>
   );
 };
+
+export default AddForm;

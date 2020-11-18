@@ -1,4 +1,5 @@
-import { createTotalDriver } from "./Total.unit.driver";
+import createTotalDriver from "./Total.unit.driver";
+
 describe("Total", () => {
   let totalDriver: any;
 

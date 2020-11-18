@@ -1,36 +1,32 @@
 import React from "react";
 
-import { Total } from "../Total/Total";
-import { testIds } from "./testIds";
-import { Button, ButtonType } from "../Button/Button";
+import Total from "../Total/Total";
+import testIds from "./testIds";
+import Button from "../Button/Button";
 
 import table from "./Table.module.css";
 
-import { IExpense } from "../Main/Main";
+import { ITableProps } from "../../types/componentTypes/TableTypes";
+import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
 
-type IProps = {
-  operationList: IExpense[];
-  removeItem: (id: string) => void;
-};
-
-export const Table = ({ operationList, removeItem }: IProps) => {
+const Table = ({ operationList, removeItem }: ITableProps): JSX.Element => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
-        {operationList.map((item, index) => (
-          <tr data-testid={`${testIds.row}-${index}`} key={index}>
+        {operationList.map(({ nameState, amountState, id }, index) => (
+          <tr data-testid={`${testIds.row}-${index}`} key={id}>
             <td className={table.name} data-testid={testIds.name}>
-              {item.nameState}
+              {nameState}
             </td>
             <td className={table.amount} data-testid={testIds.amount}>
-              {item.amountState}
+              {amountState}
             </td>
             <td className={table.removeItem}>
               <Button
-                onClick={() => removeItem(item.id)}
-                withConfirm={true}
+                onClick={() => removeItem(id)}
+                withConfirm
                 text="Delete"
-                type={ButtonType.button}
+                type={ButtonEnumType.button}
               />
             </td>
           </tr>
@@ -47,3 +43,5 @@ export const Table = ({ operationList, removeItem }: IProps) => {
     </table>
   );
 };
+
+export default Table;

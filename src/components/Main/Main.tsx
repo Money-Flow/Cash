@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 
-import { testIds } from "./testIds";
-import { AddForm } from "../AddForm/AddForm";
-import { Table } from "../Table/Table";
+import testIds from "./testIds";
+import AddForm from "../AddForm/AddForm";
+import Table from "../Table/Table";
 
 import main from "./Main.module.css";
+import { IExpense } from "../../types/componentTypes/MainTypes";
 
-export type IExpense = {
-  nameState: string;
-  amountState: number;
-  id: string;
-  withConfirm?: boolean;
-};
-
-export const Main = () => {
+const Main = (): JSX.Element => {
   const [items, changeItems] = useState<IExpense[]>([]);
 
   const addItem = (newItem: IExpense) => {
@@ -33,3 +27,5 @@ export const Main = () => {
     </div>
   );
 };
+
+export default Main;

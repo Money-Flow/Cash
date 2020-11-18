@@ -2,8 +2,12 @@ import React from "react";
 
 import { render, fireEvent, RenderResult } from "@testing-library/react";
 
-import { Button, ButtonType, IProps } from "./Button";
-import { testIds } from "./testIds";
+import Button from "./Button";
+import testIds from "./testIds";
+import {
+  IButtonProps,
+  IButtonTypes,
+} from "../../types/componentTypes/ButtonTypes";
 
 const exist = (page: RenderResult, selector: string) => {
   try {
@@ -14,53 +18,55 @@ const exist = (page: RenderResult, selector: string) => {
   }
 };
 
-export const createButtonDriver = () => {
-  let _props: IProps, _wrapper: RenderResult;
+const createButtonDriver = () => {
+  let props: IButtonProps;
+  let wrapper: RenderResult;
 
   const btnClick = (selector: string) => {
-    const { getByTestId } = _wrapper;
+    const { getByTestId } = wrapper;
     const element = getByTestId(selector);
     fireEvent.click(element);
   };
 
   const driver = {
     given: {
-      props: (props: IProps) => {
-        _props = props;
+      props: (value: IButtonProps) => {
+        props = value;
         return driver;
       },
       withConfirm: (withConfirm: boolean) => {
-        _props = {
-          ..._props,
+        props = {
+          ...props,
           withConfirm,
         };
         return driver;
       },
       text: (text: string) => {
-        _props = {
-          ..._props,
+        props = {
+          ...props,
           text,
         };
         return driver;
       },
-      click: (onClick: () => void) => {
-        _props = {
-          ..._props,
-          onClick,
+      type: (type: IButtonTypes) => {
+        props = {
+          ...props,
+          type,
         };
         return driver;
       },
-      type: (type: ButtonType) => {
-        _props = {
-          ..._props,
-          type,
+      click: (onClick: () => void) => {
+        props = {
+          ...props,
+          onClick,
         };
         return driver;
       },
     },
     when: {
       created: () => {
-        _wrapper = render(<Button {..._props} />);
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        wrapper = render(<Button {...props} />);
         return driver;
       },
       btnClick: () => {
@@ -78,14 +84,14 @@ export const createButtonDriver = () => {
     },
     then: {
       confirmationWrapperExist: () =>
-        exist(_wrapper, testIds.confirmationWrapper),
+        exist(wrapper, testIds.confirmationWrapper),
       btnType: () => {
-        const btn: any = _wrapper.getByTestId(testIds.btn);
+        const btn: any = wrapper.getByTestId(testIds.btn);
         return btn.type;
       },
       isBtnDisabled: () => {
         try {
-          const button: any = _wrapper.getByTestId(testIds.btn);
+          const button: any = wrapper.getByTestId(testIds.btn);
           return button.disabled;
         } catch {
           return null;
@@ -95,3 +101,5 @@ export const createButtonDriver = () => {
   };
   return driver;
 };
+
+export default createButtonDriver;
