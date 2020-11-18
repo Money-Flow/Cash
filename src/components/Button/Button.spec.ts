@@ -2,9 +2,10 @@ import { cleanup } from "@testing-library/react";
 
 import createButtonDriver from "./Button.spec.driver";
 import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
+import { ButtonDriverSpecTypes } from "../../types/driverTypes/ButtonDriverTypes";
 
 describe("Button", () => {
-  let buttonsDriver: any;
+  let buttonsDriver: ButtonDriverSpecTypes;
 
   beforeEach(() => {
     buttonsDriver = createButtonDriver();
@@ -14,9 +15,8 @@ describe("Button", () => {
 
   describe("by default", () => {
     it("confirmation block should be hidden", () => {
-      const confirmationWrapperExist = buttonsDriver.given
-        .props()
-        .when.created()
+      const confirmationWrapperExist = buttonsDriver.when
+        .created()
         .then.confirmationWrapperExist();
       expect(confirmationWrapperExist).toBeFalsy();
     });
@@ -37,24 +37,18 @@ describe("Button", () => {
     });
 
     it("button type should be 'button'", () => {
-      const buttonType = buttonsDriver.given
-        .props()
-        .when.created()
-        .then.btnType();
+      const buttonType = buttonsDriver.when.created().then.btnType();
       expect(buttonType).toBe("button");
     });
 
     it("button should't disabled", () => {
-      const isDisabled = buttonsDriver.given
-        .props()
-        .when.created()
-        .then.isBtnDisabled();
+      const isDisabled = buttonsDriver.when.created().then.isBtnDisabled();
       expect(isDisabled).toBeFalsy();
     });
   });
 
   describe("when type is  submit", () => {
-    let driver: any;
+    let driver: ButtonDriverSpecTypes;
 
     beforeEach(() => {
       driver = buttonsDriver.given
@@ -78,8 +72,8 @@ describe("Button", () => {
     });
   });
 
-  describe("when type is reset", () => {
-    let driver: any;
+  describe("when type is a reset", () => {
+    let driver: ButtonDriverSpecTypes;
 
     beforeEach(() => {
       driver = buttonsDriver.given

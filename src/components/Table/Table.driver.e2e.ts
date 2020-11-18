@@ -1,12 +1,15 @@
+import { Page } from "puppeteer";
+
 import createButtonDriver from "../Button/Button.driver.e2e";
 
 import testIds from "./testIds";
 import totalTestIds from "../Total/testIds";
+import { TableDriverE2ETypes } from "../../types/driverTypes/TableDriverTypes";
 
 const combineSelectors = (...selectors: string[]) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
 
-const getElemById = async (page: any, ...selectors: string[]) =>
+const getElemById = async (page: Page, ...selectors: string[]) =>
   page.evaluate((selector: string) => {
     const element: HTMLElement | null = document.querySelector(selector);
     if (!element) {
@@ -15,10 +18,10 @@ const getElemById = async (page: any, ...selectors: string[]) =>
     return element.innerText;
   }, combineSelectors(...selectors));
 
-const exist = async (page: any, ...selectors: string[]) =>
+const exist = async (page: Page, ...selectors: string[]) =>
   !!(await getElemById(page, ...selectors));
 
-const driver = (page: any) => ({
+const driver = (page: Page): TableDriverE2ETypes => ({
   exist: () => exist(page, testIds.table),
   getItemByIndex: async (index: number) => {
     return page.evaluate(
@@ -41,7 +44,7 @@ const driver = (page: any) => ({
     );
   },
   getTotal: async () =>
-    page.$eval(combineSelectors(totalTestIds.total), (x: HTMLElement) =>
+    page.$eval(combineSelectors(totalTestIds.total), (x) =>
       Number(x.innerHTML)
     ),
   pressDeleteBtnByIndex: async (index: number) => {
