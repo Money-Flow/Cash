@@ -50,7 +50,7 @@
     "@testing-library/react": "^11.0.2",
     "classnames": "^2.2.6",
     "puppeteer": "^5.2.1",
-    "react": "^16.13.0",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "uuid": "^8.3.0"
