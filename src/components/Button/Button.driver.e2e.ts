@@ -1,13 +1,13 @@
 import { Page } from "puppeteer";
 
-import { testIds } from "./testIds";
+import testIds from "./testIds";
 
 const combineSelectors = (...selectors: string[]) =>
   selectors
     .map((selector) => (selector ? `[data-testid="${selector}"]` : ""))
     .join(" ");
 
-export const createButtonDriver = (page: Page, selector = "") => {
+const createButtonDriver = (page: Page, selector = "") => {
   const click = async () => {
     const element = await page.$(combineSelectors(selector, testIds.btn));
     return element?.click();
@@ -33,3 +33,5 @@ export const createButtonDriver = (page: Page, selector = "") => {
     },
   };
 };
+
+export default createButtonDriver;

@@ -1,6 +1,6 @@
 import { cleanup } from "@testing-library/react";
 
-import { createAddFormDriver } from "./AddForm.spec.driver";
+import createAddFormDriver from "./AddForm.spec.driver";
 
 describe("Add form", () => {
   let addFormDriver: any;

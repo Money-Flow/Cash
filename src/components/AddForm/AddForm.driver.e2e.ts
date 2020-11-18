@@ -1,4 +1,4 @@
-import { testIds } from "./testIds";
+import testIds from "./testIds";
 
 const combineSelectors = (...selectors: string[]) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
@@ -11,7 +11,7 @@ const fillInput = async (page: any, value: string | number) =>
 
 const enterPress = async (page: any) => page.keyboard.press("Enter");
 
-export const driver = (page: any) => ({
+const driver = (page: any) => ({
   addItem: async (name: string, amount: number) => {
     await addFocus(page, testIds.inputName);
     await fillInput(page, name);
@@ -21,3 +21,5 @@ export const driver = (page: any) => ({
   },
   enterPress: async () => enterPress(page),
 });
+
+export default driver;

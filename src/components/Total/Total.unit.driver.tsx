@@ -1,20 +1,23 @@
 import { render, RenderResult } from "@testing-library/react";
 import React from "react";
 
-import { Total, IProps } from "./Total";
-import { testIds } from "./testIds";
+import Total from "./Total";
+import testIds from "./testIds";
+import { ITotalProps } from "../../types/componentTypes/TotalTypes";
 
-export const createTotalDriver = () => {
-  let _props: IProps, _wrapper: RenderResult;
+const createTotalDriver = () => {
+  let props: ITotalProps;
+  let wrapper: RenderResult;
+
   const driver = {
     given: {
-      props: (props: IProps) => {
-        _props = props;
+      props: (value: ITotalProps) => {
+        props = value;
         return driver;
       },
       amountList: (amountList: []) => {
-        _props = {
-          ..._props,
+        props = {
+          ...props,
           amountList,
         };
         return driver;
@@ -22,14 +25,15 @@ export const createTotalDriver = () => {
     },
     when: {
       created: () => {
-        _wrapper = render(<Total {..._props} />);
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        wrapper = render(<Total {...props} />);
         return driver;
       },
     },
     then: {
       getTotal: () => {
         try {
-          let total = _wrapper.getByTestId(testIds.total);
+          const total = wrapper.getByTestId(testIds.total);
           return Number(total.textContent);
         } catch {
           return null;
@@ -39,3 +43,5 @@ export const createTotalDriver = () => {
   };
   return driver;
 };
+
+export default createTotalDriver;

@@ -1,7 +1,7 @@
-import { createButtonDriver } from "../Button/Button.driver.e2e";
+import createButtonDriver from "../Button/Button.driver.e2e";
 
-import { testIds } from "./testIds";
-import { testIds as totalTestIds } from "../Total/testIds";
+import testIds from "./testIds";
+import totalTestIds from "../Total/testIds";
 
 const combineSelectors = (...selectors: string[]) =>
   selectors.map((selector) => `[data-testid="${selector}"]`).join(" ");
@@ -18,12 +18,12 @@ const getElemById = async (page: any, ...selectors: string[]) =>
 const exist = async (page: any, ...selectors: string[]) =>
   !!(await getElemById(page, ...selectors));
 
-export const driver = (page: any) => ({
+const driver = (page: any) => ({
   exist: () => exist(page, testIds.table),
   getItemByIndex: async (index: number) => {
     return page.evaluate(
       (
-        index: number,
+        elementIndex: number,
         lineSelector: string,
         nameSelector: string,
         amountSelector: string
@@ -49,3 +49,5 @@ export const driver = (page: any) => ({
     return deleteDriver.clickWithConfirm();
   },
 });
+
+export default driver;
