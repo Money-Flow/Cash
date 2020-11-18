@@ -1,19 +1,23 @@
 import { Page } from "puppeteer";
 
 import testIds from "./testIds";
+import { ButtonDriverE2ETypes } from "../../types/driverTypes/ButtonDriverTypes";
 
 const combineSelectors = (...selectors: string[]) =>
   selectors
     .map((selector) => (selector ? `[data-testid="${selector}"]` : ""))
     .join(" ");
 
-const createButtonDriver = (page: Page, selector = "") => {
-  const click = async () => {
+const createButtonDriver = (
+  page: Page,
+  selector = ""
+): ButtonDriverE2ETypes => {
+  const click = async (): Promise<void> => {
     const element = await page.$(combineSelectors(selector, testIds.btn));
     return element?.click();
   };
 
-  const confirmBtnClick = async () => {
+  const confirmBtnClick = async (): Promise<void> => {
     const element = await page.$(
       combineSelectors(selector, testIds.btnConfirm)
     );

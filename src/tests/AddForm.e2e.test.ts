@@ -5,18 +5,18 @@ import testIds from "../components/Table/testIds";
 import createFormDriver from "../components/AddForm/AddForm.driver.e2e";
 import createTableDriver from "../components/Table/Table.driver.e2e";
 import createButtonDriver from "../components/Button/Button.driver.e2e";
+import { AddFormDriverE2ETypes } from "../types/driverTypes/AddFormDriverTypes";
+import { TableDriverE2ETypes } from "../types/driverTypes/TableDriverTypes";
+import { ButtonDriverE2ETypes } from "../types/driverTypes/ButtonDriverTypes";
 
-type IProps = {
-  name: string;
-  amount: number;
-};
+type IProps = { amount: number; name: string | null | undefined } | null;
 
 describe("New operation", () => {
-  let browser: any;
-  let page: any;
-  let addFormDriver: any;
-  let tableDriver: any;
-  let buttonDriver: any;
+  let browser: puppeteer.Browser;
+  let page: puppeteer.Page;
+  let addFormDriver: AddFormDriverE2ETypes;
+  let tableDriver: TableDriverE2ETypes;
+  let buttonDriver: ButtonDriverE2ETypes;
 
   beforeEach(async () => {
     browser = await puppeteer.launch({
@@ -41,8 +41,8 @@ describe("New operation", () => {
 
       const total = await tableDriver.getTotal();
 
-      expect(firstItem.name).toBe("Health");
-      expect(firstItem.amount).toBe(200);
+      expect(firstItem?.name).toBe("Health");
+      expect(firstItem?.amount).toBe(200);
 
       expect(total).toBe(200);
     });
@@ -59,8 +59,8 @@ describe("New operation", () => {
 
       const item = await tableDriver.getItemByIndex(0);
 
-      expect(item.name).toBe("Milk");
-      expect(item.amount).toBe(10);
+      expect(item?.name).toBe("Milk");
+      expect(item?.amount).toBe(10);
     });
 
     it("should add 2 items to the list", async () => {
@@ -76,11 +76,11 @@ describe("New operation", () => {
 
       const total = await tableDriver.getTotal();
 
-      expect(firstItem.name).toBe("Milk");
-      expect(firstItem.amount).toBe(10);
+      expect(firstItem?.name).toBe("Milk");
+      expect(firstItem?.amount).toBe(10);
 
-      expect(secondItem.name).toBe("Health");
-      expect(secondItem.amount).toBe(200);
+      expect(secondItem?.name).toBe("Health");
+      expect(secondItem?.amount).toBe(200);
 
       expect(total).toBe(210);
     });
@@ -128,10 +128,10 @@ describe("New operation", () => {
       });
 
       it("should have 1st and 3rd", () => {
-        expect(firstItem.name).toBe("Milk");
-        expect(firstItem.amount).toBe(10);
-        expect(secondItem.name).toBe("Porn");
-        expect(secondItem.amount).toBe(39);
+        expect(firstItem?.name).toBe("Milk");
+        expect(firstItem?.amount).toBe(10);
+        expect(secondItem?.name).toBe("Porn");
+        expect(secondItem?.amount).toBe(39);
       });
 
       it("should have only 2 items", () => {

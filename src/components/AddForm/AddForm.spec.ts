@@ -1,9 +1,10 @@
 import { cleanup } from "@testing-library/react";
 
 import createAddFormDriver from "./AddForm.spec.driver";
+import { AddFormDriverSpecTypes } from "../../types/driverTypes/AddFormDriverTypes";
 
 describe("Add form", () => {
-  let addFormDriver: any;
+  let addFormDriver: AddFormDriverSpecTypes;
 
   beforeEach(() => {
     addFormDriver = createAddFormDriver();
@@ -13,17 +14,14 @@ describe("Add form", () => {
 
   describe("by default", () => {
     it("button should be disabled", () => {
-      const isDisabled = addFormDriver.given
-        .props()
-        .when.created()
-        .then.isBtnDisabled();
+      const isDisabled = addFormDriver.when.created().then.isBtnDisabled();
       expect(isDisabled).toBeTruthy();
     });
   });
 
   describe("on button click", () => {
     let mockOnClick: () => void;
-    let driver: any;
+    let driver: AddFormDriverSpecTypes;
 
     beforeEach(() => {
       mockOnClick = jest.fn();

@@ -4,39 +4,40 @@ import { fireEvent, render, RenderResult } from "@testing-library/react";
 import AddForm from "./AddForm";
 import buttonTestIds from "../Button/testIds";
 import { IAddFormProps } from "../../types/componentTypes/AddFormTypes";
+import { AddFormDriverSpecTypes } from "../../types/driverTypes/AddFormDriverTypes";
 
-const createAddFormDriver = () => {
+const createAddFormDriver = (): AddFormDriverSpecTypes => {
   let props: IAddFormProps;
   let wrapper: RenderResult;
 
-  const btnClick = (selector: string) => {
+  const btnClick = (selector: string): void => {
     const { getByTestId } = wrapper;
     const element = getByTestId(selector);
     Object.assign(element, { preventDefault: jest.fn() });
     fireEvent.click(element);
   };
 
-  const driver = {
+  const driver: AddFormDriverSpecTypes = {
     given: {
-      props: (value: IAddFormProps) => {
+      props: (value) => {
         props = value;
         return driver;
       },
-      onSubmit: (onSubmit: () => void) => {
+      onSubmit: (onSubmit) => {
         props = {
           ...props,
           onSubmit,
         };
         return driver;
       },
-      name: (name: string) => {
+      name: (name) => {
         props = {
           ...props,
           name,
         };
         return driver;
       },
-      amount: (amount: number) => {
+      amount: (amount) => {
         props = {
           ...props,
           amount,
@@ -58,7 +59,9 @@ const createAddFormDriver = () => {
     then: {
       isBtnDisabled: () => {
         try {
-          const button: any = wrapper.getByTestId(buttonTestIds.btn);
+          const button = wrapper.getByTestId(
+            buttonTestIds.btn
+          ) as HTMLButtonElement;
           return button.disabled;
         } catch {
           return null;
