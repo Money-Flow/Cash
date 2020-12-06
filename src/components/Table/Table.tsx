@@ -3,23 +3,26 @@ import React from "react";
 import Total from "../Total/Total";
 import testIds from "./testIds";
 import Button from "../Button/Button";
+import { ButtonEnumType, IOperationListType } from "../../types";
 
 import table from "./Table.module.css";
 
-import { ITableProps } from "../../types/componentTypes/TableTypes";
-import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
+type TableProps = {
+  operationList: IOperationListType;
+  removeItem: (T: string) => void;
+};
 
-const Table = ({ operationList, removeItem }: ITableProps): JSX.Element => {
+const Table = ({ operationList, removeItem }: TableProps): JSX.Element => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
-        {operationList.map(({ nameState, amountState, id }, index) => (
+        {operationList.map(({ notes, amount, id }, index) => (
           <tr data-testid={`${testIds.row}-${index}`} key={id}>
             <td className={table.name} data-testid={testIds.name}>
-              {nameState}
+              {notes}
             </td>
             <td className={table.amount} data-testid={testIds.amount}>
-              {amountState}
+              {amount}
             </td>
             <td className={table.removeItem}>
               <Button
@@ -36,7 +39,7 @@ const Table = ({ operationList, removeItem }: ITableProps): JSX.Element => {
         <tr>
           <td />
           <td>
-            <Total amountList={operationList.map((x) => x.amountState)} />
+            <Total amountList={operationList.map((x) => x.amount)} />
           </td>
         </tr>
       </tfoot>

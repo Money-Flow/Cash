@@ -4,8 +4,7 @@ import { render, fireEvent, RenderResult } from "@testing-library/react";
 
 import Button from "./Button";
 import testIds from "./testIds";
-import { IButtonProps } from "../../types/componentTypes/ButtonTypes";
-import { ButtonDriverSpecTypes } from "../../types/driverTypes/ButtonDriverTypes";
+import { IButtonProps, ButtonDriverSpecTypes } from "../../types";
 
 const exist = (page: RenderResult, selector: string) => {
   try {

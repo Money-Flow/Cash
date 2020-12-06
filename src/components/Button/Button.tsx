@@ -6,10 +6,7 @@ import classNames from "classnames/bind";
 import testIds from "./testIds";
 
 import styles from "./Button.module.css";
-import {
-  ButtonEnumType,
-  IButtonProps,
-} from "../../types/componentTypes/ButtonTypes";
+import { ButtonEnumType, IButtonProps } from "../../types/ButtonTypes";
 
 function isSubmit(props: IButtonProps): boolean {
   return props.type === ButtonEnumType.submit;

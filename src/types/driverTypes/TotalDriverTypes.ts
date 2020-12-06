@@ -1,4 +1,4 @@
-import { ITotalProps } from "../componentTypes/TotalTypes";
+import { ITotalProps } from "../TotalTypes";
 
 export type TotalDriverSpecTypes = {
   given: {

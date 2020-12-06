@@ -1,4 +1,4 @@
-import { IAddFormProps } from "../componentTypes/AddFormTypes";
+import { IAddFormPropsType } from "../AddFormTypes";
 
 export type AddFormDriverE2ETypes = {
   addItem: (name: string, amount: number) => Promise<void>;
@@ -7,7 +7,7 @@ export type AddFormDriverE2ETypes = {
 
 export type AddFormDriverSpecTypes = {
   given: {
-    props: (props: IAddFormProps) => AddFormDriverSpecTypes;
+    props: (props: IAddFormPropsType) => AddFormDriverSpecTypes;
     onSubmit: (onSubmit: () => void) => AddFormDriverSpecTypes;
     name: (name: string) => AddFormDriverSpecTypes;
     amount: (amount: number) => AddFormDriverSpecTypes;

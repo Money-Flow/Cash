@@ -3,7 +3,7 @@ import React from "react";
 
 import Total from "./Total";
 import testIds from "./testIds";
-import { ITotalProps } from "../../types/componentTypes/TotalTypes";
+import { ITotalProps } from "../../types/TotalTypes";
 import { TotalDriverSpecTypes } from "../../types/driverTypes/TotalDriverTypes";
 
 const createTotalDriver = (): TotalDriverSpecTypes => {
