@@ -3,11 +3,10 @@ import { fireEvent, render, RenderResult } from "@testing-library/react";
 
 import AddForm from "./AddForm";
 import buttonTestIds from "../Button/testIds";
-import { IAddFormProps } from "../../types/componentTypes/AddFormTypes";
-import { AddFormDriverSpecTypes } from "../../types/driverTypes/AddFormDriverTypes";
+import { IAddFormPropsType, AddFormDriverSpecTypes } from "../../types";
 
 const createAddFormDriver = (): AddFormDriverSpecTypes => {
-  let props: IAddFormProps;
+  let props: IAddFormPropsType;
   let wrapper: RenderResult;
 
   const btnClick = (selector: string): void => {

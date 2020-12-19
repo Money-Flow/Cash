@@ -1,28 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import testIds from "./testIds";
 import AddForm from "../AddForm/AddForm";
 import Table from "../Table/Table";
-
+import testIds from "./testIds";
 import main from "./Main.module.css";
-import { IExpense } from "../../types/componentTypes/MainTypes";
+import { addOperation, deleteOperation } from "../../store/actions";
+import { selectOperationDataList } from "../../store/selectors";
 
 const Main = (): JSX.Element => {
-  const [items, changeItems] = useState<IExpense[]>([]);
-
-  const addItem = (newItem: IExpense) => {
-    changeItems((oldArray) => [...oldArray, newItem]);
-  };
-
-  const removeItem = (id: string): void => {
-    changeItems(() => items.filter((x) => x.id !== id));
-  };
+  const dispatch = useDispatch();
+  const operationDataList = useSelector(selectOperationDataList);
 
   return (
     <div data-testid={testIds.main} className={main.main}>
-      <AddForm onSubmit={addItem} />
-      {items.length > 0 && (
-        <Table operationList={items} removeItem={removeItem} />
+      <AddForm onSubmit={(data) => dispatch(addOperation(data))} />
+      {operationDataList.length > 0 && (
+        <Table
+          operationList={operationDataList}
+          removeItem={(id) => dispatch(deleteOperation(id))}
+        />
       )}
     </div>
   );

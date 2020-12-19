@@ -1,6 +1,6 @@
 import React from "react";
 import testIds from "./testIds";
-import { ITotalProps } from "../../types/componentTypes/TotalTypes";
+import { ITotalProps } from "../../types/TotalTypes";
 
 const Total = ({ amountList = [] }: ITotalProps): JSX.Element => {
   const total = amountList.reduce((acc, currentValue) => {
