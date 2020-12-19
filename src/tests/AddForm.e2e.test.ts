@@ -5,9 +5,11 @@ import testIds from "../components/Table/testIds";
 import createFormDriver from "../components/AddForm/AddForm.driver.e2e";
 import createTableDriver from "../components/Table/Table.driver.e2e";
 import createButtonDriver from "../components/Button/Button.driver.e2e";
-import { AddFormDriverE2ETypes } from "../types/driverTypes/AddFormDriverTypes";
-import { TableDriverE2ETypes } from "../types/driverTypes/TableDriverTypes";
-import { ButtonDriverE2ETypes } from "../types/driverTypes/ButtonDriverTypes";
+import {
+  AddFormDriverE2ETypes,
+  TableDriverE2ETypes,
+  ButtonDriverE2ETypes,
+} from "../types";
 
 type IProps = { amount: number; name: string | null | undefined } | null;
 

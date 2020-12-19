@@ -1,7 +1,7 @@
 import { Page } from "puppeteer";
 
 import testIds from "./testIds";
-import { ButtonDriverE2ETypes } from "../../types/driverTypes/ButtonDriverTypes";
+import { ButtonDriverE2ETypes } from "../../types";
 
 const combineSelectors = (...selectors: string[]) =>
   selectors

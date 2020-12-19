@@ -6,14 +6,13 @@ import Button from "../Button/Button";
 import testIds from "./testIds";
 
 import operation from "./AddForm.module.css";
-import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
-import { IAddFormProps } from "../../types/componentTypes/AddFormTypes";
+import { ButtonEnumType, IAddFormPropsType } from "../../types";
 
 const AddForm = ({
   onSubmit,
   name = "",
   amount = 0,
-}: IAddFormProps): JSX.Element => {
+}: IAddFormPropsType): JSX.Element => {
   const [nameState, setNameState] = useState(name);
   const [amountState, setAmountState] = useState(amount);
 
@@ -21,7 +20,7 @@ const AddForm = ({
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    onSubmit({ nameState, amountState, id: createId() });
+    onSubmit({ notes: nameState, amount: amountState, id: createId() });
     setNameState("");
     setAmountState(0);
   };
