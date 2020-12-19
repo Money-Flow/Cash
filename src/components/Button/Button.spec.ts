@@ -1,8 +1,7 @@
 import { cleanup } from "@testing-library/react";
 
 import createButtonDriver from "./Button.spec.driver";
-import { ButtonEnumType } from "../../types/componentTypes/ButtonTypes";
-import { ButtonDriverSpecTypes } from "../../types/driverTypes/ButtonDriverTypes";
+import { ButtonEnumType, ButtonDriverSpecTypes } from "../../types";
 
 describe("Button", () => {
   let buttonsDriver: ButtonDriverSpecTypes;
