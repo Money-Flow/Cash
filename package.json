@@ -15,7 +15,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
     }
   },
   "lint-staged": {
@@ -26,6 +27,14 @@
     "package.json": [
       "sort-package-json"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./config/git/cz-config.js"
+    }
   },
   "browserslist": {
     "production": [
@@ -60,6 +69,8 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.12.1",
+    "@commitlint/cli": "^11.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.2.2",
     "@types/classnames": "^2.2.10",
@@ -71,7 +82,9 @@
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
+    "commitizen": "^4.2.2",
     "csscomb": "^4.3.0",
+    "cz-customizable": "^6.3.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-typescript": "^10.0.0",
     "eslint-config-prettier": "^6.11.0",
