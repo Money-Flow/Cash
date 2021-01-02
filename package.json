@@ -70,7 +70,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
+    "@typescript-eslint/parser": "^4.11.1",
     "csscomb": "^4.3.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-typescript": "^10.0.0",
