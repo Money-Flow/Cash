@@ -1,11 +1,20 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
 jobs:
-  build:
+  commitlint:
+    docker:
+      - image: williamlauze/circleci-commitlint:latest
+    working_directory: /www
+    steps:
+      - checkout
+      - run:
+          name: Lint commit messages
+          command: |
+            /bin/sh /.scripts/commitlint_range.sh
+
+  unit_test:
     docker:
       # specify the version you desire here
-      - image:  circleci/node:latest-browsers
+      - image: circleci/node:latest-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -46,3 +55,10 @@ jobs:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:
           path: coverage
+
+workflows:
+  version: 2
+  my_pipeline:
+    jobs:
+      - commitlint
+      - unit_test

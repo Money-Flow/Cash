@@ -15,8 +15,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -70,7 +69,6 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.12.1",
-    "@commitlint/cli": "^11.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.2.2",
     "@types/classnames": "^2.2.10",
