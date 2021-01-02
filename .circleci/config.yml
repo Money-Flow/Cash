@@ -1,5 +1,16 @@
 version: 2.1
 jobs:
+  commitlint:
+    docker:
+      - image: williamlauze/circleci-commitlint:latest
+    working_directory: /www
+    steps:
+      - checkout
+      - run:
+          name: Lint commit messages
+          command: |
+            /bin/sh /.scripts/commitlint_range.sh
+
   chromatic-deployment:
     docker:
       - image: circleci/node:12
@@ -58,10 +69,14 @@ jobs:
           path: coverage
 workflows:
   version: 2
+  commitlint: 
+    jobs:
+      - commitlint
   chromatic-deploy:
     jobs:
       - chromatic-deployment
   unit_test:
     jobs:
       - unit_test
+
 
