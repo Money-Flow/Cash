@@ -95,4 +95,12 @@ const Button = (props: IButtonProps): JSX.Element => {
   );
 };
 
+Button.defaultProps = {
+  text: "",
+  onClick: () => {},
+  withConfirm: false,
+  disabled: false,
+  type: ButtonEnumType.button,
+};
+
 export default Button;
