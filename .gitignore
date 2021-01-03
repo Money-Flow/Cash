@@ -9,6 +9,9 @@
 /coverage
 junit.xml
 
+#storybook
+build-storybook.log
+
 # production
 /build
 

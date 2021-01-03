@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token ",
     "csscomb": "csscomb src/",
     "eject": "react-scripts eject",
     "format": "prettier --write src",
@@ -77,6 +79,7 @@
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.11.1",
+    "chromatic": "^5.5.0",
     "csscomb": "^4.3.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-typescript": "^10.0.0",
