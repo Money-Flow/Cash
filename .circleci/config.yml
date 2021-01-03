@@ -1,17 +1,27 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
 jobs:
-  build:
+  chromatic-deployment:
     docker:
-      # specify the version you desire here
-      - image:  circleci/node:latest-browsers
+      - image: circleci/node:12
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+      - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --exit-zero-on-changes
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+  unit_test:
+    docker:
+        # specify the version you desire here
+      - image: circleci/node:latest-browsers
 
+        # Specify service dependencies here if necessary
+        # CircleCI maintains a library of pre-built images
+        # documented at https://circleci.com/docs/2.0/circleci-images/
+        # - image: circleci/mongo:3.4.4
     working_directory: ~/repo
 
     steps:
@@ -46,3 +56,12 @@ jobs:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:
           path: coverage
+workflows:
+  version: 2
+  chromatic-deploy:
+    jobs:
+      - chromatic-deployment
+  unit_test:
+    jobs:
+      - unit_test
+
