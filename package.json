@@ -9,6 +9,7 @@
     "format": "prettier --write src",
     "lint": "tsc --noEmit && eslint --fix src/**/*.{ts,tsx} src/**/**/*.{ts,tsx}",
     "start": "react-scripts start",
+    "storybook": "start-storybook",
     "test": "react-scripts test",
     "test:e2e": "react-scripts test src/**/*.e2e.test.ts",
     "test:unit": "react-scripts test src/**/**/*.spec.ts"
@@ -42,6 +43,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "resolutions": {
+    "babel-loader": "8.1.0"
+  },
   "dependencies": {
     "@babel/helper-call-delegate": "^7.11.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -60,6 +64,8 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "6.1.11",
+    "@storybook/react": "6.1.11",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.6.0",
     "@types/classnames": "^2.2.10",
