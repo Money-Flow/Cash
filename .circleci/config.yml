@@ -47,11 +47,18 @@ jobs:
           command: yarn start
           background: true
 
+      - run:
+          name: Trigger Checkly
+          command: |
+            echo "Deployment finished."
+            curl "https://api-test.checklyhq.com/check-groups/4/trigger/${CHECKLY_TOKEN}" > ${PWD}/checkly.json
+            if [ $(grep -c \'"hasFailures":true\' $PWD/checkly.json) -ne 0 ]; then exit 1; fi
+
 
       # run tests!
       - run:
           name: "Run Jest and Collect Coverage Reports"
-          command: CI=true yarn test:unit --runInBand --reporters=default --reporters=jest-junit
+          command: CI=true yarn test:e2e --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:

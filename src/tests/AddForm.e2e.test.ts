@@ -14,6 +14,7 @@ import {
 type IProps = { amount: number; name: string | null | undefined } | null;
 
 describe("New operation", () => {
+  let url: string;
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
   let addFormDriver: AddFormDriverE2ETypes;
@@ -25,7 +26,8 @@ describe("New operation", () => {
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     page = await browser.newPage();
-    await page.goto("http://localhost:3000/");
+    url = process.env.ENVIRONMENT_URL || "http://localhost:3000/";
+    await page.goto(url);
     addFormDriver = createFormDriver(page);
     tableDriver = createTableDriver(page);
   });
@@ -111,6 +113,7 @@ describe("New operation", () => {
     it("should not remove the item without confirming", async () => {
       buttonDriver = createButtonDriver(page, `${testIds.row}-0`);
       await buttonDriver.click();
+
       expect(total).toBe(69);
     });
 
