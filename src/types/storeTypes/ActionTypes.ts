@@ -1,4 +1,4 @@
-import { IOperationType } from "../MainTypes";
+import { IOperationType } from "../componentTypes/MainTypes";
 
 export type MainActionType = {
   type: string;

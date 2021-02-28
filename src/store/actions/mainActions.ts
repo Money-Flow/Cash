@@ -1,4 +1,4 @@
-import { ADD_OPERATION, DELETE_OPERATION } from "../../constants/actionTypes";
+import { ADD_OPERATION, DELETE_OPERATION } from "../constants";
 import { IOperationType, MainActionType } from "../../types";
 
 export const addOperation = (data: IOperationType): MainActionType => ({

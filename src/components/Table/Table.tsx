@@ -1,10 +1,9 @@
 import React from "react";
 
-import Total from "../Total/Total";
-import testIds from "./testIds";
-import Button from "../Button/Button";
+import { Total } from "../Total";
+import { Button } from "../Button";
 import { ButtonEnumType, IOperationListType } from "../../types";
-
+import { tableTestIds as testIds } from "../../tests/testIds";
 import table from "./Table.module.css";
 
 type TableProps = {
@@ -12,7 +11,7 @@ type TableProps = {
   removeItem: (T: string) => void;
 };
 
-const Table = ({ operationList, removeItem }: TableProps): JSX.Element => {
+export const Table: React.FC<TableProps> = ({ operationList, removeItem }) => {
   return (
     <table className={table.table} data-testid={testIds.table}>
       <tbody>
@@ -46,5 +45,3 @@ const Table = ({ operationList, removeItem }: TableProps): JSX.Element => {
     </table>
   );
 };
-
-export default Table;

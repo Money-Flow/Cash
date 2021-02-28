@@ -1,14 +1,15 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
-import AddForm from "../AddForm/AddForm";
-import Table from "../Table/Table";
-import testIds from "./testIds";
-import main from "./Main.module.css";
+import { AddForm } from "../AddForm";
+import { Table } from "../Table";
+import { mainTestIds as testIds } from "../../tests/testIds";
 import { addOperation, deleteOperation } from "../../store/actions";
 import { selectOperationDataList } from "../../store/selectors";
+import main from "./Main.module.css";
 
-const Main = (): JSX.Element => {
+export const Main: React.FC = () => {
   const dispatch = useDispatch();
   const operationDataList = useSelector(selectOperationDataList);
 
@@ -24,5 +25,3 @@ const Main = (): JSX.Element => {
     </div>
   );
 };
-
-export default Main;

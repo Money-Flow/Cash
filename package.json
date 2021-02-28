@@ -13,12 +13,13 @@
     "start": "react-scripts start",
     "storybook": "start-storybook",
     "test": "react-scripts test",
-    "test:e2e": "react-scripts test src/**/*.e2e.test.ts",
-    "test:unit": "react-scripts test src/**/**/*.spec.ts"
+    "test:e2e": "react-scripts test src/tests/e2e",
+    "test:unit": "react-scripts test src/tests/unit"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
   "lint-staged": {
@@ -74,9 +75,9 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.12.1",
     "@storybook/addon-docs": "6.1.11",
     "@storybook/react": "6.1.11",
-    "@babel/eslint-parser": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.6.0",
     "@types/classnames": "^2.2.10",
