@@ -1,15 +1,32 @@
 version: 2.1
 jobs:
-  commitlint:
+  eslint: 
+    description: Eslint
     docker:
-      - image: williamlauze/circleci-commitlint:latest
-    working_directory: /www
+    - image: circleci/node:latest-browsers
+    working_directory: ~/repo
     steps:
       - checkout
-      - run:
-          name: Lint commit messages
-          command: |
-            /bin/sh /.scripts/commitlint_range.sh
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+      - run: yarn lint
+
+  stylelint: 
+    description: Stylelint
+    docker:
+    - image: circleci/node:latest-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+      - run: yarn stylelint
 
   chromatic-deployment:
     docker:
@@ -24,7 +41,7 @@ jobs:
       - run: yarn install
       - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --exit-zero-on-changes
 
-  unit_test:
+  tests:
     docker:
         # specify the version you desire here
       - image: circleci/node:latest-browsers
@@ -54,29 +71,28 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
-          name: runing server
+          name: running server
           command: yarn start
           background: true
-
 
       # run tests!
       - run:
           name: "Run Jest and Collect Coverage Reports"
-          command: CI=true yarn test:unit --runInBand --reporters=default --reporters=jest-junit
+          command: CI=true yarn test --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:
           path: coverage
 workflows:
   version: 2
-  commitlint: 
+  eslint:
+    jobs: 
+      - eslint
+  stylelint: 
     jobs:
-      - commitlint
-  chromatic-deploy:
+      - stylelint
+  tests:
     jobs:
-      - chromatic-deployment
-  unit_test:
-    jobs:
-      - unit_test
+      - tests
 
 
