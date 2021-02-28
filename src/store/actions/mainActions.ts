@@ -1,5 +1,6 @@
-import { ADD_OPERATION, DELETE_OPERATION } from "../../constants/actionTypes";
-import { IOperationType, MainActionType } from "../../types";
+import { ADD_OPERATION, DELETE_OPERATION } from "../constants";
+import { IOperationType } from "../../components/Main/MainTypes";
+import { MainActionType } from "../../types";
 
 export const addOperation = (data: IOperationType): MainActionType => ({
   type: ADD_OPERATION,

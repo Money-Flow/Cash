@@ -1,18 +1,18 @@
 import React, { SyntheticEvent, useState } from "react";
 
 import { v4 as createId } from "uuid";
-import Button from "../Button/Button";
 
-import testIds from "./testIds";
+import { Button, ButtonEnumType } from "../Button";
+import { IAddFormPropsType } from "./AddFormTypes";
+import { addFormTestIds as testIds } from "./AddFormTestIds";
 
-import operation from "./AddForm.module.css";
-import { ButtonEnumType, IAddFormPropsType } from "../../types";
+import styles from "./AddForm.module.css";
 
-const AddForm = ({
+export const AddForm: React.FC<IAddFormPropsType> = ({
   onSubmit,
   name = "",
   amount = 0,
-}: IAddFormPropsType): JSX.Element => {
+}) => {
   const [nameState, setNameState] = useState(name);
   const [amountState, setAmountState] = useState(amount);
 
@@ -26,10 +26,10 @@ const AddForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={operation.form}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <input
         type="text"
-        className={operation.input}
+        className={styles.input}
         name="name"
         data-testid={testIds.inputName}
         value={nameState}
@@ -40,7 +40,7 @@ const AddForm = ({
 
       <input
         type="number"
-        className={operation.input}
+        className={styles.input}
         name="amount"
         data-testid={testIds.inputAmount}
         value={amountState}
@@ -58,5 +58,3 @@ const AddForm = ({
     </form>
   );
 };
-
-export default AddForm;
