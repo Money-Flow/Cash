@@ -3,16 +3,17 @@ import React, { SyntheticEvent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
-import testIds from "./testIds";
+
+import { buttonTestIds as testIds } from "./ButtonTestIds";
+import { ButtonEnumType, IButtonProps } from "./ButtonTypes";
 
 import styles from "./Button.module.css";
-import { ButtonEnumType, IButtonProps } from "../../types/ButtonTypes";
 
 function isSubmit(props: IButtonProps): boolean {
   return props.type === ButtonEnumType.submit;
 }
 
-const Button = (props: IButtonProps): JSX.Element => {
+export const Button: React.FC<IButtonProps> = (props) => {
   const {
     withConfirm = false,
     text,
@@ -102,5 +103,3 @@ Button.defaultProps = {
   disabled: false,
   type: ButtonEnumType.button,
 };
-
-export default Button;

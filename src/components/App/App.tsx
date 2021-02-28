@@ -1,13 +1,11 @@
 import React from "react";
 
-import Main from "../Main/Main";
+import { Main } from "../Main";
 
 import "./App.css";
 
-const App = (): JSX.Element => (
+export const App: React.FC = () => (
   <div data-testid="app" className="App">
     <Main />
   </div>
 );
-
-export default App;
