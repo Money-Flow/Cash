@@ -24,15 +24,15 @@ jobs:
       - run: yarn install
       - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --exit-zero-on-changes
 
-  unit_test:
+  tests:
     docker:
-        # specify the version you desire here
-      - image: circleci/node:latest-browsers
+      # specify the version you desire here
+    - image: circleci/node:latest-browsers
 
-        # Specify service dependencies here if necessary
-        # CircleCI maintains a library of pre-built images
-        # documented at https://circleci.com/docs/2.0/circleci-images/
-        # - image: circleci/mongo:3.4.4
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
     working_directory: ~/repo
 
     steps:
@@ -58,15 +58,17 @@ jobs:
           command: yarn start
           background: true
 
-
-      # run tests!
       - run:
           name: "Run Jest and Collect Coverage Reports"
-          command: CI=true yarn test:unit --runInBand --reporters=default --reporters=jest-junit
+          command: CI=true yarn test --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:
           path: coverage
+    
+
+      
+
 workflows:
   version: 2
   commitlint: 
@@ -75,8 +77,6 @@ workflows:
   chromatic-deploy:
     jobs:
       - chromatic-deployment
-  unit_test:
+  tests:
     jobs:
-      - unit_test
-
-
+      - tests
