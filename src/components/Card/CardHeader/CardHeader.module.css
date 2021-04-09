@@ -1,0 +1,14 @@
+.cardHeader
+{
+    padding: var(--indent-medium) var(--indent-small);
+
+    border-bottom: 1px solid var(--color-gray-300);
+    background-color: var(--color-white);
+}
+
+.cardHeaderTitle
+{
+    font-size: 14px;
+
+    color: var(--color-dark-200);
+}
