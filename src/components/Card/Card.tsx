@@ -3,6 +3,7 @@ import classnames from "classnames";
 
 import { CardSubheader } from "./CardSubheader/CardSubheader";
 import { CardHeader } from "./CardHeader/CardHeader";
+import { CardBody } from "./CardBody/CardBody";
 import { cardTestIds as testIds } from "../../tests/testIds";
 import { CardSubcomponentsType } from "../../types";
 import styles from "./Card.module.css";
@@ -26,3 +27,4 @@ export const Card: React.FC<CardProps> & CardSubcomponentsType = ({
 
 Card.Subheader = CardSubheader;
 Card.Header = CardHeader;
+Card.Body = CardBody;

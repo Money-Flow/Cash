@@ -1,0 +1,5 @@
+.wrapper
+{
+    background-color: var(--color-white);
+    padding: var(--indent-medium) var(--indent-small)
+}
