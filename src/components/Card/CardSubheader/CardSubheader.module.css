@@ -1,0 +1,23 @@
+.wrapper
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-bottom: var(--indent-medium);
+
+    background-color: transparent;;
+}
+
+.title
+{
+    font-size: 16px;
+
+    color: var(--color-dark-200);
+}
+
+.suffix
+{
+    padding-right: var(--indent-medium);
+    color: var(--color-dark)
+}
