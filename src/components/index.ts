@@ -4,3 +4,4 @@ export * from "./App";
 export * from "./Button";
 export * from "./Table";
 export * from "./Total";
+export * from "./Card";

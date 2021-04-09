@@ -1,3 +1,4 @@
+export * from "./Card";
 export * from "./addFormTestIds";
 export * from "./buttonTestIds";
 export * from "./mainTestIds";
