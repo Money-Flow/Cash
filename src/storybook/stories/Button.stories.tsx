@@ -4,6 +4,8 @@ import { Story } from "@storybook/react/types-6-0";
 import { Button } from "../../components";
 import { IButtonProps } from "../../types";
 
+import "../../styles/index.css";
+
 export default {
   title: "Button",
   component: Button,
