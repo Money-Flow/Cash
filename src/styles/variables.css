@@ -1,0 +1,24 @@
+:root{
+    --primary-font: 'Rubik', sans-serif;
+
+    --primary-color: #ffab2b;
+
+    --color-dark: #252631;
+    --color-dark-200: #778ca2 ;
+    --color-dark-300: #98a9bc;
+
+    --color-gray-100: #f8fafb;
+    --color-gray-200: #f2f4f6;
+    --color-gray-300: #e8ecef;
+
+    --color-white: #fff;
+    --color-blue: #4d7cfe;
+    --color-green: #6dd230;
+    --color-pink: #fe4d97;
+    --color-bright-turquoise:  #2ce5f6;
+
+    --indent-tiny: 8px;
+    --indent-small: 16px;
+    --indent-medium: 24px;
+    --indent-large: 32px;
+}
