@@ -1,36 +1,30 @@
-.table
-{
-    width: 100%;
-    max-width: 650px;
-    margin: 0 auto;
+.table {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 .name,
-.amount
-{
-    height: 20px;
+.amount {
+  height: 20px;
 
-    border: 1px solid #000;
+  border: 1px solid #000;
 }
 
-.name
-{
-    width: 60%;
+.name {
+  width: 60%;
 }
 
-.amount
-{
-    width: 30%;
+.amount {
+  width: 30%;
 }
 
-.removeItem
-{
-    width: 10%;
+.removeItem {
+  width: 10%;
 }
 
-.amount:before
-{
-    position: relative;
+.amount::before {
+  position: relative;
 
-    content: '$';
+  content: "$";
 }

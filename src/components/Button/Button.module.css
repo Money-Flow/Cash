@@ -1,56 +1,48 @@
-.wrapper
-{
-    position: relative;
+.wrapper {
+  position: relative;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 10px;
 }
 
-.confirmationWrapper
-{
-    position: absolute;
-    z-index: 2;
-    top: -6px;
-    left: 60px;
+.confirmationWrapper {
+  position: absolute;
+  top: -6px;
+  left: 60px;
+  z-index: 2;
 
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    width: 70px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 70px;
 }
 
-.confirmButtons
-{
-    position: relative;
-    z-index: 5;
+.confirmButtons {
+  position: relative;
+  z-index: 5;
 
-    display: block;
+  display: block;
+  width: 30px;
+  height: 30px;
 
-    width: 30px;
-    height: 30px;
-
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
-.submit
-{
-    font-size: 16px;
+.submit {
+  padding: 10px 15px;
 
-    padding: 10px 15px;
+  color: #fff;
+  font-size: 16px;
 
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    background-color: green;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
 }
 
-.submit:disabled
-{
-    background-color: grey;
+.submit:disabled {
+  background-color: grey;
 }
