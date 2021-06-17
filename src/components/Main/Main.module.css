@@ -1,9 +1,7 @@
-.main
-{
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-    justify-content: center;
-
-    padding-top: 100px;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding-top: 100px;
 }
