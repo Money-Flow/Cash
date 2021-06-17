@@ -6,7 +6,6 @@
     "build": "react-scripts build",
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic",
-    "csscomb": "csscomb src/",
     "eject": "react-scripts eject",
     "format": "prettier --write src",
     "lint": "tsc --noEmit && eslint --fix src/**/*.{ts,tsx} src/**/**/*.{ts,tsx}",
@@ -25,7 +24,7 @@
   },
   "lint-staged": {
     "*.{css}": [
-      "stylelint --fix"
+      "yarn stylelint:fix"
     ],
     "*.{ts,tsx}": [],
     "package.json": [

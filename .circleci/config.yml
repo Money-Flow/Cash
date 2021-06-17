@@ -1,3 +1,4 @@
+name: CI
 version: 2.1
 jobs:
   commitlint:
@@ -24,7 +25,7 @@ jobs:
       - run: yarn install
       - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --exit-zero-on-changes
 
-  unit_test:
+  unit-tests:
     docker:
         # specify the version you desire here
       - image: circleci/node:latest-browsers
@@ -54,7 +55,7 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
-          name: runing server
+          name: running server
           command: yarn start
           background: true
 
@@ -67,16 +68,35 @@ jobs:
             JEST_JUNIT_OUTPUT_DIR: "coverage/js-tests-results.xml"
       - store_test_results:
           path: coverage
+
+  stylelint: 
+    description: Stylelint
+    docker:
+    - image: circleci/node:latest-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+      - run: yarn stylelint
+
 workflows:
   version: 2
   commitlint: 
     jobs:
       - commitlint
-  chromatic-deploy:
+  chromatic deploy:
     jobs:
       - chromatic-deployment
-  unit_test:
+  unit tests:
     jobs:
-      - unit_test
+      - unit-tests
+  stylelint: 
+    jobs:
+     - stylelint
+
 
 
