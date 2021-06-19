@@ -1,6 +1,7 @@
 import React from "react";
-import { totalTestIds as testIds } from "../../tests/testIds";
-import { ITotalProps } from "../../types";
+
+import { totalTestIds as testIds } from "tests/testIds";
+import { ITotalProps } from "types";
 
 export const Total: React.FC<ITotalProps> = ({ amountList = [] }) => {
   const total = amountList.reduce((acc, currentValue) => {

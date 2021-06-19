@@ -1,4 +1,4 @@
-import { IAddFormPropsType } from "../componentTypes";
+import { IAddFormPropsType } from "types/componentTypes";
 
 export type AddFormDriverE2ETypes = {
   addItem: (name: string, amount: number) => Promise<void>;

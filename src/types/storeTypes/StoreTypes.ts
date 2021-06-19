@@ -1,4 +1,4 @@
-import { IOperationListType } from "../componentTypes/MainTypes";
+import { IOperationListType } from "types/componentTypes/MainTypes";
 
 export type RootState = {
   operation: {

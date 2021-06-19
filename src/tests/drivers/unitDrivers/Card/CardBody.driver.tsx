@@ -1,9 +1,9 @@
 import React from "react";
 import { render, RenderResult } from "@testing-library/react";
 
-import { CardBody, CardBodyProps } from "../../../../components";
-import { CardBodyDriverSpecType } from "../../../../types";
-import { cardBodyTestIds as testIds } from "../../../testIds";
+import { CardBody, CardBodyProps } from "components";
+import { CardBodyDriverSpecType } from "types";
+import { cardBodyTestIds as testIds } from "tests/testIds";
 
 export const cardBodyDriver = (): CardBodyDriverSpecType => {
   let props: CardBodyProps;

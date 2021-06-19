@@ -1,4 +1,4 @@
-import type { CardProps } from "../../../components";
+import type { CardProps } from "components";
 
 export type CardDriverSpecType = {
   given: {

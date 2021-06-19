@@ -1,9 +1,9 @@
 import React from "react";
 import { render, RenderResult } from "@testing-library/react";
 
-import { CardSubheader, CardSubheaderProps } from "../../../../components";
-import { CardSubheaderDriverSpecType } from "../../../../types";
-import { cardSubheaderTestIds as testIds } from "../../../testIds";
+import { CardSubheader, CardSubheaderProps } from "components";
+import { CardSubheaderDriverSpecType } from "types";
+import { cardSubheaderTestIds as testIds } from "tests/testIds";
 
 export const cardSubheaderDriver = (): CardSubheaderDriverSpecType => {
   let props: CardSubheaderProps;

@@ -1,17 +1,17 @@
 import puppeteer from "puppeteer";
 
-import { tableTestIds } from "../testIds";
-
 import {
   addFormDriver as createFormDriver,
   buttonDriver as createButtonDriver,
   tableDriver as createTableDriver,
-} from "../drivers/e2eDrivers";
+} from "tests/drivers/e2eDrivers";
+import { tableTestIds } from "tests/testIds";
+
 import {
   AddFormDriverE2ETypes,
   TableDriverE2ETypes,
   ButtonDriverE2ETypes,
-} from "../../types";
+} from "types";
 
 type IProps = { amount: number; name: string | null | undefined } | null;
 

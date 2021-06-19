@@ -1,12 +1,14 @@
 import React from "react";
+
 import classnames from "classnames";
 
-import { CardSubheader } from "./CardSubheader/CardSubheader";
-import { CardHeader } from "./CardHeader/CardHeader";
-import { CardBody } from "./CardBody/CardBody";
-import { cardTestIds as testIds } from "../../tests/testIds";
-import { CardSubcomponentsType } from "../../types";
-import styles from "./Card.module.css";
+import { CardSubheader } from "components/Card/CardSubheader/CardSubheader";
+import { CardHeader } from "components/Card/CardHeader/CardHeader";
+import { CardBody } from "components/Card/CardBody/CardBody";
+import { cardTestIds as testIds } from "tests/testIds";
+import { CardSubcomponentsType } from "types";
+
+import styles from "components/Card/Card.module.css";
 
 export type CardProps = {
   children: React.ReactNode;

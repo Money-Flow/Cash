@@ -1,4 +1,4 @@
-import type { CardSubheaderProps } from "../../../components";
+import type { CardSubheaderProps } from "components";
 
 export type CardSubheaderDriverSpecType = {
   given: {

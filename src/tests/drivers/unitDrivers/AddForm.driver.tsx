@@ -1,10 +1,10 @@
 import React from "react";
 import { render, RenderResult } from "@testing-library/react";
 
-import { AddForm } from "../../../components";
-import { buttonTestIds } from "../../testIds";
-import { IAddFormPropsType, AddFormDriverSpecTypes } from "../../../types";
-import { elementClick } from "../../../utils/testUtils/unit";
+import { AddForm } from "components";
+import { buttonTestIds } from "tests/testIds";
+import { IAddFormPropsType, AddFormDriverSpecTypes } from "types";
+import { elementClick } from "utils/testUtils/unit";
 
 export const addFormDriver = (): AddFormDriverSpecTypes => {
   let props: IAddFormPropsType;

@@ -1,8 +1,8 @@
 import { Page } from "puppeteer";
 
-import { buttonTestIds as testIds } from "../../testIds";
-import { ButtonDriverE2ETypes } from "../../../types";
-import { combineSelectors } from "../../../utils/testUtils";
+import { buttonTestIds as testIds } from "tests/testIds";
+import { ButtonDriverE2ETypes } from "types";
+import { combineSelectors } from "utils/testUtils";
 
 export const buttonDriver = (
   page: Page,

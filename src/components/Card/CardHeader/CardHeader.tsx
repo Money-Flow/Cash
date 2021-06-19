@@ -1,8 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 
-import { cardHeaderTestIds as testIds } from "../../../tests/testIds";
-import styles from "./CardHeader.module.css";
+import { cardHeaderTestIds as testIds } from "tests/testIds";
+
+import styles from "components/Card/CardHeader/CardHeader.module.css";
 
 export type CardHeaderProps = {
   title?: string;

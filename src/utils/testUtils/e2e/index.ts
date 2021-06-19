@@ -1,5 +1,6 @@
 import { Page } from "puppeteer";
-import { combineSelectors } from "../common";
+
+import { combineSelectors } from "utils/testUtils/common";
 
 export const addFocus = async (
   page: Page,

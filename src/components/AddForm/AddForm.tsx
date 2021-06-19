@@ -2,10 +2,11 @@ import React, { SyntheticEvent, useState } from "react";
 
 import { v4 as createId } from "uuid";
 
-import { Button } from "../Button/Button";
-import { ButtonEnumType, IAddFormPropsType } from "../../types";
-import { addFormTestIds as testIds } from "../../tests/testIds";
-import styles from "./AddForm.module.css";
+import { Button } from "components/Button/Button";
+import { ButtonEnumType, IAddFormPropsType } from "types";
+import { addFormTestIds as testIds } from "tests/testIds";
+
+import styles from "components/AddForm/AddForm.module.css";
 
 export const AddForm: React.FC<IAddFormPropsType> = ({
   onSubmit,

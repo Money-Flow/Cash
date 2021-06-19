@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
-import { RootState } from "../../types";
+
+import { RootState } from "types";
 
 const operationSelector = (state: RootState) => state.operation;
 

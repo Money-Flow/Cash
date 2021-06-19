@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 
-import { buttonTestIds as testIds } from "../../tests/testIds";
-import { ButtonEnumType, IButtonProps } from "../../types";
-import styles from "./Button.module.css";
+import { buttonTestIds as testIds } from "tests/testIds";
+import { ButtonEnumType, IButtonProps } from "types";
+
+import styles from "components/Button/Button.module.css";
 
 function isSubmit(props: IButtonProps): boolean {
   return props.type === ButtonEnumType.submit;

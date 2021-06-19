@@ -1,9 +1,9 @@
 import { render, RenderResult } from "@testing-library/react";
 import React from "react";
 
-import { Total } from "../../../components";
-import { totalTestIds as testIds } from "../../testIds";
-import { ITotalProps, TotalDriverSpecTypes } from "../../../types";
+import { Total } from "components";
+import { totalTestIds as testIds } from "tests/testIds";
+import { ITotalProps, TotalDriverSpecTypes } from "types";
 
 export const totalDriver = (): TotalDriverSpecTypes => {
   let props: ITotalProps;

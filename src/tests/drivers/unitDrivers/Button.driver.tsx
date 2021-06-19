@@ -2,10 +2,10 @@ import React from "react";
 
 import { render, RenderResult } from "@testing-library/react";
 
-import { Button } from "../../../components";
-import { buttonTestIds as testIds } from "../../testIds";
-import { IButtonProps, ButtonDriverSpecTypes } from "../../../types";
-import { existElement, elementClick } from "../../../utils/testUtils/unit";
+import { Button } from "components";
+import { buttonTestIds as testIds } from "tests/testIds";
+import { IButtonProps, ButtonDriverSpecTypes } from "types";
+import { existElement, elementClick } from "utils/testUtils/unit";
 
 export const buttonDriver = (): ButtonDriverSpecTypes => {
   let props: IButtonProps;

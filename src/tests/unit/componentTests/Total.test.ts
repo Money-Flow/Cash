@@ -1,5 +1,5 @@
-import { totalDriver as createTotalDriver } from "../../drivers/unitDrivers";
-import { TotalDriverSpecTypes } from "../../../types";
+import { totalDriver as createTotalDriver } from "tests/drivers/unitDrivers";
+import { TotalDriverSpecTypes } from "types";
 
 describe("Total", () => {
   let totalDriver: TotalDriverSpecTypes;

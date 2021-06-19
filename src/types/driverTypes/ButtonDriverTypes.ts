@@ -1,4 +1,4 @@
-import { IButtonProps, IButtonTypes } from "../componentTypes";
+import { IButtonProps, IButtonTypes } from "types/componentTypes";
 
 export type ButtonDriverE2ETypes = {
   click: () => Promise<void>;

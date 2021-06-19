@@ -1,8 +1,10 @@
 import React, { ReactNode } from "react";
+
 import classnames from "classnames";
 
-import { cardSubheaderTestIds as testIds } from "../../../tests/testIds";
-import styles from "./CardSubheader.module.css";
+import { cardSubheaderTestIds as testIds } from "tests/testIds";
+
+import styles from "components/Card/CardSubheader/CardSubheader.module.css";
 
 export type CardSubheaderProps = {
   title?: string;

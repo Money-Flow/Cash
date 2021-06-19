@@ -1,10 +1,11 @@
 import React from "react";
 
-import { Total } from "../Total";
-import { Button } from "../Button";
-import { ButtonEnumType, IOperationListType } from "../../types";
-import { tableTestIds as testIds } from "../../tests/testIds";
-import table from "./Table.module.css";
+import { Total } from "components/Total";
+import { Button } from "components/Button";
+import { ButtonEnumType, IOperationListType } from "types";
+import { tableTestIds as testIds } from "tests/testIds";
+
+import table from "components/Table/Table.module.css";
 
 type TableProps = {
   operationList: IOperationListType;

@@ -2,11 +2,12 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { AddForm } from "../AddForm";
-import { Table } from "../Table";
-import { mainTestIds as testIds } from "../../tests/testIds";
-import { addOperation, deleteOperation } from "../../store/actions";
-import { selectOperationDataList } from "../../store/selectors";
+import { AddForm } from "components/AddForm";
+import { Table } from "components/Table";
+import { mainTestIds as testIds } from "tests/testIds";
+import { addOperation, deleteOperation } from "store/actions";
+import { selectOperationDataList } from "store/selectors";
+
 import main from "./Main.module.css";
 
 export const Main: React.FC = () => {

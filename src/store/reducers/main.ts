@@ -1,5 +1,5 @@
-import { MainActionType, IOperationType } from "../../types";
-import { ADD_OPERATION, DELETE_OPERATION } from "../constants";
+import { MainActionType, IOperationType } from "types";
+import { ADD_OPERATION, DELETE_OPERATION } from "store/constants";
 
 type MainStateType = {
   operationDataList: (IOperationType | undefined)[];

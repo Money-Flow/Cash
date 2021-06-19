@@ -1,15 +1,17 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
+
 import { Story } from "@storybook/react/types-6-0";
 
-import { Card as CardComponent } from "..";
 import {
   CardSubheaderProps,
   CardHeaderProps,
   CardBodyProps,
-  CardProps
-} from ".";
+  CardProps,
+} from "components/Card";
+import { Card as CardComponent } from "components";
 
-import "../../styles/index.css";
+import "styles/index.css";
 
 type CardComponentType = {
   subheaderProps?: CardSubheaderProps;
@@ -27,30 +29,38 @@ export default {
   },
 };
 
-const commonTemplate: Story<CardComponentType> = ({subheaderProps, headerProps, bodyProps }) => (<CardComponent>
-   <CardComponent.Subheader {...subheaderProps} />
-   <CardComponent.Header {...headerProps} />
-   <CardComponent.Body {...bodyProps} />
-</CardComponent>)
+const commonTemplate: Story<CardComponentType> = ({
+  subheaderProps,
+  headerProps,
+  bodyProps,
+}) => (
+  <CardComponent>
+    <CardComponent.Subheader {...subheaderProps} />
+    <CardComponent.Header {...headerProps} />
+    <CardComponent.Body {...bodyProps} />
+  </CardComponent>
+);
 
-const cardTemplate: Story<CardProps> = (cardProps) => <CardComponent {...cardProps} />
+const cardTemplate: Story<CardProps> = (cardProps) => (
+  <CardComponent {...cardProps} />
+);
 
 const subheaderTemplate: Story<CardSubheaderProps> = (subheaderProps) => (
-    <CardComponent>
-      <CardComponent.Subheader {...subheaderProps} />
+  <CardComponent>
+    <CardComponent.Subheader {...subheaderProps} />
   </CardComponent>
 );
 
 const headerTemplate: Story<CardHeaderProps> = (headerProps) => (
   <CardComponent>
     <CardComponent.Header {...headerProps} />
-</CardComponent>
+  </CardComponent>
 );
 
 const bodyTemplate: Story<CardBodyProps> = (bodyProps) => (
   <CardComponent>
     <CardComponent.Body {...bodyProps} />
-</CardComponent>
+  </CardComponent>
 );
 
 export const Common = commonTemplate.bind({});
@@ -59,7 +69,7 @@ export const Subheader = subheaderTemplate.bind({});
 export const Header = headerTemplate.bind({});
 export const Body = bodyTemplate.bind({});
 
- Common.args = { 
+Common.args = {
   subheaderProps: {
     title: "Subheader",
     titleClassName: "title-class-name",
@@ -69,31 +79,31 @@ export const Body = bodyTemplate.bind({});
   headerProps: {
     title: "Header",
     titleClassName: "header-class-name",
-    children: "Header children"
+    children: "Header children",
   },
   bodyProps: {
     children: "Body children",
-  }
- }
+  },
+};
 
 Card.args = {
-  children: 'Card children',
-  className: 'card-class-name',
-}
+  children: "Card children",
+  className: "card-class-name",
+};
 
 Subheader.args = {
-    title: "Subheader",
-    titleClassName: "title-class-name",
-    suffix: "Suffix",
-    suffixClassName: "suffix-class-name",
-  }
+  title: "Subheader",
+  titleClassName: "title-class-name",
+  suffix: "Suffix",
+  suffixClassName: "suffix-class-name",
+};
 
 Header.args = {
-    title: "Header",
-    titleClassName: "header-class-name",
-    children: "Header children",
+  title: "Header",
+  titleClassName: "header-class-name",
+  children: "Header children",
 };
 
 Body.args = {
-    children: "Body children",
+  children: "Body children",
 };

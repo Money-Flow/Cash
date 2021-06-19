@@ -1,8 +1,5 @@
-import {
-  addOperation,
-  deleteOperation,
-} from "../../../../store/actions/mainActions";
-import { ADD_OPERATION, DELETE_OPERATION } from "../../../../store/constants";
+import { addOperation, deleteOperation } from "store/actions/mainActions";
+import { ADD_OPERATION, DELETE_OPERATION } from "store/constants";
 
 describe("mainActions", () => {
   it("addOperation should create ADD_OPERATION action", () => {

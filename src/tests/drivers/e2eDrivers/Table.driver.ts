@@ -1,10 +1,10 @@
 import { Page } from "puppeteer";
 
-import { buttonDriver as createButtonDriver } from "./Button.driver";
-import { tableTestIds, totalTestIds } from "../../testIds";
-import { TableDriverE2ETypes } from "../../../types";
-import { combineSelectors } from "../../../utils/testUtils";
-import { existElement } from "../../../utils/testUtils/e2e";
+import { buttonDriver as createButtonDriver } from "tests/drivers/e2eDrivers/Button.driver";
+import { tableTestIds, totalTestIds } from "tests/testIds";
+import { TableDriverE2ETypes } from "types";
+import { combineSelectors } from "utils/testUtils";
+import { existElement } from "utils/testUtils/e2e";
 
 export const tableDriver = (page: Page): TableDriverE2ETypes => ({
   exist: () => existElement(page, tableTestIds.table),

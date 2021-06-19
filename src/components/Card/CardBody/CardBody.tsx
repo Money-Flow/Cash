@@ -1,7 +1,8 @@
 import React from "react";
 
-import { cardBodyTestIds as testIds } from "../../../tests/testIds";
-import styles from "./CardBody.module.css";
+import { cardBodyTestIds as testIds } from "tests/testIds";
+
+import styles from "components/Card/CardBody/CardBody.module.css";
 
 export type CardBodyProps = {
   children: React.ReactNode;

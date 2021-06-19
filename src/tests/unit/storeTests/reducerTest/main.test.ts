@@ -1,5 +1,5 @@
-import { main } from "../../../../store/reducers/main";
-import { ADD_OPERATION, DELETE_OPERATION } from "../../../../store/constants";
+import { main } from "store/reducers/main";
+import { ADD_OPERATION, DELETE_OPERATION } from "store/constants";
 
 describe("reducer", () => {
   describe("main", () => {
