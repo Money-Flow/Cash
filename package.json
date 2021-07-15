@@ -7,6 +7,7 @@
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic",
     "csscomb": "csscomb src/",
+    "commit": "cz",
     "eject": "react-scripts eject",
     "format": "prettier --write src",
     "lint": "tsc --noEmit && eslint --fix src/**/*.{ts,tsx} src/**/**/*.{ts,tsx}",
@@ -18,7 +19,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
   "lint-staged": {
@@ -74,9 +76,9 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.12.1",
     "@storybook/addon-docs": "6.1.11",
     "@storybook/react": "6.1.11",
-    "@babel/eslint-parser": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.6.0",
     "@types/classnames": "^2.2.10",
@@ -89,7 +91,7 @@
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.11.1",
     "chromatic": "^5.5.0",
-    "commitizen": "^4.2.2",
+    "commitizen": "^4.2.4",
     "csscomb": "^4.3.0",
     "cz-customizable": "^6.3.0",
     "eslint-config-airbnb": "18.2.0",
