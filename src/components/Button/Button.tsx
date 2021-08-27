@@ -5,15 +5,14 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 
 import { buttonTestIds as testIds } from "./ButtonTestIds";
-import { ButtonEnumType, IButtonProps } from "./ButtonTypes";
+import { ButtonEnumType, ButtonPropsType } from "./ButtonTypes";
 
 import styles from "./Button.module.css";
 
-function isSubmit(props: IButtonProps): boolean {
-  return props.type === ButtonEnumType.submit;
-}
+const isSubmit = (props: ButtonPropsType): boolean =>
+  props.type === ButtonEnumType.submit;
 
-export const Button: React.FC<IButtonProps> = (props) => {
+export const Button: React.FC<ButtonPropsType> = (props) => {
   const {
     withConfirm = false,
     text,
@@ -21,7 +20,7 @@ export const Button: React.FC<IButtonProps> = (props) => {
     disabled = false,
   } = props;
 
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
 
   let onClick: (event: SyntheticEvent) => void;
 
@@ -29,16 +28,16 @@ export const Button: React.FC<IButtonProps> = (props) => {
     onClick = props.onClick;
   }
 
-  const btnClass = classNames({
+  const btnClass: string = classNames({
     button: type === ButtonEnumType.button,
     submit: type === ButtonEnumType.submit,
     reset: type === ButtonEnumType.reset,
   });
 
-  const handleClick = (event: SyntheticEvent) => {
+  const handleClick = (event: SyntheticEvent): void => {
     if (!(type === ButtonEnumType.submit) && onClick) {
       if (withConfirm) {
-        setShowConfirm(true);
+        setIsShowConfirm(true);
       } else {
         onClick(event);
       }
@@ -56,7 +55,7 @@ export const Button: React.FC<IButtonProps> = (props) => {
       >
         {text}
       </button>
-      {showConfirm && (
+      {isShowConfirm && (
         <div
           className={styles.confirmationWrapper}
           data-testid={testIds.confirmationWrapper}
@@ -66,7 +65,7 @@ export const Button: React.FC<IButtonProps> = (props) => {
             data-testid={testIds.btnConfirm}
             onClick={(event: SyntheticEvent) => {
               onClick(event);
-              setShowConfirm(false);
+              setIsShowConfirm(false);
             }}
             type={ButtonEnumType.submit}
             value="confirm"
@@ -81,7 +80,7 @@ export const Button: React.FC<IButtonProps> = (props) => {
             className={styles.confirmButtons}
             data-testid={testIds.btnCancel}
             value="cancel"
-            onClick={() => setShowConfirm(false)}
+            onClick={() => setIsShowConfirm(false)}
             type={ButtonEnumType.button}
           >
             <FontAwesomeIcon

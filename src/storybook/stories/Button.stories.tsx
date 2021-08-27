@@ -1,7 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react/types-6-0";
 
-import { Button, IButtonProps } from "../../components";
+import { Button, ButtonPropsType } from "../../components";
 
 export default {
   title: "Button",
@@ -9,7 +9,7 @@ export default {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template: Story<IButtonProps> = (args) => <Button {...args} />;
+const Template: Story<ButtonPropsType> = (args) => <Button {...args} />;
 
 export const Basic = Template.bind({});
 

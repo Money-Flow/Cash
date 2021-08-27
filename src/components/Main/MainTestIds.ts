@@ -1,3 +1,3 @@
-export const mainTestIds = {
+export const mainTestIds: { [key: string]: string } = {
   main: "main",
 };

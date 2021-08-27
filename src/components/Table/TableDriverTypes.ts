@@ -1,4 +1,4 @@
-export type TableDriverE2ETypes = {
+export type TableDriverE2EType = {
   exist: () => Promise<boolean>;
   pressDeleteBtnByIndex: (index: number) => Promise<void>;
   getItemByIndex: (

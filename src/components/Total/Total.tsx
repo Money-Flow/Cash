@@ -1,16 +1,17 @@
 import React from "react";
 
 import { totalTestIds as testIds } from "./TotalTestIds";
-import { ITotalProps } from "./TotalTypes";
+import { TotalPropsType } from "./TotalTypes";
 
-export const Total: React.FC<ITotalProps> = ({ amountList = [] }) => {
-  const total = amountList.reduce((acc, currentValue) => {
-    return acc + currentValue;
-  }, 0);
+export const Total: React.FC<TotalPropsType> = ({ amountList = [] }) => {
+  const total: number = amountList.reduce(
+    (acc, currentValue) => acc + currentValue,
+    0
+  );
 
   return (
     <>
-      {amountList.length > 0 && (
+      {!!amountList.length && (
         <div>
           Total: $<span data-testid={testIds.total}>{total}</span>
         </div>

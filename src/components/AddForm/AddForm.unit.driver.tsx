@@ -3,13 +3,13 @@ import React from "react";
 import { render, RenderResult } from "@testing-library/react";
 
 import { AddForm } from "./AddForm";
-import { IAddFormPropsType } from "./AddFormTypes";
+import { AddFormPropsType } from "./AddFormTypes";
 import { buttonTestIds } from "../Button";
 import { elementClick } from "../../utils/testUtils/unit";
 import { AddFormDriverSpecTypes } from "./AddFormDriverTypes";
 
 export const addFormUnitDriver = (): AddFormDriverSpecTypes => {
-  let props: IAddFormPropsType;
+  let props: AddFormPropsType;
   let wrapper: RenderResult;
 
   const driver: AddFormDriverSpecTypes = {

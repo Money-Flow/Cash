@@ -1,4 +1,4 @@
-export const buttonTestIds = {
+export const buttonTestIds: { [key: string]: string } = {
   btn: "btn",
   wrapper: "buttons-wrapper",
   confirmationWrapper: "confirmation-wrapper",

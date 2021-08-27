@@ -1,6 +1,6 @@
-import { IOperationListType } from "../Main/MainTypes";
+import { OperationListType } from "../Main/MainTypes";
 
 export type TablePropsType = {
-  operationList: IOperationListType;
-  removeItem: (T: string) => void;
+  operationList: OperationListType;
+  removeItem: (id: string) => void;
 };

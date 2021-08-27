@@ -6,27 +6,27 @@ export enum ButtonEnumType {
   button = "button",
 }
 
-export type IButtonTypes =
+export type ButtonTypes =
   | ButtonEnumType.submit
   | ButtonEnumType.reset
   | ButtonEnumType.button;
 
-type ICommonButtonProps = {
+type CommonButtonPropsType = {
   text: string;
   withConfirm?: boolean;
   disabled?: boolean;
 };
 
-export type ISubmitButton = ICommonButtonProps & {
+export type SubmitButton = CommonButtonPropsType & {
   type: ButtonEnumType.submit;
   onClick: (event: SyntheticEvent) => void;
   text: string;
 };
 
-type IButton = ICommonButtonProps & {
+type ButtonType = CommonButtonPropsType & {
   type: ButtonEnumType.reset | ButtonEnumType.button;
   onClick: (event: SyntheticEvent) => void;
   text: string;
 };
 
-export type IButtonProps = IButton | ISubmitButton;
+export type ButtonPropsType = ButtonType | SubmitButton;

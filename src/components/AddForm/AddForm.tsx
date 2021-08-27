@@ -3,22 +3,22 @@ import React, { SyntheticEvent, useState } from "react";
 import { v4 as createId } from "uuid";
 
 import { Button, ButtonEnumType } from "../Button";
-import { IAddFormPropsType } from "./AddFormTypes";
+import { AddFormPropsType } from "./AddFormTypes";
 import { addFormTestIds as testIds } from "./AddFormTestIds";
 
 import styles from "./AddForm.module.css";
 
-export const AddForm: React.FC<IAddFormPropsType> = ({
+export const AddForm: React.FC<AddFormPropsType> = ({
   onSubmit,
   name = "",
   amount = 0,
 }) => {
-  const [nameState, setNameState] = useState(name);
-  const [amountState, setAmountState] = useState(amount);
+  const [nameState, setNameState] = useState<string>(name);
+  const [amountState, setAmountState] = useState<number>(amount);
 
-  const isSubmitDisabled = () => !nameState.trim().length;
+  const isSubmitDisabled = (): boolean => !nameState.trim().length;
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = (event: SyntheticEvent): void => {
     event.preventDefault();
     onSubmit({ notes: nameState, amount: amountState, id: createId() });
     setNameState("");

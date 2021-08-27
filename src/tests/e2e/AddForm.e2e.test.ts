@@ -6,7 +6,7 @@ import {
   buttonE2EDriver as createButtonDriver,
   tableE2EDriver as createTableDriver,
   AddFormDriverE2ETypes,
-  TableDriverE2ETypes,
+  TableDriverE2EType,
   ButtonDriverE2ETypes,
 } from "../../components";
 
@@ -16,7 +16,7 @@ describe("New operation", () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
   let addFormDriver: AddFormDriverE2ETypes;
-  let tableDriver: TableDriverE2ETypes;
+  let tableDriver: TableDriverE2EType;
   let buttonDriver: ButtonDriverE2ETypes;
 
   beforeEach(async () => {

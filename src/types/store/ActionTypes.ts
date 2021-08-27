@@ -1,9 +1,9 @@
-import { IOperationType } from "../../components/Main/MainTypes";
+import { OperationType } from "../../components/Main/MainTypes";
 
 export type MainActionType = {
   type: string;
   payload: {
-    data?: IOperationType;
+    data?: OperationType;
     id?: string;
   };
 };

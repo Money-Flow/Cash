@@ -1,8 +1,8 @@
 import { ADD_OPERATION, DELETE_OPERATION } from "../constants";
-import { IOperationType } from "../../components/Main/MainTypes";
+import { OperationType } from "../../components/Main/MainTypes";
 import { MainActionType } from "../../types";
 
-export const addOperation = (data: IOperationType): MainActionType => ({
+export const addOperation = (data: OperationType): MainActionType => ({
   type: ADD_OPERATION,
   payload: { data },
 });

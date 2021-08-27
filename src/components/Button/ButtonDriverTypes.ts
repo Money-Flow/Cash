@@ -1,4 +1,4 @@
-import { IButtonProps, IButtonTypes } from "./ButtonTypes";
+import { ButtonPropsType, ButtonTypes } from "./ButtonTypes";
 
 export type ButtonDriverE2ETypes = {
   click: () => Promise<void>;
@@ -8,10 +8,10 @@ export type ButtonDriverE2ETypes = {
 
 export type ButtonDriverSpecTypes = {
   given: {
-    props: (props: IButtonProps) => ButtonDriverSpecTypes;
+    props: (props: ButtonPropsType) => ButtonDriverSpecTypes;
     withConfirm: (withConfirm: boolean) => ButtonDriverSpecTypes;
     text: (text: string) => ButtonDriverSpecTypes;
-    type: (type: IButtonTypes) => ButtonDriverSpecTypes;
+    type: (type: ButtonTypes) => ButtonDriverSpecTypes;
     click: (onClick: () => void) => ButtonDriverSpecTypes;
   };
   when: {

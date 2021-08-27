@@ -1,3 +1,3 @@
-export type ITotalProps = {
+export type TotalPropsType = {
   amountList: number[];
 };

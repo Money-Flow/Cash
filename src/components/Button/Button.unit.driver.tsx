@@ -4,12 +4,12 @@ import { render, RenderResult } from "@testing-library/react";
 
 import { Button } from "./Button";
 import { buttonTestIds as testIds } from "./ButtonTestIds";
-import { IButtonProps } from "./ButtonTypes";
+import { ButtonPropsType } from "./ButtonTypes";
 import { ButtonDriverSpecTypes } from "./ButtonDriverTypes";
 import { existElement, elementClick } from "../../utils/testUtils/unit";
 
 export const buttonUnitDriver = (): ButtonDriverSpecTypes => {
-  let props: IButtonProps;
+  let props: ButtonPropsType;
   let wrapper: RenderResult;
 
   const driver: ButtonDriverSpecTypes = {

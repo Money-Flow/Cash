@@ -3,11 +3,11 @@ import { Page } from "puppeteer";
 import { tableTestIds } from "./TableTestIds";
 import { buttonE2EDriver as createButtonDriver } from "../Button";
 import { totalTestIds } from "../Total";
-import { TableDriverE2ETypes } from "./TableDriverTypes";
+import { TableDriverE2EType } from "./TableDriverTypes";
 import { combineSelectors } from "../../utils/testUtils";
 import { existElement } from "../../utils/testUtils/e2e";
 
-export const tableE2EDriver = (page: Page): TableDriverE2ETypes => ({
+export const tableE2EDriver = (page: Page): TableDriverE2EType => ({
   exist: () => existElement(page, tableTestIds.table),
   getItemByIndex: async (index: number) => {
     return page.evaluate(

@@ -4,11 +4,11 @@ import { render, RenderResult } from "@testing-library/react";
 
 import { Total } from "./Total";
 import { totalTestIds as testIds } from "./TotalTestIds";
-import { ITotalProps } from "./TotalTypes";
+import { TotalPropsType } from "./TotalTypes";
 import { TotalDriverSpecTypes } from "./TotalDriverTypes";
 
 export const totalUnitDriver = (): TotalDriverSpecTypes => {
-  let props: ITotalProps;
+  let props: TotalPropsType;
   let wrapper: RenderResult;
 
   const driver: TotalDriverSpecTypes = {

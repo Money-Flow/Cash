@@ -1,7 +1,7 @@
-import { IOperationListType } from "../../components/Main/MainTypes";
+import { OperationListType } from "../../components/Main/MainTypes";
 
 export type RootState = {
   operation: {
-    operationDataList: IOperationListType;
+    operationDataList: OperationListType;
   };
 };

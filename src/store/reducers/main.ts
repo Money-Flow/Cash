@@ -1,9 +1,9 @@
 import { MainActionType } from "../../types";
-import { IOperationType } from "../../components/Main/MainTypes";
+import { OperationType } from "../../components/Main/MainTypes";
 import { ADD_OPERATION, DELETE_OPERATION } from "../constants";
 
 type MainStateType = {
-  operationDataList: (IOperationType | undefined)[];
+  operationDataList: (OperationType | undefined)[];
 };
 
 const initialState: MainStateType = {

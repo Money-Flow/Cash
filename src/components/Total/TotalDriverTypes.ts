@@ -1,8 +1,8 @@
-import { ITotalProps } from "./TotalTypes";
+import { TotalPropsType } from "./TotalTypes";
 
 export type TotalDriverSpecTypes = {
   given: {
-    props: (props: ITotalProps) => TotalDriverSpecTypes;
+    props: (props: TotalPropsType) => TotalDriverSpecTypes;
     amountList: (amountList: number[]) => TotalDriverSpecTypes;
   };
   when: {

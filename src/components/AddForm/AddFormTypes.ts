@@ -1,7 +1,7 @@
-import { IOperationType } from "../Main/MainTypes";
+import { OperationType } from "../Main/MainTypes";
 
-export type IAddFormPropsType = {
-  onSubmit: (arg: IOperationType) => void;
+export type AddFormPropsType = {
+  onSubmit: (arg: OperationType) => void;
   name?: string;
   amount?: number;
 };
