@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "csscomb": "csscomb src/",
     "eject": "react-scripts eject",
     "format": "prettier --write src",
     "lint": "tsc --noEmit && eslint --fix src/**/*.{ts,tsx} src/**/**/*.{ts,tsx}",
@@ -12,11 +11,6 @@
     "test": "react-scripts test",
     "test:e2e": "react-scripts test src/**/*.e2e.test.ts",
     "test:unit": "react-scripts test src/**/**/*.spec.ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{css}": [
@@ -43,49 +37,28 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "@babel/helper-call-delegate": "^7.11.4",
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "@testing-library/react": "^11.0.2",
-    "@types/react-redux": "^7.1.11",
-    "classnames": "^2.2.6",
-    "puppeteer": "^5.2.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.2",
-    "react-scripts": "3.4.3",
-    "redux": "^4.0.5",
-    "reselect": "^4.0.0",
-    "uuid": "^8.3.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/user-event": "^12.6.0",
-    "@types/classnames": "^2.2.10",
-    "@types/jest": "^26.0.13",
-    "@types/node": "^14.6.4",
-    "@types/puppeteer": "^3.0.1",
-    "@types/react": "^16.9.49",
-    "@types/react-dom": "^16.9.8",
-    "@types/uuid": "^8.3.0",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.11.1",
-    "csscomb": "^4.3.0",
-    "eslint-config-airbnb": "18.2.0",
-    "eslint-config-airbnb-typescript": "^10.0.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.21.2",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-jsx-a11y": "^6.3.0",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "4.0.0",
-    "husky": "^4.2.5",
-    "jest-junit": "^12.0.0",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.1.2",
-    "sort-package-json": "^1.44.0",
-    "typescript": "^4.0.2"
+    "@babel/helper-call-delegate": "^7.12.3",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/user-event": "^14.4.1",
+    "@types/classnames": "^2.3.1",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.6.0",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "jest-junit": "^14.0.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
+    "classnames": "^2.3.1"
   }
 }
