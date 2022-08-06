@@ -113,4 +113,4 @@ jobs:
         - name: Run E2E Tests on Netlify URL
           run: yarn test:e2e
           env:
-            PLAYWRIGHT_TEST_BASE_URL: ${{ deploy-url }}
+            PLAYWRIGHT_TEST_BASE_URL: ${{ deployment_url }}
