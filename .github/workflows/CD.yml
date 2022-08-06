@@ -114,4 +114,4 @@ jobs:
         - name: Run E2E Tests on Netlify URL
           run: yarn test:e2e
           env:
-            PLAYWRIGHT_TEST_BASE_URL: https://deploy-preview-${{ github.head_ref }}--cash69.netlify.app
+            PLAYWRIGHT_TEST_BASE_URL: https://cash69.netlify.app
