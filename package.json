@@ -50,7 +50,7 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "^3.6.9",
+    "@apollo/client": "3.6.9",
     "@componentdriven/csf": "^0.0.2-alpha.0",
     "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
