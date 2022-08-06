@@ -87,7 +87,7 @@ jobs:
 
     E2E:
       name: E2E Testing
-      needs: [deploy-preview]
+      needs: [install]
       runs-on: ubuntu-latest
       timeout-minutes: 60
       steps:
@@ -110,7 +110,15 @@ jobs:
         - name: Install Playwright
           run: npm install @playwright/test && npx playwright install
 
+        - name: Wait for Netlify Deploy
+          uses: probablyup/wait-for-netlify-action@3.2.0
+          id: waitForDeployment
+          with:
+            site_id: ${{ secrets.NETLIFY_SITE_ID }} # See Settings > Site Details > General in the Netlify UI
+          env:
+            NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
         - name: Run E2E Tests on Netlify URL
           run: yarn test:e2e
           env:
-            PLAYWRIGHT_TEST_BASE_URL: ${{ deployment_url }}
+            PLAYWRIGHT_TEST_BASE_URL: ${{ steps.waitForDeployment.outputs.url }}
