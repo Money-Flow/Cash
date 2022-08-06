@@ -44,10 +44,10 @@ const App: FC = () => {
   }
 
   if(error){
-    return <h1>Error, Нюхай бебру</h1>
+    return <h1 data-hook='title'>Error, Нюхай бебру</h1>
   }
 
-  return  <h1>Expense: {data.expense.data?.attributes.title} - {data.expense.data.attributes.amount}</h1>
+  return  <h1 data-hook='title'>Expense: {data.expense.data?.attributes.title} - {data.expense.data.attributes.amount}</h1>
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
