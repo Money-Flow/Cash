@@ -111,13 +111,7 @@ jobs:
         - name: Install Playwright
           run: npm install @playwright/test && npx playwright install
 
-        - name: Wait deploy
-          uses: jakepartusch/wait-for-netlify-action@v1
-          with:
-            site_name: "cash69"
-          id: waitFor200
-
         - name: Run E2E Tests on Netlify URL
           run: yarn test:e2e
           env:
-            PLAYWRIGHT_TEST_BASE_URL: https://${{ github.head_ref }}--cash69.netlify.app
+            PLAYWRIGHT_TEST_BASE_URL: ${{ deploy-url }}
