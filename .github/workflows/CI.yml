@@ -86,6 +86,10 @@ jobs:
             NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
     E2E:
+<<<<<<< HEAD
+=======
+      timeout-minutes: 60
+>>>>>>> b37cc09 (refactor: aceleration)
       name: E2E Testing
       needs: [install]
       runs-on: ubuntu-latest
