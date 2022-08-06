@@ -89,7 +89,6 @@ jobs:
     E2E:
       timeout-minutes: 60
       name: E2E Testing
-      needs: [deploy-production]
       runs-on: ubuntu-latest
       steps:
         - name: 🛑 Cancel Previous Runs

@@ -87,7 +87,6 @@ jobs:
 
     E2E:
       timeout-minutes: 60
-      needs: [deploy-preview]
       name: E2E Testing
       runs-on: ubuntu-latest
       steps:
