@@ -84,3 +84,30 @@ jobs:
           env:
             NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
             NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+    E2E:
+      name: E2E Testing
+      needs: [deploy-production]
+      if: github.event.deployment_status.state == 'success'
+      runs-on: ubuntu-latest
+      steps:
+        - name: 🛑 Cancel Previous Runs
+          uses: styfle/cancel-workflow-action@0.9.1
+
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            token: ${{ secrets.GIT_TOKEN || github.token  }}
+
+        - name: Download artifact
+          uses: actions/download-artifact@v3
+          with:
+              name: frontend-artifact
+
+        - name: Unpack artifact
+          run: tar xf artifact.tar.gz
+
+        - name: Run E2E Tests on Netlify URL
+          run: yarn test:e2e
+          env:
+            PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
