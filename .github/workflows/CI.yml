@@ -81,12 +81,15 @@ jobs:
             overwrites-pull-request-comment: false
             github-deployment-environment: 'deploy-preview'
             alias: deploy-preview-${{ github.event.number }}
+            token: ${{ secrets.GITHUB_TOKEN }}
+            deploy_url: ${{ steps.netlify.outputs.deploy-url }}
+
           env:
             NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
             NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
     E2E:
-      name: E2E Testing
+      name: Playwright
       needs: [install]
       runs-on: ubuntu-latest
       timeout-minutes: 60
@@ -110,15 +113,11 @@ jobs:
         - name: Install Playwright
           run: npm install @playwright/test && npx playwright install
 
-        - name: Wait for Netlify Deploy
-          uses: probablyup/wait-for-netlify-action@3.2.0
-          id: waitForDeployment
           with:
-            site_id: ${{ secrets.NETLIFY_SITE_ID }} # See Settings > Site Details > General in the Netlify UI
-          env:
-            NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+            token: ${{ secrets.GITHUB_TOKEN }}
+            deploy_url: "${{ steps.netlify.outputs.deploy-url }}"
 
         - name: Run E2E Tests on Netlify URL
           run: yarn test:e2e
           env:
-            PLAYWRIGHT_TEST_BASE_URL: ${{ steps.waitForDeployment.outputs.url }}
+            PLAYWRIGHT_TEST_BASE_URL: ${{ steps.netlify.outputs.deploy-url }}
