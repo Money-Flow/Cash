@@ -108,9 +108,6 @@ jobs:
         - name: Unpack artifact
           run: tar xf artifact.tar.gz
 
-        - name: Install Playwright
-          run: npm install @playwright/test && npx playwright install
-
         - name: Run E2E Tests on Netlify URL
           run: yarn test:e2e
           env:
