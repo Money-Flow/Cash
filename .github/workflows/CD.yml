@@ -1,11 +1,11 @@
-name: Build and Deploy to Netlify
+name: CD
 on:
   push:
-  pull_request:
 jobs:
     install:
         name: Install
         runs-on: ubuntu-latest
+        if: ${{ github.ref == 'refs/heads/master'}}
         continue-on-error: false
         steps:
           - name: 🛑 Cancel Previous Runs
@@ -45,51 +45,9 @@ jobs:
                 path: /tmp/artifact.tar.gz
                 retention-days: 1
 
-    deploy-preview:
-      name: 🚀 Deploy Preview 🚀
-      needs: [install]
-      if: ${{ github.event_name != 'push' }}
-      runs-on: ubuntu-latest
-      steps:
-        - name: 🛑 Cancel Previous Runs
-          uses: styfle/cancel-workflow-action@0.9.1
-
-        - name: Checkout
-          uses: actions/checkout@v3
-          with:
-            token: ${{ secrets.GIT_TOKEN || github.token  }}
-
-        - name: Download artifact
-          uses: actions/download-artifact@v3
-          with:
-              name: frontend-artifact
-
-        - name: Unpack artifact
-          run: tar xf artifact.tar.gz
-
-        - name: Build TS application
-          run: yarn build
-
-        - name: Deploy to Netlify
-          uses: nwtgck/actions-netlify@v1.2
-          with:
-            publish-dir: './build'
-            production-branch: master
-            production-deploy: false
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            deploy-message: "Deploy from GitHub Actions"
-            enable-pull-request-comment: false
-            enable-commit-comment: true
-            overwrites-pull-request-comment: true
-            github-deployment-environment: 'deploy-preview'
-          env:
-            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
     deploy-production:
       name: 🚀 Deploy Production 🚀
       needs: [install]
-      if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }}
       runs-on: ubuntu-latest
       steps:
         - name: 🛑 Cancel Previous Runs
