@@ -10,6 +10,7 @@ const EXPENSE_REQUEST = gql`
       data {
         attributes {
           title
+          amount
         }
       }
     }
@@ -46,7 +47,7 @@ const App: FC = () => {
     return <h1>Error, Нюхай бебру</h1>
   }
 
-  return  <h1>Expense: {data.expense.data ?? 'not found, нюхай бебру :('}</h1>
+  return  <h1>Expense: {data.expense.data?.attributes.title} - {data.expense.data.attributes.amount}</h1>
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
