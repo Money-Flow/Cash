@@ -3,7 +3,7 @@ on:
   push:
 jobs:
     install:
-        name: Install
+        name: Install 🧶
         runs-on: ubuntu-latest
         if: ${{ github.ref == 'refs/heads/master'}}
         continue-on-error: false
@@ -46,7 +46,7 @@ jobs:
                 retention-days: 1
 
     deploy-production:
-      name: 🚀 Deploy Production 🚀
+      name: Deploy Production 🚀
       needs: [install]
       runs-on: ubuntu-latest
       steps:
@@ -69,14 +69,14 @@ jobs:
         - name: Build TS application
           run: yarn build
 
-        - name: Deploy to Netlify
+        - name: Deploy to Netlify 🚀
           uses: nwtgck/actions-netlify@v1.2
           with:
             publish-dir: './build'
             production-branch: master
             production-deploy: true
             github-token: ${{ secrets.GITHUB_TOKEN }}
-            deploy-message: "Deploy to Netlify from GitHub Actions"
+            deploy-message: "Deploy to Netlify from GitHub Actions 🚀"
             enable-pull-request-comment: false
             enable-commit-comment: false
             overwrites-pull-request-comment: false
@@ -87,7 +87,7 @@ jobs:
             NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
     E2E:
-      name: Playwright
+      name: Playwright 🧪
       needs: [deploy-production]
       runs-on: ubuntu-latest
       timeout-minutes: 60
@@ -108,7 +108,7 @@ jobs:
         - name: Unpack artifact
           run: tar xf artifact.tar.gz
 
-        - name: Install Playwright
+        - name: Install Playwright 🧪
           run: npm install @playwright/test && npx playwright install
 
         - name: Run E2E Tests on Netlify URL
