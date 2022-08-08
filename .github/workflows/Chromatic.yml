@@ -7,6 +7,7 @@ on: pull_request
 # List of jobs
 jobs:
   chromatic-deployment:
+    name: Chromatic Deployment 📗
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
@@ -15,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: yarn
         # 👇 Adds Chromatic as a step in the workflow
-      - name: Publish to Chromatic
+      - name: Publish to Chromatic 📗
         uses: chromaui/action@v1
         # Chromatic GitHub Action options
         with:
