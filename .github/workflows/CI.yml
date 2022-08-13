@@ -54,7 +54,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v1
 
-        # It's not working with frontend-artifact'
+        # It's not working with frontend-artifact, need investigate'
         - name: Install 🧶
           run: yarn
 

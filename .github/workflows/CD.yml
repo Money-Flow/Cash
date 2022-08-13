@@ -47,6 +47,7 @@ jobs:
 
     chromatic-deployment:
       name: Chromatic Deployment 📗
+      if: ${{ github.ref == 'refs/heads/master'}}
       runs-on: ubuntu-latest
       steps:
         - name: 🛑 Cancel Previous Runs
@@ -55,7 +56,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v1
 
-        # It's not working with frontend-artifact'
+        # It's not working with frontend-artifact, need investigate'
         - name: Install 🧶
           run: yarn
 
