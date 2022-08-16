@@ -20,8 +20,9 @@ module.exports = {
             jsx: true,
         },
         ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: ['./tsconfig.json'],
+        project: "tsconfig.json",
+        tsconfigRootDir: __dirname,
+        sourceType: "module",
     },
     plugins: ['react', '@typescript-eslint', 'prettier'],
     rules: {
@@ -46,6 +47,11 @@ module.exports = {
                         pattern: 'react',
                         group: 'external',
                         position: 'before',
+                    },
+                    {
+                        pattern: 'types',
+                        group: 'internal',
+                        position: 'after',
                     },
                     {
                         pattern: 'styles',

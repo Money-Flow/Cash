@@ -12,7 +12,9 @@ import {
 } from '@apollo/client'
 import ReactDOM from 'react-dom/client'
 
-import './index.css'
+import { Nullable } from 'types'
+
+import 'index.css'
 
 type ExpenseType = {
     expense: {
@@ -36,13 +38,11 @@ export type ExpenseQueryType = {
 }
 
 const EXPENSE_QUERY = gql`
-    query ExpenseQuery() {
-        expense(id: !ID) {
+    query {
+        expense(id: 1) {
             data {
-                query
                 attributes {
                     title
-                    amount
                 }
             }
         }
@@ -58,7 +58,7 @@ const useExpenseQuery = (id: number) => {
     )
 
     return {
-        data,
+        data: data?.expense.data ?? null,
         loading,
         error,
     }
@@ -95,10 +95,13 @@ const App: FC = () => {
         return <h1 data-hook="title">Error, Нюхай бебру</h1>
     }
 
+    if (!data) {
+        return <h1 data-hook="title">Not found expense</h1>
+    }
+
     return (
         <h1 data-hook="title">
-            Expense: {data?.expense.data.attributes.title}-
-            {data?.expense.data.attributes.amount}
+            Expense: {data?.attributes.title}-{data?.attributes.amount}
         </h1>
     )
 }
