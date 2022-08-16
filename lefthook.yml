@@ -1,0 +1,14 @@
+pre-commit:
+    commands:
+        eslint:
+            glob: '*.{ts,tsx}'
+            run: yarn lint
+        ts-lint:
+            glob: '*.{ts,tsx}'
+            run: yarn tsc --noEmit
+        stylelint:
+            glob: '*.{css}'
+            run: yarn stylelint
+        sort-package-json:
+          glob: 'package.json'
+          run: yarn sort-package-json

@@ -63,6 +63,60 @@ jobs:
           with:
             projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
+    eslint:
+      name: Eslint
+      needs: [install]
+      runs-on: ubuntu-latest
+      continue-on-error: false
+      steps:
+          - name: Download artifact
+            uses: actions/download-artifact@v3
+            with:
+                name: frontend-artifact
+
+          - name: Unpack artifact
+            run: tar xf artifact.tar.gz
+
+          - name: Setup problem matcher for eslint
+            run: echo "::add-matcher::.github/configs/eslint-matcher.json"
+
+          - name: Run eslint
+            run: yarn eslint
+
+    stylelint:
+      name: Stylelint
+      needs: [install]
+      runs-on: ubuntu-latest
+      continue-on-error: false
+      steps:
+          - name: Download artifact
+            uses: actions/download-artifact@v3
+            with:
+                name: frontend-artifact
+
+          - name: Unpack artifact
+            run: tar xf artifact.tar.gz
+
+          - name: Run stylelint
+            run: yarn stylelint
+
+    typescript:
+        name: Typescript
+        needs: [install]
+        runs-on: ubuntu-latest
+        continue-on-error: false
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: frontend-artifact
+
+            - name: Unpack artifact
+              run: tar xf artifact.tar.gz
+
+            - name: Run typescript compile
+              run: yarn tsc --noEmit
+
     deploy-preview:
       name: 🚀 Deploy Preview 🚀
       needs: [install]
