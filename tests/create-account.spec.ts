@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('should be able to create a new account', async ({ page }) => {
+test.skip('should be able to create a new account', async ({ page }) => {
     await page.goto(
         `${
             process.env.PLAYWRIGHT_TEST_BASE_URL ?? 'localhost:3000'
