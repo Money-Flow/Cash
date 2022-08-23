@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.6.9",
-    "@playwright/test": "1.25.0",
+    "@playwright/test": "1.25.1",
     "@storybook/react": "6.5.10",
     "@storybook/testing-library": "0.0.13",
     "dotenv": "16.0.1",
