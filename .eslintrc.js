@@ -81,5 +81,5 @@ module.exports = {
             version: 'detect',
         },
     },
-    ignorePatterns: ['playwright.config.ts', 'tests', 'tests-examples'],
+    ignorePatterns: ['playwright.config.ts',],
 }
