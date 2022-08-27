@@ -18,4 +18,5 @@ module.exports = {
       ],
       'selector-class-pattern': null
     },
+    ignoreFiles: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.svg", "**/*.mdx"]
   };
