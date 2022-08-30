@@ -48,7 +48,7 @@
     "@playwright/test": "1.25.1",
     "@storybook/react": "6.5.10",
     "@storybook/testing-library": "0.0.13",
-    "dotenv": "16.0.1",
+    "dotenv": "16.0.2",
     "graphql": "16.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
