@@ -12,7 +12,7 @@
     "sort-package-json": "sort-package-json 'package.json'",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
-    "stylelint": "stylelint **/*.css",
+    "stylelint": "stylelint src/",
     "stylelint:fix": "yarn stylelint --fix",
     "test": "react-scripts test",
     "test:e2e": "playwright test -c tests",
