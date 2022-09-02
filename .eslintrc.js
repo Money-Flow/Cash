@@ -38,35 +38,88 @@ module.exports = {
                 unnamedComponents: 'arrow-function',
             },
         ],
-        'import/order': [
-            'error',
-            {
-                groups: ['builtin', 'external', 'internal'],
-                pathGroups: [
-                    {
-                        pattern: 'react',
-                        group: 'external',
-                        position: 'before',
-                    },
-                    {
-                        pattern: 'types',
-                        group: 'internal',
-                        position: 'after',
-                    },
-                    {
-                        pattern: 'styles',
-                        group: 'internal',
-                        position: 'after',
-                    },
-                ],
-                pathGroupsExcludedImportTypes: ['react'],
-                'newlines-between': 'always',
-                alphabetize: {
-                    order: 'asc',
-                    caseInsensitive: true,
+        "import/order": ["error", {
+            "groups": ["external", ["internal", "type"], "unknown"],
+            "pathGroups": [
+                {
+                  "pattern": "react",
+                  "group": "external",
+                  "position": "before"
                 },
-            },
-        ],
+                {
+                    "pattern": "react*{*,/**}",
+                    "group": "external",
+                    "position": "after"
+                  },
+                  {
+                    "pattern": "*apollo*{*,/**}",
+                    "group": "external",
+                    "position": "after"
+                  },
+                {
+                  "pattern": "**/+(containers|components|pages|layouts){*,/**}",
+                  "group": "internal",
+                  "position": "before"
+
+                },
+                {
+                    "pattern": "**/app{*,/**}",
+                    "group": "internal",
+                    "position": "before"
+                  },
+                {
+                  "pattern": "**/hooks",
+                  "group": "internal",
+                  "position": "before"
+                },
+                {
+                    "pattern": "**/graphql/+(mutations|queries){*,/**}",
+                    "group": "internal",
+                    "posfition": "before"
+                },
+                {
+                  "pattern": "**/utils",
+                  "group": "internal",
+                  "position": "before"
+                },
+                {
+                    "pattern": "**/api",
+                    "group": "internal",
+                    "position": "before"
+                  },
+                {
+                  "pattern": "**/store{*,/**}",
+                  "group": "internal",
+                  "position": "before"
+                },
+                {
+                    "pattern": "**/+(routes|constants|fragments){*,/**}",
+                    "group": "internal",
+                    "position": "before"
+                },
+                {
+                  "pattern": "**/schema",
+                  "group": "internal",
+                  "position": "before"
+                },
+                {
+                  "pattern": "**/types{*,/**}",
+                  "group": "internal",
+                  "position": "after"
+                },
+                {
+                  "pattern": "**/assets{*,/**}",
+                  "group": "internal",
+                  "position": "after"
+                }
+            ],
+            "pathGroupsExcludedImportTypes": ['react'],
+            "newlines-between": "always",
+            "alphabetize": {
+                "order": "asc",
+                "caseInsensitive": true
+            }
+        }],
         'import/prefer-default-export': 'off',
         'react/require-default-props': 'off',
     },
