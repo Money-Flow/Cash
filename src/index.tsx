@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+import ReactDOM from 'react-dom/client'
+
 import {
     ApolloClient,
     InMemoryCache,
@@ -10,7 +12,6 @@ import {
     concat,
     HttpLink,
 } from '@apollo/client'
-import ReactDOM from 'react-dom/client'
 
 import { Nullable } from 'types'
 
