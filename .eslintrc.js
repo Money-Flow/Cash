@@ -40,77 +40,66 @@ module.exports = {
         ],
         "import/order": ["error", {
             "groups": ["external", ["internal", "type"], "unknown"],
+            "newlines-between": "always-and-inside-groups",
             "pathGroups": [
-                {
-                  "pattern": "react",
-                  "group": "external",
-                  "position": "before"
-                },
-                {
+                  {
+                    "pattern": "*apollo*{*,/**}",
+                    "group": "external",
+                    "position": "before"
+                  },
+                  {
                     "pattern": "react*{*,/**}",
+                    "group": "external",
+                    "position": "before"
+                  },
+                  {
+                    "pattern": "react",
                     "group": "external",
                     "position": "after"
                   },
                   {
-                    "pattern": "*apollo*{*,/**}",
-                    "group": "external",
-                    "position": "after"
+                    "pattern": "~/+(containers|components|pages|layouts){*,/**}",
+                    "group": "internal",
                   },
                 {
-                  "pattern": "**/+(containers|components|pages|layouts){*,/**}",
-                  "group": "internal",
-                  "position": "before"
-
-                },
-                {
-                    "pattern": "**/app{*,/**}",
+                    "pattern": "~/app{*,/**}",
                     "group": "internal",
-                    "position": "before"
                   },
                 {
-                  "pattern": "**/hooks",
-                  "group": "internal",
-                  "position": "before"
-                },
-                {
-                    "pattern": "**/graphql/+(mutations|queries){*,/**}",
+                    "pattern": "~/graphql/+(mutations|queries){*,/**}",
                     "group": "internal",
-                    "posfition": "before"
                 },
                 {
-                  "pattern": "**/utils",
-                  "group": "internal",
-                  "position": "before"
-                },
-                {
-                    "pattern": "**/api",
+                    "pattern": "~/api",
                     "group": "internal",
-                    "position": "before"
                   },
                 {
-                  "pattern": "**/store{*,/**}",
+                  "pattern": "~/store{*,/**}",
                   "group": "internal",
-                  "position": "before"
                 },
                 {
-                    "pattern": "**/+(routes|constants|fragments){*,/**}",
+                    "pattern": "~/+(routes|constants|fragments){*,/**}",
                     "group": "internal",
-                    "position": "before"
                 },
                 {
-                  "pattern": "**/schema",
+                  "pattern": "~/schema",
                   "group": "internal",
-                  "position": "before"
                 },
                 {
-                  "pattern": "**/types{*,/**}",
+                  "pattern": "~/types{*,/**}",
                   "group": "internal",
-                  "position": "after"
                 },
                 {
-                  "pattern": "**/assets{*,/**}",
+                  "pattern": "~/hooks/{*,/**}",
                   "group": "internal",
-                  "position": "after"
+                },
+                {
+                  "pattern": "~/utils",
+                  "group": "internal",
+                },
+                {
+                  "pattern": "~/assets{*,/**}",
+                  "group": "internal",
                 }
             ],
             "pathGroupsExcludedImportTypes": ['react'],
@@ -120,6 +109,7 @@ module.exports = {
                 "caseInsensitive": true
             }
         }],
+
         'import/prefer-default-export': 'off',
         'react/require-default-props': 'off',
     },
@@ -134,5 +124,5 @@ module.exports = {
             version: 'detect',
         },
     },
-    ignorePatterns: ['playwright.config.ts',],
+    ignorePatterns: ['playwright.config.ts', 'tests', 'tests-examples'],
 }
