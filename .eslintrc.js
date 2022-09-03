@@ -58,6 +58,10 @@ module.exports = {
                     "position": "after"
                   },
                   {
+                    "pattern": "~/+storybook{*,/**}",
+                    "group": "external",
+                  },
+                  {
                     "pattern": "~/+(containers|components|pages|layouts){*,/**}",
                     "group": "internal",
                   },
