@@ -104,6 +104,10 @@ module.exports = {
                 {
                   "pattern": "~/assets{*,/**}",
                   "group": "internal",
+                },
+                {
+                  "pattern": "~/module{*,/**}",
+                  "group": "internal",
                 }
             ],
             "pathGroupsExcludedImportTypes": ['react'],

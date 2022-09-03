@@ -15,8 +15,7 @@
     "stylelint": "stylelint src/",
     "stylelint:fix": "yarn stylelint --fix",
     "test": "react-scripts test",
-    "test:e2e": "playwright test -c tests",
-    "test:unit": "react-scripts test src/**/**/*.spec.ts"
+    "test:e2e": "playwright test -c tests"
   },
   "browserslist": {
     "production": [

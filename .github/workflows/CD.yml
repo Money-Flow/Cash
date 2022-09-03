@@ -118,6 +118,29 @@ jobs:
 
             - name: Run typescript compile
               run: yarn tsc --noEmit
+    tests:
+      name: 🧪 Unit tests 🧪
+      needs: [install]
+      runs-on: ubuntu-latest
+      steps:
+        - name: 🛑 Cancel Previous Runs
+          uses: styfle/cancel-workflow-action@0.10.0
+
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            token: ${{ secrets.GIT_TOKEN || github.token  }}
+
+        - name: Download artifact
+          uses: actions/download-artifact@v3
+          with:
+              name: frontend-artifact
+
+        - name: Unpack artifact
+          run: tar xf artifact.tar.gz
+
+        - name: Testing 🧪
+          run: yarn test
 
     deploy-production:
       name: Deploy Production 🚀
