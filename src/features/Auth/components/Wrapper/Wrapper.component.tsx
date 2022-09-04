@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 
 import className from 'classnames'
 
+import { Logo } from 'components/Logo/Logo'
 import { DataHooks } from 'features/Auth/constants'
 
 import styles from './Wrapper.module.css'
@@ -23,6 +24,7 @@ export const Wrapper: FC<PropsType> = ({ image, altImage, children }) => (
                 className={styles.childrenWrapper}
                 data-testid={DataHooks.Children}
             >
+                <Logo className={styles.logoWrapper} />
                 {children}
             </div>
         </div>

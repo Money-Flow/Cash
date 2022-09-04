@@ -43,6 +43,11 @@ module.exports = {
             "newlines-between": "always-and-inside-groups",
             "pathGroups": [
                   {
+                    "pattern": "classnames{*,/**}",
+                    "group": "external",
+                    "position": "before"
+                  },
+                  {
                     "pattern": "*apollo*{*,/**}",
                     "group": "external",
                     "position": "before"
@@ -58,7 +63,7 @@ module.exports = {
                     "position": "after"
                   },
                   {
-                    "pattern": "~/+storybook{*,/**}",
+                    "pattern": "@storybook{*,/**}",
                     "group": "external",
                   },
                   {
