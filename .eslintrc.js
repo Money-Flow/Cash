@@ -43,6 +43,11 @@ module.exports = {
             "newlines-between": "always-and-inside-groups",
             "pathGroups": [
                   {
+                    "pattern": "classnames{*,/**}",
+                    "group": "external",
+                    "position": "before"
+                  },
+                  {
                     "pattern": "*apollo*{*,/**}",
                     "group": "external",
                     "position": "before"
@@ -56,6 +61,10 @@ module.exports = {
                     "pattern": "react",
                     "group": "external",
                     "position": "after"
+                  },
+                  {
+                    "pattern": "@storybook{*,/**}",
+                    "group": "external",
                   },
                   {
                     "pattern": "~/+(containers|components|pages|layouts){*,/**}",
@@ -100,6 +109,10 @@ module.exports = {
                 {
                   "pattern": "~/assets{*,/**}",
                   "group": "internal",
+                },
+                {
+                  "pattern": "~/module{*,/**}",
+                  "group": "internal",
                 }
             ],
             "pathGroupsExcludedImportTypes": ['react'],
@@ -116,8 +129,7 @@ module.exports = {
     settings: {
         'import/resolver': {
             node: {
-                paths: ['src', 'tests'],
-                extensions: ['.ts', '.tsx'],
+                extensions: ['js', 'jsx', '.ts', '.tsx'],
             },
         },
         react: {

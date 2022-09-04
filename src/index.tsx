@@ -12,8 +12,8 @@ import { ApolloProvider } from '@apollo/client'
 import { client } from 'apollo'
 
 import { App } from 'app/App'
-import { useAuth } from 'hooks/useAuth'
-import { LoginPage } from 'pages/login.page'
+import { useAuth } from 'features/Auth/hooks/useAuth'
+import { Login } from 'pages/Login'
 
 const RequireAuth = ({ children }: { children: React.ReactElement }) => {
     const { isAuth } = useAuth()
@@ -40,7 +40,7 @@ root.render(
                             </RequireAuth>
                         }
                     />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/login" element={<Login />} />
                 </Routes>
             </BrowserRouter>
         </ApolloProvider>
