@@ -3,6 +3,7 @@ import React from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render, screen } from '@testing-library/react'
 
+import { DataHooks as LogoDataHooks } from 'components/Logo'
 import { DataHooks } from 'features/Auth/constants'
 
 import { Wrapper, PropsType } from './Wrapper.component'
@@ -19,6 +20,7 @@ export type DriverType = {
         isExistImage: () => boolean
         getImage: () => HTMLElement
         isExistChildren: () => boolean
+        isExistLogo: () => boolean
     }
 }
 
@@ -50,6 +52,7 @@ export const createLayoutDriver = (): DriverType => {
             isExistChildren: () =>
                 !!screen.queryByText('children') &&
                 !!screen.queryByText('button'),
+            isExistLogo: () => !!screen.getByTestId(LogoDataHooks.Logo),
         },
     }
 

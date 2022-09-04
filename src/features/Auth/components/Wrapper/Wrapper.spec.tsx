@@ -21,6 +21,11 @@ describe('<Layout/>', () => {
                 .then.isExistChildren()
             expect(isExistChildren).toBeTruthy()
         })
+
+        it('should display logo', () => {
+            const isExistLogo = driver.when.created().then.isExistLogo()
+            expect(isExistLogo).toBeTruthy()
+        })
     })
 
     describe('with image', () => {
