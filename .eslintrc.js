@@ -129,8 +129,7 @@ module.exports = {
     settings: {
         'import/resolver': {
             node: {
-                paths: ['src', 'tests'],
-                extensions: ['.ts', '.tsx'],
+                extensions: ['js', 'jsx', '.ts', '.tsx'],
             },
         },
         react: {

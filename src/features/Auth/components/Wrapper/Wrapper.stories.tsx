@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
 import { Wrapper, PropsType } from 'features/Auth/components'
 import image from 'pages/assets/login.jpeg'
 
