@@ -12,8 +12,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    max-width: calc(50% - 60px);
     height: 100%;
+    padding: 0 30px;
 }
 
 .withoutImage {
