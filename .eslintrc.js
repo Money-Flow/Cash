@@ -131,17 +131,7 @@ module.exports = {
         }],
 
         'import/prefer-default-export': 'off',
-        'react/require-default-props': 'off',
-        'react/sort-prop-types': [
-          2,
-          {
-            callbacksLast: true,
-            ignoreCase: false,
-            requiredFirst: true,
-            sortShapeProp: true,
-            noSortAlphabetically: false,
-          },
-        ],
+        'react/require-default-props': 'off'
     },
     settings: {
         'import/resolver': {
