@@ -10,7 +10,7 @@ describe('<Layout/>', () => {
     })
 
     describe('by default', () => {
-        it('should be display  children', () => {
+        it('should be display children', () => {
             const isExistChildren = driver.given
                 .children(
                     <p>
