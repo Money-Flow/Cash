@@ -13,6 +13,7 @@ module.exports = {
         'airbnb-typescript',
         'airbnb/hooks',
         'prettier',
+        "plugin:typescript-sort-keys/recommended"
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -24,7 +25,7 @@ module.exports = {
         tsconfigRootDir: __dirname,
         sourceType: "module",
     },
-    plugins: ['react', '@typescript-eslint', 'prettier'],
+    plugins: ['react', '@typescript-eslint', 'prettier', "typescript-sort-keys"],
     rules: {
         'prettier/prettier': 'error',
         'react/jsx-filename-extension': [
@@ -38,6 +39,12 @@ module.exports = {
                 unnamedComponents: 'arrow-function',
             },
         ],
+        "typescript-sort-keys/interface": [
+          "error",
+          "asc",
+          { "caseSensitive": true, "natural": false, "requiredFirst": true }
+        ],
+        "typescript-sort-keys/string-enum": "error",
         "import/order": ["error", {
             "groups": ["external", ["internal", "type"], "unknown"],
             "newlines-between": "always-and-inside-groups",
@@ -125,6 +132,16 @@ module.exports = {
 
         'import/prefer-default-export': 'off',
         'react/require-default-props': 'off',
+        'react/sort-prop-types': [
+          2,
+          {
+            callbacksLast: true,
+            ignoreCase: false,
+            requiredFirst: true,
+            sortShapeProp: true,
+            noSortAlphabetically: false,
+          },
+        ],
     },
     settings: {
         'import/resolver': {

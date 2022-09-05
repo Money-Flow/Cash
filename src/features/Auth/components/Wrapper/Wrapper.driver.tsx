@@ -9,17 +9,17 @@ import { Wrapper, PropsType } from './Wrapper.component'
 
 export type DriverType = {
     given: {
-        image: (image?: string) => DriverType
         children: (children: React.ReactElement) => DriverType
+        image: (image?: string) => DriverType
+    }
+    then: {
+        getImage: () => HTMLElement
+        isExistChildren: () => boolean
+        isExistImage: () => boolean
+        isExistLogo: () => boolean
     }
     when: {
         created: () => DriverType
-    }
-    then: {
-        isExistImage: () => boolean
-        getImage: () => HTMLElement
-        isExistChildren: () => boolean
-        isExistLogo: () => boolean
     }
 }
 

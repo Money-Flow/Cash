@@ -6,8 +6,8 @@ type ExpenseType = {
     expense: {
         data: {
             attributes: {
-                title: string
                 amount: number
+                title: string
             }
         }
     }
@@ -18,8 +18,8 @@ type ExpenseVarsType = {
 }
 
 export type ExpenseQueryType = {
-    loading: boolean
     error: Nullable<Error>
+    loading: boolean
     data?: ExpenseType
 }
 
