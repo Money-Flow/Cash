@@ -66,7 +66,7 @@ jobs:
             projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
     eslint:
-      name: Eslint
+      name: Eslint 🤡
       needs: [install]
       runs-on: ubuntu-latest
       continue-on-error: false
@@ -86,7 +86,7 @@ jobs:
             run: yarn eslint
 
     stylelint:
-      name: Stylelint
+      name: Stylelint 💅
       needs: [install]
       runs-on: ubuntu-latest
       continue-on-error: false
@@ -103,7 +103,7 @@ jobs:
             run: yarn stylelint
 
     typescript:
-        name: Typescript
+        name: Typescript 🎪
         needs: [install]
         runs-on: ubuntu-latest
         continue-on-error: false
@@ -119,7 +119,7 @@ jobs:
             - name: Run typescript compile
               run: yarn tsc --noEmit
     tests:
-      name: 🧪 Unit tests 🧪
+      name: Unit tests 🧪
       needs: [install]
       runs-on: ubuntu-latest
       steps:

@@ -8,9 +8,9 @@ import { DataHooks } from 'features/Auth/constants'
 import styles from './Wrapper.module.css'
 
 export type PropsType = {
-    image?: string
-    altImage?: string
     children: ReactNode
+    altImage?: string
+    image?: string
 }
 
 export const Wrapper: FC<PropsType> = ({ image, altImage, children }) => (
