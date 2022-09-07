@@ -12,8 +12,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    max-width: calc(50% - 60px);
     height: 100%;
+    padding: 0 30px;
 }
 
 .withoutImage {
@@ -27,10 +28,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 555px;
+    width: 100%;
+    max-width: 360px;
     height: 100%;
 
-    text-align: center;
+    text-align: start;
 }
 
 .logoWrapper {

@@ -18,11 +18,11 @@ export const WithImage = Template.bind({})
 
 WithImage.args = {
     image,
-    children: <>Wrapper</>,
+    children: <p style={{ textAlign: 'start', width: '100%' }}>Wrapper</p>,
 }
 
 export const WithoutImage = Template.bind({})
 
 WithoutImage.args = {
-    children: <>Wrapper</>,
+    children: <p style={{ textAlign: 'center', width: '100%' }}>Wrapper</p>,
 }
