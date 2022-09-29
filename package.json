@@ -93,7 +93,7 @@
     "jest-junit": "14.0.1",
     "prettier": "2.7.1",
     "prop-types": "15.8.1",
-    "sort-package-json": "1.57.0",
+    "sort-package-json": "2.0.0",
     "storybook-css-modules": "1.0.8",
     "stylelint": "14.13.0",
     "stylelint-config-prettier": "9.0.3",
