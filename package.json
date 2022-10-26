@@ -43,7 +43,7 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "3.7.0",
+    "@apollo/client": "3.7.1",
     "@playwright/test": "1.27.1",
     "@storybook/react": "6.5.13",
     "@storybook/testing-library": "0.0.13",
