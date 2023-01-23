@@ -79,7 +79,7 @@
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
     "babel-plugin-named-exports-order": "0.0.2",
-    "chromatic": "6.14.0",
+    "chromatic": "6.15.0",
     "eslint": "8.32.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
